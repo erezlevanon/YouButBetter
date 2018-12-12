@@ -4,9 +4,9 @@
 class Controller:
     class __Controller:
         def __init__(self):
-            pass;
+            pass
 
-    instance = None;
+    instance = None
 
     def __init__(self):
         if not Controller.instance:
