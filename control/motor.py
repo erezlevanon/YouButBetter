@@ -1,5 +1,6 @@
 # Control a single motor
 from RpiMotorLib import RpiMotorLib
+from enum import Enum
 
 class Motor:
 
@@ -17,4 +18,4 @@ class Motor:
         self.pins = [pin_1, pin_2, pin_3, pin_4]
 
     def run(self, direction, steps=512):
-        self.__motor.motor_run(self.pins, Motor.__WAIT_TIME, steps, direction, false, Motor.__STEP_TYPE)
+        self.__motor.motor_run(self.pins, Motor.__WAIT_TIME, steps, direction, False, Motor.__STEP_TYPE)
