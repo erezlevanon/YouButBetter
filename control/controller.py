@@ -22,5 +22,5 @@ class Controller:
 if __name__ == "__main__":
     c = Controller()
     print(c.petri_motor)
-    c.petri_motor.run(Motor.DIRECTION.CW, 100)
+    c.petri_motor.run(Motor.DIRECTION.CW, 1000)
     GPIO.cleanup()

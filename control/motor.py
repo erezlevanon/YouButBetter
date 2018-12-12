@@ -6,7 +6,7 @@ class Motor:
 
     __TYPE = "28BYJ"
     __STEP_TYPE = "half"
-    __WAIT_TIME = .01
+    __WAIT_TIME = .001
 
     class DIRECTION(Enum):
         CW = False
