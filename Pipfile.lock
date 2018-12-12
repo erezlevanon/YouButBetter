@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "627ef89f247ecee27e9ef0dabe116108d09c47abf171c900a8817befa64f9dd2"
+            "sha256": "3b4b939edb6705d144433d5cd99f0c2a396f6849274d1c8ed54186a5b21b3db0"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -30,6 +30,13 @@
                 "sha256:8e0f8568c118d3077b46be7d654cc8167fa916092e28320cde048e54bfc9f1e6"
             ],
             "version": "==2018.7"
+        },
+        "rpimotorlib": {
+            "hashes": [
+                "sha256:85863e668b88cd48c081febb785e033044b067c943ab2ab10b907a3c25f02b8f"
+            ],
+            "index": "pypi",
+            "version": "==2.3"
         }
     },
     "develop": {}
