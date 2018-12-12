@@ -1,5 +1,5 @@
 # Singleton class to control all physical elements of this project
-from control.motor import Motor
+from motor import Motor
 
 
 class Controller:
