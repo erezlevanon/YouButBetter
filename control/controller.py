@@ -1,5 +1,6 @@
 # Singleton class to control all physical elements of this project
 from motor import Motor
+import RPi.GPIO as GPIO
 
 
 class Controller:
@@ -22,3 +23,4 @@ if __name__ == "__main__":
     c = Controller()
     print(c.petri_motor)
     c.petri_motor.run(Motor.DIRECTION.CW, 100)
+    GPIO.cleanup()
