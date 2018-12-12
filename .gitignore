@@ -128,6 +128,11 @@ coverage.xml
 *.log
 local_settings.py
 db.sqlite3
+*.pot
+*.pyc
+
+.env
+db.sqlite3
 
 # Flask stuff:
 instance/
