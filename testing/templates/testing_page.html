@@ -1,13 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet"
+          href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body ng-app="BlankApp" ng-cloak layout="fill">
+<section>
+    <md-card>
+        <md-card-header>
+            <md-card-header-text>
+                <span class="md-title">Test Page</span>
+                <span class="md-subhead">Choose a component to test it</span>
+            </md-card-header-text>
+        </md-card-header>
+        <form action="run" method="post">
+            <md-card-actions layout="row" layout-align="start center">
+                <md-button type="submit" name="machine" value="petri">Petri Motor</md-button>
+                <md-card-icon-actions>
+                    <md-button class="md-icon-button" aria-label="toggle">
+                        <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
+                    </md-button>
+                </md-card-icon-actions>
+            </md-card-actions>
+        </form>
+    </md-card>
+</section>
+<!-- Angular Material requires Angular.js Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+<!-- Angular Material Library -->
+<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@1/dist/clipboard.min.js"></script>
+<script type="text/javascript">
+    function sideNavController($scope, $mdSidenav) {
+        $scope.openLeftMenu = function () {
+            console.log('yo');
+            $mdSidenav('left').toggle();
+        };
+    }
+
+    angular.module('BlankApp', ['ngMaterial'])
+        .controller('sideNavController', sideNavController);
+    new Clipboard('.copy_btn');
+</script>
+</body>
+</html>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>YouButBetter Testing</title>
 </head>
-<body>
-Welcome to testing page
-<form action="run" method="post">
-    <button type="submit" name="machine" value="petri">Petri Motor</button>
-</form>
-</body>
+
 </html>
