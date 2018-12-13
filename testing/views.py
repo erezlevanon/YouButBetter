@@ -13,7 +13,6 @@ def index(request):
 @csrf_exempt
 def run(request):
     if request.method == 'POST':
-        print(request.POST.get('choice'))
         c = controller.Controller()
         interface = c.name_to_interface[request.POST.get('choice')]
         if interface:
