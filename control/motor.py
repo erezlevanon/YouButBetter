@@ -13,9 +13,9 @@ class Motor:
         CCW = True
 
 
-    def __init__(self, name, pin_1, pin_2, pin_3, pin_4):
+    def __init__(self, name, pins):
         self.__motor = RpiMotorLib.BYJMotor(name, Motor.__TYPE)
-        self.pins = [pin_1, pin_2, pin_3, pin_4]
+        self.pins = pins
 
     def run(self, direction, steps=512):
         self.__motor.motor_run(self.pins, Motor.__WAIT_TIME, steps, direction.value, False, Motor.__STEP_TYPE)
