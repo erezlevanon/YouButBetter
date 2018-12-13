@@ -24,7 +24,6 @@ class Controller:
 
 if __name__ == "__main__":
     c = Controller()
-    print(c.petri_motor)
     c.petri_motor.run(motor.Motor.DIRECTION.CW, 128)
     time.sleep(0.3)
     c.petri_motor.run(motor.Motor.DIRECTION.CCW, 128)
