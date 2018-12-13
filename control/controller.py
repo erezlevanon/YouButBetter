@@ -9,25 +9,40 @@ import time
 class Controller:
     class __Controller:
         def __init__(self):
+            self.name_to_interface = {}
+
             self.petri_motor = motor.Motor(
                 phy.PETRI_MOTOR.name,
                 phy.PETRI_MOTOR.pins
             )
+            self.name_to_interface[phy.PETRI_MOTOR.name] = self.petri_motor
+
             self.act_0 = motor.Motor(
                 phy.ACTUATOR_0.name,
                 phy.ACTUATOR_0.pins,
             )
+            self.name_to_interface[phy.ACTUATOR_0.name] = self.act_0
+
             self.act_1 = motor.Motor(
                 phy.ACTUATOR_1.name,
                 phy.ACTUATOR_1.pins,
             )
+            self.name_to_interface[phy.ACTUATOR_1.name] = self.act_1
+
             self.act_2 = motor.Motor(
                 phy.ACTUATOR_2.name,
                 phy.ACTUATOR_2.pins,
             )
+            self.name_to_interface[phy.ACTUATOR_2.name] = self.act_2
+
             self.pump_0 = pump.Pump(phy.PUMP_0.pins[0])
+            self.name_to_interface[phy.PUMP_0.name] = self.pump_0
+
             self.pump_1 = pump.Pump(phy.PUMP_1.pins[0])
+            self.name_to_interface[phy.PUMP_1.name] = self.pump_1
+
             self.pump_2 = pump.Pump(phy.PUMP_2.pins[0])
+            self.name_to_interface[phy.PUMP_2.name] = self.pump_2
 
     instance = None
 

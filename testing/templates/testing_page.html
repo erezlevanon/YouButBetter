@@ -19,14 +19,11 @@
             </md-card-header-text>
         </md-card-header>
         <form action="run" method="post">
+            {% for interface in phy %}
             <md-card-actions layout="row" layout-align="start center">
-                <md-button type="submit" name="machine" value="petri">Petri Motor</md-button>
-                <md-card-icon-actions>
-                    <md-button class="md-icon-button" aria-label="toggle">
-                        <md-icon md-svg-icon="md-toggle-arrow"></md-icon>
-                    </md-button>
-                </md-card-icon-actions>
+                <md-button type="submit" name="choice" value="{{ interface.name }}" style="width: 100%">{{ interface.display }}</md-button>
             </md-card-actions>
+            {% endfor %}
         </form>
     </md-card>
 </section>
