@@ -9,7 +9,7 @@ class Controller:
     class __Controller:
         def __init__(self):
             self.petri_motor = Motor('petri', 2, 3, 4, 17)
-            self.pump_1 = Pump(14)
+            self.pump_1 = Pump(16)
             pass
 
     instance = None
