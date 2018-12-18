@@ -18,6 +18,11 @@
                 <span class="md-subhead">Choose a component to test it</span>
             </md-card-header-text>
         </md-card-header>
+        <form action="demo" method="post">
+            <md-card-actions layout="row" layout-align="start center">
+                <md-button type="submit" class="md-warn md-raised" style="width: 100%">DEMO</md-button>
+            </md-card-actions>
+        </form>
         <form action="run" method="post">
             {% for interface in phy %}
             <md-card-actions layout="row" layout-align="start center">

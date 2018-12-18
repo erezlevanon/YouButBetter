@@ -19,3 +19,18 @@ def run(request):
             print('testing ', request.POST.get('choice'), '.')
             interface.run()
     return HttpResponseRedirect(reverse('testing:index'))
+
+
+@csrf_exempt
+def demo(request):
+    if request.method == 'POST':
+        c = controller.Controller()
+        petri = c.name_to_interface['petri']
+        needle = c.name_to_interface['act0']
+        pump = c.name_to_interface['pump0']
+        petri.run(200, motor.Motor.DIRECTION.CW)
+        petri.run(20, motor.Motor.DIRECTION.CCW)
+        pump.run()
+        needle.run(30, motor.Motor.DIRECTION.CCW)
+        needle.run(30, motor.Motor.DIRECTION.CW)
+    return HttpResponseRedirect(reverse('testing:index'))

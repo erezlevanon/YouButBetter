@@ -5,6 +5,8 @@ from enum import Enum
 class MOTOR_TYPES(Enum):
     STEPPER = 1
     PUMP = 2
+    ACTUATOR = 3
+
 
 class PhysicalInterface:
     def __init__(self, name, display, type, pins):
@@ -24,21 +26,21 @@ PETRI_MOTOR = PhysicalInterface(
 ACTUATOR_0 = PhysicalInterface(
     'act0',
     'Needle Motor 0',
-    MOTOR_TYPES.STEPPER,
+    MOTOR_TYPES.ACTUATOR,
     [6, 13, 19, 26]
 )
 
 ACTUATOR_1 = PhysicalInterface(
     'act1',
     'Needle Motor 1',
-    MOTOR_TYPES.STEPPER,
+    MOTOR_TYPES.ACTUATOR,
     [18, 23, 24, 25]
 )
 
 ACTUATOR_2 = PhysicalInterface(
     'act2',
     'Needle Motor 2',
-    MOTOR_TYPES.STEPPER,
+    MOTOR_TYPES.ACTUATOR,
     [27, 22, 5, 12]
 )
 
