@@ -7,5 +7,4 @@ from control import motor
 
 def index(request):
     c = controller.Controller()
-    c.petri_motor.run(motor.Motor.DIRECTION.CW, 128)
     return HttpResponse("Main Page!")
