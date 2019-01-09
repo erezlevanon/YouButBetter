@@ -2,6 +2,21 @@
 
 {% block content %}
 
-    YO!
+    <div layout="row" style="width: 100%">
+        <div layout="column" style="width: 66%">
+        </div>
+        <div layout="column" style="width: 34%">
+            {% for topic in topics %}
+                <md-button ng-click="showme=!showme; console.log('dsad')" style="border-radius: 0px">
+                    {{ topic.name }}
+                </md-button>
+                {% for trait in topic.trait_set.all %}
+                    <div>
+                        {{ trait.title }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
 
 {% endblock %}
