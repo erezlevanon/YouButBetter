@@ -12,3 +12,16 @@
     padding-left: 10%;
     text-align: left;
 }
+
+.collapsible.ng-hide {
+  max-height: 0;
+}
+
+.collapsible.ng-hide-add,
+.collapsible.ng-hide-remove {
+  transition: all linear 1s;
+}
+
+.collapsible {
+  max-height: 100%;
+}

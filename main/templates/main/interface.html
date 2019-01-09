@@ -14,10 +14,10 @@
                 <md-button class="topic md-raised" ng-click="open_topics['{{ topic }}'] = !open_topics['{{ topic }}']">
                     {{ topic.name }}
                 </md-button>
-                <div>
+                <div class="collapsible" ng-show="open_topics['{{ topic }}']">
                     {% for trait in topic.trait_set.all %}
                         <div>
-                            <md-card ng-show="open_topics['{{ topic }}']">
+                            <md-card>
                                 <md-card-title>{{ trait.title }}</md-card-title>
                                 <md-card-content>
                                     {{ trait.description }}
