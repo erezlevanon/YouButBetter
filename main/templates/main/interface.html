@@ -2,12 +2,16 @@
 
 {% block content %}
 
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'main/interface.css' %}">
+
     <div layout="row" style="width: 100%">
         <div layout="column" style="width: 66%">
         </div>
         <div layout="column" style="width: 34%">
             {% for topic in topics %}
-                <md-button style="border-radius: 0px">
+                <md-button class="topic">
                     {{ topic.name }}
                 </md-button>
                 {% for trait in topic.trait_set.all %}
