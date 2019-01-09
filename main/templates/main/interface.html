@@ -9,14 +9,17 @@
     <div layout="row" style="width: 100%">
         <div layout="column" style="width: 66%">
         </div>
-        <div layout="column" style="width: 34%">
+        <div layout="column" id="right-panel">
             {% for topic in topics %}
-                <md-button class="topic">
+                <md-button class="topic md-raised" ng-click="a = !a">
                     {{ topic.name }}
                 </md-button>
                 {% for trait in topic.trait_set.all %}
                     <div>
-                        {{ trait.title }}
+                        <md-card ng-show="a">
+                            <md-card-title>{{ trait.title }}</md-card-title>
+                            <md-card-content>{{ trait.description }}</md-card-content>
+                        </md-card>
                     </div>
                 {% endfor %}
             {% endfor %}
