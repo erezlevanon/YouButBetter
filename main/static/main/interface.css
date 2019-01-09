@@ -8,7 +8,7 @@
     color: whitesmoke;
     border-radius: 0;
     margin: 1px 0;
-    height: 7%;
+    min-height: 10%;
     padding-left: 10%;
     text-align: left;
 }
