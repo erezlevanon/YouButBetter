@@ -7,7 +7,7 @@
         </div>
         <div layout="column" style="width: 34%">
             {% for topic in topics %}
-                <md-button ng-click="showme=!showme; console.log('dsad')" style="border-radius: 0px">
+                <md-button style="border-radius: 0px">
                     {{ topic.name }}
                 </md-button>
                 {% for trait in topic.trait_set.all %}
