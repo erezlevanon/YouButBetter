@@ -18,7 +18,7 @@
 }
 
 #fetus {
-  animation-duration: 3s;
+    animation-duration: 3s;
 }
 
 .fetus-logo {
@@ -31,6 +31,7 @@
 .full-row {
     width: 100% !important;
 }
+
 .topic {
     color: whitesmoke;
     border-radius: 0;
@@ -46,14 +47,14 @@
 }
 
 .collapsible.ng-hide {
-  max-height: 0;
+    max-height: 0;
 }
 
 .collapsible.ng-hide-add,
 .collapsible.ng-hide-remove {
-  transition: all linear 0.5s;
+    transition: all linear 0.5s;
 }
 
 .collapsible {
-  max-height: 100%;
+    max-height: 100%;
 }
