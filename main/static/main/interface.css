@@ -23,10 +23,14 @@
 }
 
 .fetus-logo {
-    position: fixed;
+    width: 30%;
     margin-left: 5%;
     margin-top: 5%;
-    height: 30%;
+}
+
+.fetus-inner {
+    width: inherit;
+    position: absolute;
 }
 
 .full-row {
