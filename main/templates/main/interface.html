@@ -5,40 +5,44 @@
     {% load static %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'main/interface.css' %}">
-
-    <div id="center-row" layout="row">
-        <div id="left-panel" layout="column">
-        </div>
-        <div layout="column" id="right-panel">
-            {% for topic in topics %}
-                <md-button class="topic md-raised" ng-click="open_topics['{{ topic }}'] = !open_topics['{{ topic }}']">
-                    {{ topic.name }}
-                </md-button>
-                <div class="collapsible" ng-show="open_topics['{{ topic }}']">
-                    {% for trait in topic.trait_set.all %}
-                        <div>
-                            <md-card>
-                                <md-card-title>{{ trait.title }}</md-card-title>
-                                <md-card-content>
-                                    {{ trait.description }}
-                                    <br/>
-                                    {{ trait.price }}
-                                    {% if trait.sale_price %}
-                                        now for {{ trait.sale_price }}
+    <div layout="column" class="full-row">
+        <div id="center-row" class="full-row" layout="row">
+            <div id="left-panel" layout="column">
+            </div>
+            <div id="right-panel" layout="column">
+                {% for topic in topics %}
+                    <md-button class="topic md-raised"
+                               ng-click="open_topics['{{ topic }}'] = !open_topics['{{ topic }}']">
+                        {{ topic.name }}
+                    </md-button>
+                    <div class="collapsible" ng-show="open_topics['{{ topic }}']">
+                        {% for trait in topic.trait_set.all %}
+                            <div>
+                                <md-card>
+                                    <md-card-title>{{ trait.title }}</md-card-title>
+                                    <md-card-content>
+                                        {{ trait.description }}
+                                        <br/>
+                                        {{ trait.price }}
+                                        {% if trait.sale_price %}
+                                            now for {{ trait.sale_price }}
+                                        {% endif %}
+                                    </md-card-content>
+                                    {% if trait.sale %}
+                                        <md-card-footer>
+                                            {{ trait.sale }} {{ trait.company }}
+                                        </md-card-footer>
                                     {% endif %}
-                                </md-card-content>
-                                {% if trait.sale %}
-                                    <md-card-footer>
-                                        {{ trait.sale }} {{ trait.company }}
-                                    </md-card-footer>
-                                {% endif %}
-                            </md-card>
-                        </div>
-                    {% endfor %}
-                </div>
-            {% endfor %}
-            <md-button  class="topic cover md-raised">
-            </md-button>
+                                </md-card>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+                <md-button class="topic cover md-raised">
+                </md-button>
+            </div>
+        </div>
+        <div id="bottom-row" class="full-row md-raised" layout="row">
         </div>
     </div>
 
