@@ -4,6 +4,13 @@
     overflow: scroll;
 }
 
+#left-panel {
+    width: 66%;
+}
+
+#center-row {
+    width: 100%;
+}
 .topic {
     color: whitesmoke;
     border-radius: 0;
