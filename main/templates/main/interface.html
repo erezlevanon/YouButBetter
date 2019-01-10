@@ -5,6 +5,9 @@
     {% load static %}
 
     <link rel="stylesheet" type="text/css" href="{% static 'main/interface.css' %}">
+    <object type="image/svg+xml" data="{% static 'main/fetus.svg' %}" class="fetus-logo animated infinite pulse"
+            id="fetus"></object>
+    <object type="image/svg+xml" data="{% static 'main/womb.svg' %}" class="fetus-logo"></object>
     <div layout="column" class="full-row">
         <div id="center-row" class="full-row" layout="row">
             <div id="left-panel" layout="column">

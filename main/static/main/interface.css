@@ -17,6 +17,17 @@
     background-color: whitesmoke;
 }
 
+#fetus {
+  animation-duration: 3s;
+}
+
+.fetus-logo {
+    position: fixed;
+    margin-left: 5%;
+    margin-top: 5%;
+    height: 30%;
+}
+
 .full-row {
     width: 100% !important;
 }
