@@ -13,13 +13,17 @@
     text-align: left;
 }
 
+.cover {
+    min-height: 100% !important;
+}
+
 .collapsible.ng-hide {
   max-height: 0;
 }
 
 .collapsible.ng-hide-add,
 .collapsible.ng-hide-remove {
-  transition: all linear 1s;
+  transition: all linear 0.5s;
 }
 
 .collapsible {
