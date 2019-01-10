@@ -14,7 +14,8 @@
 
 #bottom-row {
     height: 10%;
-    background-color: whitesmoke;
+    /*background-color: whitesmoke;*/
+    border-top: 2px solid whitesmoke;
 }
 
 #fetus {
