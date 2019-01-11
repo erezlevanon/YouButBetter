@@ -68,3 +68,10 @@
 .collapsible {
     max-height: 100%;
 }
+
+.check-mark {
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    margin-bottom: 5px;
+}
