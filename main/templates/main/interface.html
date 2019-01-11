@@ -32,7 +32,7 @@
                     <div class="collapsible" ng-show="open_topics['{{ topic }}']">
                         {% for trait in topic.trait_set.all %}
                             <div>
-                                <md-card ng-click="ctrl.addTrait('{{ trait.title }}')">
+                                <md-card ng-click="ctrl.toggleTrait('{{ trait.title }}')">
                                     <md-card-title>{{ trait.title }}</md-card-title>
                                     <md-card-content>
                                         {{ trait.description }}

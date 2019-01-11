@@ -7,7 +7,7 @@ function interfaceController($scope) {
     this.chosenTraits = [];
 
 
-    this.addTrait = (name) => {
+    this.toggleTrait = (name) => {
         if (!this.isTraitChosen(name)) {
             this.chosenTraits.push(name);
         } else {
