@@ -67,7 +67,13 @@
                 </md-button>
             </div>
         </div>
-        <div id="bottom-row" class="full-row" layout="row">
+        <div id="bottom-row" class="full-row" layout="row" layout-align="end center">
+            <h1 id="total-price">
+                {% verbatim %}
+                {{ ctrl.currentPriceFormatted() }} €
+                {% endverbatim %}
+            </h1>
+            <md-button id="done-button" class="md-raised">Finish</md-button>
         </div>
     </div>
 {% endblock %}

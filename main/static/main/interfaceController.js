@@ -4,6 +4,7 @@
  */
 function interfaceController($scope) {
     this.scope = $scope;
+    this.curPrice = 0;
     this.chosenTraits = [];
 
 
@@ -21,5 +22,9 @@ function interfaceController($scope) {
 
     this.isTraitChosen = (name) => {
         return this.chosenTraits.some((existing) => existing === name)
-    }
+    };
+
+    this.currentPriceFormatted = () => {
+        return this.curPrice;
+    };
 }

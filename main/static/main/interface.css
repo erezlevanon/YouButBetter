@@ -30,6 +30,14 @@
     height: 100%;
 }
 
+#done-button {
+    margin-right: 3%;
+}
+
+#total-price {
+    margin-right: 1%;
+}
+
 .fetus-logo {
     width: 25%;
     margin-top: 5%;
