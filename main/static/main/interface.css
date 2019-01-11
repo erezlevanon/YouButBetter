@@ -70,8 +70,10 @@
 }
 
 .check-mark {
-    position: absolute;
-    right: 0;
-    margin-right: 20px;
-    margin-bottom: 5px;
+    float: right;
+    margin-right: 5px;
+}
+
+.footer-save-space {
+    min-height: 25px;
 }

@@ -41,11 +41,12 @@
                                             now for {{ trait.sale_price }}
                                         {% endif %}
                                     </md-card-content>
-                                    <md-card-footer>
+                                    <md-card-footer class="footer-save-space">
                                         {% if trait.sale %}
                                             {{ trait.sale }} {{ trait.company }}
                                         {% endif %}
-                                        <md-icon class="check-mark" ng-show="ctrl.isTraitChosen('{{ trait.title }}')">
+                                        <md-icon ng-show="ctrl.isTraitChosen('{{ trait.title }}')"
+                                                 class="check-mark">
                                             done
                                         </md-icon>
                                     </md-card-footer>
