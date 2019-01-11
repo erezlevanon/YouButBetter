@@ -8,6 +8,7 @@
     <div layout="column" class="full-row" ng-controller="interfaceController as ctrl">
         <div id="center-row" class="full-row" layout="row">
             <div id="left-spacer" layout="column"></div>
+            {# CHOOSEN TRAITS FROM THIS POINT #}
             <div id="left-panel" layout="column">
                 <div class="fetus-logo">
                     <object type="image/svg+xml" data="{% static 'main/fetus.svg' %}"
@@ -17,7 +18,7 @@
                 </div>
                 <div id="chosen-list">
                     <div ng-repeat="trait in ctrl.chosenTraits" ng-click="ctrl.toggleTrait(trait)" layout="row"
-                    class="fadeInOut">
+                         class="fadeInOut">
                         <div class="coded-trait">
 
                         </div>
@@ -30,6 +31,7 @@
                     </div>
                 </div>
             </div>
+            {# TRAIT SELECTION FROM THIS POINT #}
             <div id="right-panel" layout="column">
                 {% for topic in topics %}
                     <md-button class="topic md-raised"
@@ -39,7 +41,9 @@
                     <div class="collapsible" ng-show="open_topics['{{ topic }}']">
                         {% for trait in topic.trait_set.all %}
                             <div>
-                                <md-card ng-click="ctrl.toggleTrait('{{ trait.title }}')">
+                                <md-card
+                                        ng-click="ctrl.toggleTrait('{{ trait.title }}', {{ trait.price }},
+                                        {{ trait.sale_price }})">
                                     <md-card-title>{{ trait.title }}</md-card-title>
                                     <md-card-content>
                                         {{ trait.description }}
