@@ -87,3 +87,16 @@
 .trait-list {
     margin-left: 2%;
 }
+
+.fadeInOut.ng-enter,
+.fadeInOut.ng-leave {
+  transition: all linear 0.2s;
+}
+.fadeInOut.ng-enter,
+.fadeInOut.ng-leave.ng-leave-active {
+  opacity: 0;
+}
+.fadeInOut.ng-leave,
+.fadeInOut.ng-enter.ng-enter-active {
+  opacity: 1;
+}
