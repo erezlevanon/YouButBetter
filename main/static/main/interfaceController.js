@@ -10,6 +10,12 @@ function interfaceController($scope) {
     this.addTrait = (name) => {
         if (!this.isTraitChosen(name)) {
             this.chosenTraits.unshift(name);
+        } else {
+            let index = this.chosenTraits.indexOf(name);
+            if (index !== -1) {
+                this.chosenTraits.splice(index, 1);
+            }
+
         }
     };
 
