@@ -29,6 +29,8 @@
 #chosen-list {
     margin-top: 5%;
     height: 100%;
+    overflow: scroll;
+    max-height: 95%;
 }
 
 #done-button {
@@ -94,7 +96,7 @@
     min-width: 30%;
     margin-bottom: 0.5%;
     max-width: 30%;
-    /*overflow: hidden;*/
+    background-color: black;
 }
 
 .trait-list {

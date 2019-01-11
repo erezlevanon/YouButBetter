@@ -7,41 +7,31 @@ function interfaceController($scope) {
     this.curPrice = 0;
     this.curSalePrice = 0;
     this.chosenTraits = [];
-    this.traitToPrice = new Map();
-    this.traitToSalePrice = new Map();
 
-    this.BINARY_CODE_LENGTH = 100;
+    this.DEFAULT_NUMBER_OF_TRAITS = 50;
 
+    for (let i = 0; i < this.DEFAULT_NUMBER_OF_TRAITS; i++) {
+        this.chosenTraits.push({title: '', price: 0, sale_price: 0});
+    }
 
     this.toggleTrait = (name, price, sale_price) => {
-
-        // This mess is because i don't have the actual data accessible to angularjs, only to django.
-        // in hindsight I would have not use the django templates but expose a api to get this data. If i'll have
-        // to much available time i'll do it later.
-        // TODO(use API to get data from server and give up on django models)
-        if (!!price) {
-            this.traitToPrice.set(name, price);
-        }
-        if (!!sale_price) {
-            this.traitToSalePrice.set(name, sale_price);
-        }
         if (!this.isTraitChosen(name)) {
-            this.chosenTraits.push(name);
+            this.chosenTraits.splice(this.randomLoc(), 0, {title: name, price: price, sale_price: sale_price});
             this.curPrice += price;
             this.curSalePrice += sale_price;
-        } else {
-            let index = this.chosenTraits.indexOf(name);
+        } else if (name !== '') {
+            let index = this.chosenTraits.indexOf(this.chosenTraits.find((val) => val.title === name));
             if (index !== -1) {
                 this.chosenTraits.splice(index, 1);
-                this.curPrice -= this.traitToPrice.get(name);
-                this.curSalePrice -= this.traitToSalePrice.get(name);
+                this.curPrice -= price;
+                this.curSalePrice -= sale_price;
             }
 
         }
     };
 
     this.isTraitChosen = (name) => {
-        return this.chosenTraits.some((existing) => existing === name)
+        return this.chosenTraits.some((existing) => existing.title === name)
     };
 
     this.currentPriceFormatted = () => {
@@ -53,15 +43,10 @@ function interfaceController($scope) {
     };
 
     this.traitToBinary = (name) => {
-        let output = '';
-        let length_diff = this.BINARY_CODE_LENGTH - name.length;
-        if (length_diff > 0) {
-            name += '0'.repeat(this.BINARY_CODE_LENGTH);
-        }
-        name = name.substr(0, this.BINARY_CODE_LENGTH);
-        for (let i = 0 ; i < name.length; i++) {
-            output += name.charCodeAt(i).toString(2);
-        }
-        return output.substr(0, 28);
-    }
+        return '0';
+    };
+
+    this.randomLoc = () => {
+        return Math.floor((Math.random() * 20) + 1);
+    };
 }

@@ -11,16 +11,17 @@
             {# CHOOSEN TRAITS FROM THIS POINT #}
             <div id="left-panel" layout="column">
                 <div id="chosen-list">
-                    <div ng-repeat="trait in ctrl.chosenTraits" ng-click="ctrl.toggleTrait(trait)" layout="row"
+                    <div ng-repeat="trait in ctrl.chosenTraits"
+                         ng-click="ctrl.toggleTrait(trait.title, trait.price, trait.sale_price)" layout="row"
                          layout-align="start center" class="fadeInOut">
                         <div class="coded-trait">
                             {% verbatim %}
-                            {{ ctrl.traitToBinary(trait) }}
+                            {{ ctrl.traitToBinary(trait.name) }}
                             {% endverbatim %}
                         </div>
                         <h3 class="trait-list">
                             {% verbatim %}
-                            {{ trait }}
+                            {{ trait.title }}
                             {% endverbatim %}
                         </h3>
 
