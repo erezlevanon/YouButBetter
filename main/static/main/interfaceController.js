@@ -61,7 +61,6 @@ function interfaceController($scope) {
         name = name.substr(0, this.BINARY_CODE_LENGTH);
         for (let i = 0 ; i < name.length; i++) {
             output += name.charCodeAt(i).toString(2);
-            console.log(name.charCodeAt(i).toString(2));
         }
         return output.substr(0, 28);
     }
