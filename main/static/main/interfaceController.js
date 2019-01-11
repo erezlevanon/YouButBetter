@@ -11,6 +11,9 @@ function interfaceController($scope) {
     this.DEFAULT_NUMBER_OF_TRAITS = 50;
 
     for (let i = 0; i < this.DEFAULT_NUMBER_OF_TRAITS; i++) {
+        if (i === 4) {
+            this.chosenTraits.push({title: 'High risk of cancer', price: -25000, sale_price:-25000})
+        }
         this.chosenTraits.push({title: '', price: 0, sale_price: 0});
     }
 
