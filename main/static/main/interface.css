@@ -79,3 +79,11 @@
 .footer-save-space {
     min-height: 25px;
 }
+
+.coded-trait {
+    min-width: 30%;
+}
+
+.trait-list {
+    margin-left: 2%;
+}

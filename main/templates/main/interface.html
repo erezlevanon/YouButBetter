@@ -16,10 +16,17 @@
                     <object type="image/svg+xml" data="{% static 'main/womb.svg' %}" class="fetus-inner"></object>
                 </div>
                 <div id="chosen-list">
-                    <div ng-repeat="trait in ctrl.chosenTraits">
-                        {% verbatim %}
-                        {{ trait }}
-                        {% endverbatim %}
+                    <div ng-repeat="trait in ctrl.chosenTraits" ng-click="ctrl.toggleTrait(trait)" layout="row"
+                    class="animated fadeInLeft">
+                        <div class="coded-trait">
+
+                        </div>
+                        <div class="trait-list">
+                            {% verbatim %}
+                            {{ trait }}
+                            {% endverbatim %}
+                        </div>
+
                     </div>
                 </div>
             </div>
