@@ -10,6 +10,8 @@ function interfaceController($scope) {
     this.traitToPrice = new Map();
     this.traitToSalePrice = new Map();
 
+    this.BINARY_CODE_LENGTH = 100;
+
 
     this.toggleTrait = (name, price, sale_price) => {
 
@@ -49,4 +51,18 @@ function interfaceController($scope) {
     this.currentSalePriceFormatted = () => {
         return this.curSalePrice;
     };
+
+    this.traitToBinary = (name) => {
+        let output = '';
+        let length_diff = this.BINARY_CODE_LENGTH - name.length;
+        if (length_diff > 0) {
+            name += '0'.repeat(this.BINARY_CODE_LENGTH);
+        }
+        name = name.substr(0, this.BINARY_CODE_LENGTH);
+        for (let i = 0 ; i < name.length; i++) {
+            output += name.charCodeAt(i).toString(2);
+            console.log(name.charCodeAt(i).toString(2));
+        }
+        return output.substr(0, 28);
+    }
 }

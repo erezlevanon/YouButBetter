@@ -18,9 +18,11 @@
                 </div>
                 <div id="chosen-list">
                     <div ng-repeat="trait in ctrl.chosenTraits" ng-click="ctrl.toggleTrait(trait)" layout="row"
-                         class="fadeInOut">
+                         layout-align="start center" class="fadeInOut">
                         <div class="coded-trait">
-
+                            {% verbatim %}
+                            {{ ctrl.traitToBinary(trait) }}
+                            {% endverbatim %}
                         </div>
                         <h3 class="trait-list">
                             {% verbatim %}
