@@ -22,10 +22,15 @@
     animation-duration: 3s;
 }
 
+#chosen-list {
+    height: 100%;
+}
+
 .fetus-logo {
     width: 30%;
     margin-left: 5%;
     margin-top: 5%;
+    min-height: 47%;
 }
 
 .fetus-inner {
