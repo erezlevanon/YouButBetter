@@ -5,7 +5,10 @@
 }
 
 #left-panel {
-    width: 66%;
+    width: 33%;
+}
+#center-panel {
+    width: 33%;
 }
 
 #left-spacer {
@@ -93,9 +96,9 @@
 }
 
 .coded-trait {
-    min-width: 30%;
+    min-width: 50%;
     margin-bottom: 0.5%;
-    max-width: 30%;
+    max-width: 50%;
     background-color: black;
 }
 
