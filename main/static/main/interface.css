@@ -123,3 +123,10 @@
     opacity: 1;
     max-height: 100%;
 }
+
+.slow-animation {
+    animation-duration: 10s;
+}
+.slower-animation {
+    animation-duration: 20s;
+}

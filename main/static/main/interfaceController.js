@@ -47,14 +47,17 @@ function interfaceController($scope) {
 
     this.getTraitCode = (name) => {
         const total_width = 100;
+        const min_width = 1;
+        const max_width = 5;
         let start_pos = 0;
-        let width = this.randInt(1, 15);
+        let width = this.randInt(min_width, max_width);
         let res = [];
         while (start_pos < total_width) {
             if (start_pos < total_width)
                 res.push({x:start_pos, w:width});
-            start_pos += width + 1;
-            width = Math.min(this.randInt(1, 15), total_width-start_pos);
+            // start_pos += width + 1;
+            start_pos += width;
+            width = Math.min(this.randInt(min_width, max_width), total_width-start_pos);
         }
         return res;
     };
@@ -73,11 +76,17 @@ function interfaceController($scope) {
     };
 
     this.randInt = (min, max) => {
-        return Math.floor((Math.random() * max + 1) + min);
+        return Math.round((Math.random() * max) + min);
     };
 
     this.getTraitViewPortSize = () => {
-        return "0 0 " + this.CODE_LENGTH + " " + this.CODE_HEIGHT;
+        return '0 0 ' + this.CODE_LENGTH + ' ' + this.CODE_HEIGHT;
+    };
+    
+    this.getRandomAnimationAttr = () => {
+        let speed = this.randInt(0,1) === 1 ? 'slow' : 'slower';
+        speed += '-animation';
+        return 'delay-' + this.randInt(2,5) + 's ' + speed;
     };
 
     this.initTraitCodes();
