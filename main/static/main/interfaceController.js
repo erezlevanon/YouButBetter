@@ -53,7 +53,7 @@ function interfaceController($scope) {
     this.getTraitCode = (name) => {
         const total_width = 100;
         const min_width = 1;
-        const max_width = 5;
+        const max_width = 10;
         let start_pos = 0;
         let width = this.randInt(min_width, max_width);
         let res = [];
