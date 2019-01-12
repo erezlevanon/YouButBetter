@@ -8,7 +8,7 @@ function interfaceController($scope) {
     this.curSalePrice = 0;
     this.chosenTraits = [];
 
-    this.DEFAULT_NUMBER_OF_TRAITS = 50;
+    this.DEFAULT_NUMBER_OF_TRAITS = 32;
     this.CODE_LENGTH = 100;
     this.CODE_HEIGHT = 10;
 
@@ -20,8 +20,9 @@ function interfaceController($scope) {
         for (let i = 0; i < this.DEFAULT_NUMBER_OF_TRAITS; i++) {
             if (i === 4) {
                 this.chosenTraits.push({title: 'High risk of cancer', price: -25000, sale_price: -25000})
+            } else {
+                this.chosenTraits.push({title: '', price: 0, sale_price: 0});
             }
-            this.chosenTraits.push({title: '', price: 0, sale_price: 0});
             this.traitCodes.push(this.getTraitCode());
             this.traitAnimationAttributes.push(this.getRowRandomAnimationAttr(this.traitCodes[i].length));
         }
@@ -79,8 +80,9 @@ function interfaceController($scope) {
         return this.curSalePrice;
     };
 
+    // min inclusive, max exclusive.
     this.randInt = (min, max) => {
-        return Math.round((Math.random() * max) + min);
+        return Math.floor((Math.random() * (max-min)) + min);
     };
 
     this.getTraitViewPortSize = () => {
@@ -88,9 +90,12 @@ function interfaceController($scope) {
     };
 
     this.getRandomAnimationAttr = () => {
-        let speed = this.randInt(0, 1) === 1 ? 'slow' : 'slower';
+        let speed = this.randInt(0, 2) === 1 ? 'slow' : 'slower';
         speed += '-animation';
-        return 'delay-' + this.randInt(2, 5) + 's ' + speed;
+        if (this.randInt(0,3) === 0) {
+            return 'animated flash infinite delay-' + this.randInt(2, 6) + 's ' + speed;
+        }
+        return '';
     };
 
     this.getRowRandomAnimationAttr = (size) => {

@@ -21,7 +21,7 @@
                                 <rect ng-repeat="rect in ctrl.traitCodes[$index]"
                                       ng-attr-width="{{ rect.w }}" height="10"
                                       ng-attr-x="{{ rect.x }}" y="0"
-                                      ng-attr-class="animated flash infinite {{ ctrl.traitAnimationAttributes[$parent.$index][$index] }}"
+                                      ng-attr-class="{{ ctrl.traitAnimationAttributes[$parent.$index][$index] }}"
                                 ></rect>
                             </svg>
                             {% endverbatim %}
@@ -31,7 +31,6 @@
                             {{ trait.title }}
                             {% endverbatim %}
                         </h3>
-
                     </div>
                 </div>
             </div>
