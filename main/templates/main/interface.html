@@ -4,7 +4,8 @@
 
     {% load static %}
 
-    <link rel="stylesheet" type="text/css" href="{% static 'main/interface.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/interface.css' %}"
+          xmlns:svg="http://www.w3.org/1999/html" xmlns:svg="http://www.w3.org/1999/html">
     <div layout="column" class="full-row" ng-controller="interfaceController as ctrl">
         <div id="center-row" class="full-row" layout="row">
             <div id="left-spacer" layout="column"></div>
@@ -16,7 +17,11 @@
                          layout-align="start center" class="fadeInOut">
                         <div class="coded-trait">
                             {% verbatim %}
-                            {{ ctrl.traitToBinary(trait.name) }}
+                            <svg viewBox="0 0 100 10" preserveAspectRatio="xMidYMid meet">
+                                <rect ng-repeat="rect in ctrl.traitCodes[$index]"
+                                      ng-attr-width="{{ rect.w }}" height="10"
+                                      ng-attr-x="{{ rect.x }}" y="0"></rect>
+                            </svg>
                             {% endverbatim %}
                         </div>
                         <h3 class="trait-list">
