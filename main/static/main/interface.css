@@ -126,7 +126,9 @@
 
 .slow-animation {
     animation-duration: 10s;
+    will-change: opacity;
 }
 .slower-animation {
     animation-duration: 20s;
+    will-change: opacity;
 }
