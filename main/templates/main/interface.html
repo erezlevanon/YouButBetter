@@ -12,16 +12,16 @@
             {# CHOOSEN TRAITS FROM THIS POINT #}
             <div id="left-panel" layout="column">
                 <div id="chosen-list">
-                    <div ng-repeat="trait in ::ctrl.chosenTraits"
+                    <div ng-repeat="trait in ctrl.chosenTraits"
                          ng-click="ctrl.toggleTrait(trait.title, trait.price, trait.sale_price)" layout="row"
                          layout-align="start center" class="fadeInOut">
                         <div class="coded-trait">
                             {% verbatim %}
                             <svg viewBox="0 0 100 10" preserveAspectRatio="xMidYMid meet">
-                                <rect ng-repeat="rect in ::ctrl.traitCodes[$index]"
-                                      ng-attr-width="{{ ::rect.w }}" height="10"
-                                      ng-attr-x="{{ ::rect.x }}" y="0"
-                                      ng-attr-class="animated flash infinite {{ ctrl.getRandomAnimationAttr() }}"
+                                <rect ng-repeat="rect in ctrl.traitCodes[$index]"
+                                      ng-attr-width="{{ rect.w }}" height="10"
+                                      ng-attr-x="{{ rect.x }}" y="0"
+                                      ng-attr-class="animated flash infinite {{ ctrl.traitAnimationAttributes[$parent.$index][$index] }}"
                                 ></rect>
                             </svg>
                             {% endverbatim %}
