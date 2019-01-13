@@ -11,80 +11,14 @@
             <div id="left-spacer" layout="column"></div>
             {# CHOOSEN TRAITS FROM THIS POINT #}
             <div id="left-panel" layout="column">
-                <div id="chosen-list">
-                    <div ng-repeat="trait in ctrl.chosenTraits"
-                         ng-click="ctrl.toggleTrait(trait.title, trait.price, trait.sale_price)" layout="row"
-                         layout-align="start center" class="fadeInOut">
-                        <div class="coded-trait">
-                            {% verbatim %}
-                            <svg viewBox="0 0 100 10" preserveAspectRatio="xMidYMid meet">
-                                <g ng-repeat="rect in ::ctrl.traitCodes[$index]">
-                                    <rect ng-attr-id="{{ 'rect-' + $parent.$index + '-' + $index }}"
-                                      ng-attr-width="{{ ::rect.w }}" height="10"
-                                      ng-attr-x="{{ ::rect.x }}" y="0"
-                                >
-                                    <animate ng-if="ctrl.traitAnimationAttributes[$parent.$index][$index].show"
-                                             ng-attr-xlink:href="{{ '#rect-' + $parent.$index + '-' + $index }}"
-                                             attributeName="opacity"
-                                             values="1;0.9;0.8;0;0;0.8;0.9;1"
-                                             ng-attr-dur="{{ ctrl.traitAnimationAttributes[$parent.$index][$index].dur }}"
-                                             ng-attr-begin="{{ ctrl.traitAnimationAttributes[$parent.$index][$index].delay }}"
-                                             repeatCount="indefinite">
-                                    </animate>
-                                </rect>
-                                </g>
-                            </svg>
-                            {% endverbatim %}
-                        </div>
-                        <h3 class="trait-list">
-                            {% verbatim %}
-                            {{ trait.title }}
-                            {% endverbatim %}
-                        </h3>
-                    </div>
-                </div>
+                {% include 'main/current_sequence.html' %}
             </div>
             <div id="center-panel" layout="column">
-                Stats
+                {% include 'main/stats.html' %}
             </div>
             {# TRAIT SELECTION FROM THIS POINT #}
             <div id="right-panel" layout="column">
-                {% for topic in topics %}
-                    <md-button class="topic md-raised"
-                               ng-click="open_topics['{{ topic }}'] = !open_topics['{{ topic }}']">
-                        {{ topic.name }}
-                    </md-button>
-                    <div class="collapsible" ng-show="open_topics['{{ topic }}']">
-                        {% for trait in topic.trait_set.all %}
-                            <div>
-                                <md-card
-                                        ng-click="ctrl.toggleTrait('{{ trait.title }}', {{ trait.price }},
-                                        {{ trait.sale_price }})">
-                                    <md-card-title>{{ trait.title }}</md-card-title>
-                                    <md-card-content>
-                                        {{ trait.description }}
-                                        <br/>
-                                        {{ trait.price }}
-                                        {% if trait.sale_price %}
-                                            now for {{ trait.sale_price }}
-                                        {% endif %}
-                                    </md-card-content>
-                                    <md-card-footer class="footer-save-space">
-                                        {% if trait.sale %}
-                                            {{ trait.sale }} {{ trait.company }}
-                                        {% endif %}
-                                        <md-icon ng-show="ctrl.isTraitChosen('{{ trait.title }}')"
-                                                 class="check-mark">
-                                            done
-                                        </md-icon>
-                                    </md-card-footer>
-                                </md-card>
-                            </div>
-                        {% endfor %}
-                    </div>
-                {% endfor %}
-                <md-button class="topic cover md-raised">
-                </md-button>
+                {% include 'main/trait_explorer.html' %}
             </div>
         </div>
         <div id="bottom-row" class="full-row" layout="row" layout-align="end center">

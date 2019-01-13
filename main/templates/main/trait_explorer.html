@@ -1,0 +1,36 @@
+{% for topic in topics %}
+    <md-button class="topic md-raised"
+               ng-click="open_topics['{{ topic }}'] = !open_topics['{{ topic }}']">
+        {{ topic.name }}
+    </md-button>
+    <div class="collapsible" ng-show="open_topics['{{ topic }}']">
+        {% for trait in topic.trait_set.all %}
+            <div>
+                <md-card
+                        ng-click="ctrl.toggleTrait('{{ trait.title }}', {{ trait.price }},
+                                        {{ trait.sale_price }})">
+                    <md-card-title>{{ trait.title }}</md-card-title>
+                    <md-card-content>
+                        {{ trait.description }}
+                        <br/>
+                        {{ trait.price }}
+                        {% if trait.sale_price %}
+                            now for {{ trait.sale_price }}
+                        {% endif %}
+                    </md-card-content>
+                    <md-card-footer class="footer-save-space">
+                        {% if trait.sale %}
+                            {{ trait.sale }} {{ trait.company }}
+                        {% endif %}
+                        <md-icon ng-show="ctrl.isTraitChosen('{{ trait.title }}')"
+                                 class="check-mark">
+                            done
+                        </md-icon>
+                    </md-card-footer>
+                </md-card>
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+<md-button class="topic cover md-raised">
+</md-button>

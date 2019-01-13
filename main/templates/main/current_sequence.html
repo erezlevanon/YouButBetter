@@ -1,0 +1,32 @@
+<div id="chosen-list">
+    <div ng-repeat="trait in ctrl.chosenTraits"
+         ng-click="ctrl.toggleTrait(trait.title, trait.price, trait.sale_price)" layout="row"
+         layout-align="start center" class="fadeInOut">
+        <div class="coded-trait">
+            {% verbatim %}
+            <svg viewBox="0 0 100 10" preserveAspectRatio="xMidYMid meet">
+                <g ng-repeat="rect in ::ctrl.traitCodes[$index]">
+                    <rect ng-attr-id="{{ 'rect-' + $parent.$index + '-' + $index }}"
+                          ng-attr-width="{{ ::rect.w }}" height="10"
+                          ng-attr-x="{{ ::rect.x }}" y="0"
+                    >
+                        <animate ng-if="ctrl.traitAnimationAttributes[$parent.$index][$index].show"
+                                 ng-attr-xlink:href="{{ '#rect-' + $parent.$index + '-' + $index }}"
+                                 attributeName="opacity"
+                                 values="1;0.9;0.8;0;0;0.8;0.9;1"
+                                 ng-attr-dur="{{ ctrl.traitAnimationAttributes[$parent.$index][$index].dur }}"
+                                 ng-attr-begin="{{ ctrl.traitAnimationAttributes[$parent.$index][$index].delay }}"
+                                 repeatCount="indefinite">
+                        </animate>
+                    </rect>
+                </g>
+            </svg>
+            {% endverbatim %}
+        </div>
+        <h3 class="trait-list">
+            {% verbatim %}
+            {{ trait.title }}
+            {% endverbatim %}
+        </h3>
+    </div>
+</div>
