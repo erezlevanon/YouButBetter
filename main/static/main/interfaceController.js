@@ -92,12 +92,19 @@ function interfaceController($scope, $http) {
     };
 
     this.getRandomAnimationAttr = () => {
-        let speed = this.randInt(0, 2) === 1 ? 'slow' : 'slower';
-        speed += '-animation';
-        if (this.randInt(0,3) === 0) {
-            return 'animated flash infinite delay-' + this.randInt(2, 6) + 's ' + speed;
-        }
-        return '';
+        return {
+            dur: this.getRandomAnimationDuration(),
+            delay: this.getRandomAnimationDelay(),
+            show:this.randInt(0,2) === 0,
+        };
+    };
+
+    this.getRandomAnimationDuration = () => {
+        return (this.randInt(1, 3) * 8 + this.randInt(0,5)) + 's';
+    };
+
+    this.getRandomAnimationDelay = () => {
+        return this.randInt(2, 6) + 's';
     };
 
     this.getRowRandomAnimationAttr = (size) => {

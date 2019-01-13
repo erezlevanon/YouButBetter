@@ -18,11 +18,21 @@
                         <div class="coded-trait">
                             {% verbatim %}
                             <svg viewBox="0 0 100 10" preserveAspectRatio="xMidYMid meet">
-                                <rect ng-repeat="rect in ctrl.traitCodes[$index]"
-                                      ng-attr-width="{{ rect.w }}" height="10"
-                                      ng-attr-x="{{ rect.x }}" y="0"
-                                      ng-attr-class="{{ ctrl.traitAnimationAttributes[$parent.$index][$index] }}"
-                                ></rect>
+                                <g ng-repeat="rect in ::ctrl.traitCodes[$index]">
+                                    <rect ng-attr-id="{{ 'rect-' + $parent.$index + '-' + $index }}"
+                                      ng-attr-width="{{ ::rect.w }}" height="10"
+                                      ng-attr-x="{{ ::rect.x }}" y="0"
+                                >
+                                    <animate ng-if="ctrl.traitAnimationAttributes[$parent.$index][$index].show"
+                                             ng-attr-xlink:href="{{ '#rect-' + $parent.$index + '-' + $index }}"
+                                             attributeName="opacity"
+                                             values="1;0.9;0.8;0;0;0.8;0.9;1"
+                                             ng-attr-dur="{{ ctrl.traitAnimationAttributes[$parent.$index][$index].dur }}"
+                                             ng-attr-begin="{{ ctrl.traitAnimationAttributes[$parent.$index][$index].delay }}"
+                                             repeatCount="indefinite">
+                                    </animate>
+                                </rect>
+                                </g>
                             </svg>
                             {% endverbatim %}
                         </div>
