@@ -1,9 +1,11 @@
 /**
  * Controller for the interface.
  * @param $scope
+ * @param $http
  */
-function interfaceController($scope) {
+function interfaceController($scope, $http) {
     this.scope = $scope;
+    this._http = $http;
     this.curPrice = 0;
     this.curSalePrice = 0;
     this.chosenTraits = [];
@@ -104,6 +106,20 @@ function interfaceController($scope) {
             res.push(this.getRandomAnimationAttr());
         }
         return res;
+    };
+
+    this.produce = () => {
+        let data = {
+        };
+        let config = {
+            xsrfHeaderName: 'X-CSRFToken',
+            xsrfCookieName: 'csrftoken',
+        };
+        this._http.post('/produce', data, config).then(
+            () => {
+                // TODO: deal with successful production.
+            }
+        );
     };
 
     this.initTraitCodes();
