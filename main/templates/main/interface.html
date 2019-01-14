@@ -7,6 +7,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'main/interface.css' %}"
           xmlns:svg="http://www.w3.org/1999/html" xmlns:svg="http://www.w3.org/1999/html">
     <div layout="column" class="full-row" ng-controller="interfaceController as ctrl">
+        <div id="anim-container" class="lottie collapsible" data-animation-path="{% static 'main/start_anim' %}"
+             data-anim-type="svg"
+             data-anim-loop="false"
+             data-name="intro"
+             ng-show="ctrl.showIntroAnim">
+        </div>
         <div id="center-row" class="full-row" layout="row">
             <div id="left-spacer" layout="column"></div>
             {# CHOOSEN TRAITS FROM THIS POINT #}

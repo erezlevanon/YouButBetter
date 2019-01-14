@@ -17,6 +17,7 @@ function interfaceController($scope, $http) {
     this.traitCodes = [];
     this.traitAnimationAttributes = [];
 
+    this.showIntroAnim = true;
 
     this.initTraitCodes = () => {
         for (let i = 0; i < this.DEFAULT_NUMBER_OF_TRAITS; i++) {
@@ -128,6 +129,15 @@ function interfaceController($scope, $http) {
             }
         );
     };
+
+    lottie.searchAnimations();
+    let animation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'intro');
+
+    animation.addEventListener('complete', $.proxy(() => {
+        animation.destroy();
+        this.showIntroAnim = false;
+        $scope.$apply();
+    }));
 
     this.initTraitCodes();
 }
