@@ -130,15 +130,11 @@ class interfaceController {
 
     produce() {
         let data = {};
-        let config = {
-            xsrfHeaderName: 'X-CSRFToken',
-            xsrfCookieName: 'csrftoken',
-        };
         if (this.loadingAnimation) {
             this.showLoadingAnim = true;
             this.loadingAnimation.play();
         }
-        this._http.post('/produce', data, config).then(
+        this._http.post('/produce', data).then(
             () => {
                 this.loadingAnimation.stop();
                 this.showLoadingAnim = false;
