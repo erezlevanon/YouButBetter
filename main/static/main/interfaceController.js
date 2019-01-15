@@ -18,7 +18,7 @@ class interfaceController {
         this.traitCodes = [];
         this.traitAnimationAttributes = [];
 
-        this.skipIntroAnimation = true;
+        this.skipIntroAnimation = false;
 
         this.showIntroAnim = true;
         this.showLoadingAnim = false;
