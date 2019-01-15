@@ -19,5 +19,5 @@ def index(request):
 
 def produce(request):
     c = controller.Controller()
-    time.sleep(3)   # Todo: Create choreography.
+    time.sleep(6)   # Todo: Create choreography.
     return HttpResponse()
