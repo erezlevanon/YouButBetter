@@ -1,0 +1,8 @@
+<h1 id="total-price">
+    {% verbatim %}
+    {{ ctrl.currentPriceFormatted() | currency : "€" : 2 }}
+    {% endverbatim %}
+</h1>
+<md-button id="done-button" class="md-raised" ng-click="ctrl.produce()">
+    Check Out
+</md-button>

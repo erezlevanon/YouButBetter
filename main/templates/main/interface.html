@@ -7,43 +7,21 @@
     <link rel="stylesheet" type="text/css" href="{% static 'main/interface.css' %}"
           xmlns:svg="http://www.w3.org/1999/html" xmlns:svg="http://www.w3.org/1999/html">
     <div layout="column" class="full-row" ng-controller="interfaceController as ctrl">
-        <div class="lottie collapsible anim-container" data-animation-path="{% static 'main/start_anim' %}"
-             data-anim-type="svg"
-             data-anim-loop="false"
-             data-name="intro"
-             data-anim-autoplay="false"
-             ng-show="ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
-        >
-        </div>
-        <div class="lottie anim-container" data-animation-path="{% static 'main/load_anim' %}"
-             data-anim-type="svg"
-             data-anim-loop="true"
-             data-name="loading"
-             data-anim-autoplay="false"
-             ng-show="ctrl.showLoadingAnim"
-        >
-        </div>
+        {% include 'main/animations.html' %}
         <div id="center-row" class="full-row" layout="row">
             <div id="left-spacer" layout="column"></div>
-            {# CHOOSEN TRAITS FROM THIS POINT #}
             <div id="left-panel" layout="column">
                 {% include 'main/current_sequence.html' %}
             </div>
             <div id="center-panel" layout="column">
                 {% include 'main/stats.html' %}
             </div>
-            {# TRAIT SELECTION FROM THIS POINT #}
             <div id="right-panel" layout="column">
                 {% include 'main/trait_explorer.html' %}
             </div>
         </div>
         <div id="bottom-row" class="full-row" layout="row" layout-align="end center">
-            <h1 id="total-price">
-                {% verbatim %}
-                {{ ctrl.currentPriceFormatted() | currency : "€" : 2 }}
-                {% endverbatim %}
-            </h1>
-            <md-button id="done-button" class="md-raised" ng-click="ctrl.produce()">Check Out</md-button>
+        {% include 'main/bottom_bar.html' %}
         </div>
     </div>
 {% endblock %}
