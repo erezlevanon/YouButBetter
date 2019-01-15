@@ -5,7 +5,6 @@
  */
 class interfaceController {
     constructor($scope, $http) {
-        console.log('init');
         this._scope = $scope;
         this._http = $http;
         this.curPrice = 0;
@@ -141,18 +140,15 @@ class interfaceController {
     initAnimations() {
         lottie.searchAnimations();
         this.introAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'intro');
-        console.log(lottie.getRegisteredAnimations());
-        console.log(this.introAnimation);
         this.outroAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'ending');
 
         if (this.introAnimation) {
             this.introAnimation.addEventListener('complete', $.proxy(() => {
-                console.log('fdsa');
                 this.introAnimation.destroy();
                 this.showIntroAnim = false;
                 this._scope.$apply();
             }));
+            this.introAnimation.play();
         }
-        this.introAnimation.play();
     }
 }
