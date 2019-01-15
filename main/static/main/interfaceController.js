@@ -17,7 +17,10 @@ function interfaceController($scope, $http) {
     this.traitCodes = [];
     this.traitAnimationAttributes = [];
 
+    this.skipIntroAnimation = false;
+    this.skipOutroAnimation = false;
     this.showIntroAnim = true;
+    this.showOutroAnim = true;
 
     this.initTraitCodes = () => {
         for (let i = 0; i < this.DEFAULT_NUMBER_OF_TRAITS; i++) {
@@ -131,13 +134,19 @@ function interfaceController($scope, $http) {
     };
 
     lottie.searchAnimations();
-    let animation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'intro');
+    this.introAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'intro');
+    console.log(lottie.getRegisteredAnimations());
+    console.log(this.introAnimation);
+    this.outroAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'ending');
 
-    animation.addEventListener('complete', $.proxy(() => {
-        animation.destroy();
-        this.showIntroAnim = false;
-        $scope.$apply();
-    }));
+    if (this.introAnimation) {
+        this.introAnimation.addEventListener('complete', $.proxy(() => {
+            console.log('fdsa');
+            this.introAnimation.destroy();
+            this.showIntroAnim = false;
+            $scope.$apply();
+        }));
+    }
 
     this.initTraitCodes();
 }

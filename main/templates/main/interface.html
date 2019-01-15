@@ -11,7 +11,10 @@
              data-anim-type="svg"
              data-anim-loop="false"
              data-name="intro"
-             ng-show="ctrl.showIntroAnim">
+             data-anim-autoplay="false"
+             ng-show="ctrl.showIntroAnim"
+{#             ng-if="!ctrl.skipIntroAnimation"#}
+        >
         </div>
         <div id="center-row" class="full-row" layout="row">
             <div id="left-spacer" layout="column"></div>
