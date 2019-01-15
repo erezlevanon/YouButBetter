@@ -18,10 +18,11 @@ class interfaceController {
         this.traitCodes = [];
         this.traitAnimationAttributes = [];
 
-        this.skipIntroAnimation = false;
+        this.skipIntroAnimation = true;
 
         this.showIntroAnim = true;
         this.showLoadingAnim = false;
+        this.showDoneAnimation = false;
 
         this.introAnimation = null;
         this.loadingAnimation = null;
@@ -141,6 +142,8 @@ class interfaceController {
             () => {
                 this.loadingAnimation.stop();
                 this.showLoadingAnim = false;
+                this.showDoneAnimation = true;
+                this.doneAnimation.play();
                 // TODO: deal with successful production.
             }
         );
@@ -150,6 +153,7 @@ class interfaceController {
         lottie.searchAnimations();
         this.introAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'intro');
         this.loadingAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'loading');
+        this.doneAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'done');
 
         if (this.introAnimation) {
             this.introAnimation.addEventListener('complete', $.proxy(() => {
