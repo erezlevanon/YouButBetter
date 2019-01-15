@@ -3,26 +3,32 @@
  * @param $scope
  * @param $http
  */
-function interfaceController($scope, $http) {
-    this.scope = $scope;
-    this._http = $http;
-    this.curPrice = 0;
-    this.curSalePrice = 0;
-    this.chosenTraits = [];
+class interfaceController {
+    constructor($scope, $http) {
+        console.log('init');
+        this._scope = $scope;
+        this._http = $http;
+        this.curPrice = 0;
+        this.curSalePrice = 0;
+        this.chosenTraits = [];
 
-    this.DEFAULT_NUMBER_OF_TRAITS = 32;
-    this.CODE_LENGTH = 100;
-    this.CODE_HEIGHT = 10;
+        this.DEFAULT_NUMBER_OF_TRAITS = 32;
+        this.CODE_LENGTH = 100;
+        this.CODE_HEIGHT = 10;
 
-    this.traitCodes = [];
-    this.traitAnimationAttributes = [];
+        this.traitCodes = [];
+        this.traitAnimationAttributes = [];
 
-    this.skipIntroAnimation = false;
-    this.skipOutroAnimation = false;
-    this.showIntroAnim = true;
-    this.showOutroAnim = true;
+        this.skipIntroAnimation = false;
+        this.skipOutroAnimation = false;
+        this.showIntroAnim = true;
+        this.showOutroAnim = true;
 
-    this.initTraitCodes = () => {
+        this.initTraitCodes();
+        this.initAnimations();
+    }
+
+    initTraitCodes() {
         for (let i = 0; i < this.DEFAULT_NUMBER_OF_TRAITS; i++) {
             if (i === 4) {
                 this.chosenTraits.push({title: 'High risk of cancer', price: -25000, sale_price: -25000})
@@ -35,7 +41,7 @@ function interfaceController($scope, $http) {
 
     };
 
-    this.toggleTrait = (name, price, sale_price) => {
+    toggleTrait(name, price, sale_price) {
         if (!this.isTraitChosen(name)) {
             let new_index = this.randInt(5, 20);
             this.chosenTraits.splice(new_index, 0, {title: name, price: price, sale_price: sale_price});
@@ -56,7 +62,7 @@ function interfaceController($scope, $http) {
         }
     };
 
-    this.getTraitCode = (name) => {
+    getTraitCode(name) {
         const total_width = 100;
         const min_width = 1;
         const max_width = 10;
@@ -74,44 +80,44 @@ function interfaceController($scope, $http) {
     };
 
 
-    this.isTraitChosen = (name) => {
+    isTraitChosen(name) {
         return this.chosenTraits.some((existing) => existing.title === name)
     };
 
-    this.currentPriceFormatted = () => {
+    currentPriceFormatted() {
         return this.curPrice;
     };
 
-    this.currentSalePriceFormatted = () => {
+    currentSalePriceFormatted() {
         return this.curSalePrice;
     };
 
     // min inclusive, max exclusive.
-    this.randInt = (min, max) => {
-        return Math.floor((Math.random() * (max-min)) + min);
+    randInt(min, max) {
+        return Math.floor((Math.random() * (max - min)) + min);
     };
 
-    this.getTraitViewPortSize = () => {
+    getTraitViewPortSize() {
         return '0 0 ' + this.CODE_LENGTH + ' ' + this.CODE_HEIGHT;
     };
 
-    this.getRandomAnimationAttr = () => {
+    getRandomAnimationAttr() {
         return {
             dur: this.getRandomAnimationDuration(),
             delay: this.getRandomAnimationDelay(),
-            show:this.randInt(0,2) === 0,
+            show: this.randInt(0, 2) === 0,
         };
     };
 
-    this.getRandomAnimationDuration = () => {
-        return (this.randInt(1, 3) * 8 + this.randInt(0,5)) + 's';
+    getRandomAnimationDuration() {
+        return (this.randInt(1, 3) * 8 + this.randInt(0, 5)) + 's';
     };
 
-    this.getRandomAnimationDelay = () => {
+    getRandomAnimationDelay() {
         return this.randInt(2, 6) + 's';
     };
 
-    this.getRowRandomAnimationAttr = (size) => {
+    getRowRandomAnimationAttr(size) {
         let res = [];
         for (let i = 0; i < size; i++) {
             res.push(this.getRandomAnimationAttr());
@@ -119,9 +125,8 @@ function interfaceController($scope, $http) {
         return res;
     };
 
-    this.produce = () => {
-        let data = {
-        };
+    produce() {
+        let data = {};
         let config = {
             xsrfHeaderName: 'X-CSRFToken',
             xsrfCookieName: 'csrftoken',
@@ -133,20 +138,21 @@ function interfaceController($scope, $http) {
         );
     };
 
-    lottie.searchAnimations();
-    this.introAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'intro');
-    console.log(lottie.getRegisteredAnimations());
-    console.log(this.introAnimation);
-    this.outroAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'ending');
+    initAnimations() {
+        lottie.searchAnimations();
+        this.introAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'intro');
+        console.log(lottie.getRegisteredAnimations());
+        console.log(this.introAnimation);
+        this.outroAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'ending');
 
-    if (this.introAnimation) {
-        this.introAnimation.addEventListener('complete', $.proxy(() => {
-            console.log('fdsa');
-            this.introAnimation.destroy();
-            this.showIntroAnim = false;
-            $scope.$apply();
-        }));
+        if (this.introAnimation) {
+            this.introAnimation.addEventListener('complete', $.proxy(() => {
+                console.log('fdsa');
+                this.introAnimation.destroy();
+                this.showIntroAnim = false;
+                this._scope.$apply();
+            }));
+        }
+        this.introAnimation.play();
     }
-
-    this.initTraitCodes();
 }
