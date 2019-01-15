@@ -7,12 +7,20 @@
     <link rel="stylesheet" type="text/css" href="{% static 'main/interface.css' %}"
           xmlns:svg="http://www.w3.org/1999/html" xmlns:svg="http://www.w3.org/1999/html">
     <div layout="column" class="full-row" ng-controller="interfaceController as ctrl">
-        <div id="anim-container" class="lottie collapsible" data-animation-path="{% static 'main/start_anim' %}"
+        <div class="lottie collapsible anim-container" data-animation-path="{% static 'main/start_anim' %}"
              data-anim-type="svg"
              data-anim-loop="false"
              data-name="intro"
              data-anim-autoplay="false"
              ng-show="ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
+        >
+        </div>
+        <div class="lottie anim-container" data-animation-path="{% static 'main/load_anim' %}"
+             data-anim-type="svg"
+             data-anim-loop="true"
+             data-name="loading"
+             data-anim-autoplay="false"
+             ng-show="ctrl.showLoadingAnim"
         >
         </div>
         <div id="center-row" class="full-row" layout="row">

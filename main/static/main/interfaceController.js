@@ -19,9 +19,12 @@ class interfaceController {
         this.traitAnimationAttributes = [];
 
         this.skipIntroAnimation = false;
-        this.skipOutroAnimation = false;
+
         this.showIntroAnim = true;
-        this.showOutroAnim = true;
+        this.showLoadingAnim = false;
+
+        this.introAnimation = null;
+        this.loadingAnimation = null;
 
         this.initTraitCodes();
         this.initAnimations();
@@ -130,8 +133,14 @@ class interfaceController {
             xsrfHeaderName: 'X-CSRFToken',
             xsrfCookieName: 'csrftoken',
         };
+        if (this.loadingAnimation) {
+            this.showLoadingAnim = true;
+            this.loadingAnimation.play();
+        }
         this._http.post('/produce', data, config).then(
             () => {
+                this.loadingAnimation.stop();
+                this.showLoadingAnim = false;
                 // TODO: deal with successful production.
             }
         );
@@ -140,11 +149,11 @@ class interfaceController {
     initAnimations() {
         lottie.searchAnimations();
         this.introAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'intro');
-        this.outroAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'ending');
+        this.loadingAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'loading');
 
         if (this.introAnimation) {
             this.introAnimation.addEventListener('complete', $.proxy(() => {
-                this.introAnimation.destroy();
+                this.introAnimation.stop();
                 this.showIntroAnim = false;
                 this._scope.$apply();
             }));

@@ -2,6 +2,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import ensure_csrf_cookie
 
+import time
+
 from control import controller
 from .models import Topic
 
@@ -17,4 +19,5 @@ def index(request):
 
 def produce(request):
     c = controller.Controller()
+    time.sleep(3)   # Todo: Create choreography.
     return HttpResponse()
