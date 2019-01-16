@@ -25,10 +25,6 @@
     border-top: 2px solid whitesmoke;
 }
 
-#fetus {
-    animation-duration: 3s;
-}
-
 #chosen-list {
     margin-top: 5%;
     height: 100%;
@@ -51,17 +47,6 @@
     min-height: 100%;
     background-color: white;
     z-index: 10;
-}
-
-.fetus-logo {
-    width: 25%;
-    margin-top: 5%;
-    min-height: 40%;
-}
-
-.fetus-inner {
-    width: inherit;
-    position: absolute;
 }
 
 .full-row {
@@ -132,13 +117,4 @@
 .fadeInOut.ng-enter.ng-enter-active {
     opacity: 1;
     max-height: 100%;
-}
-
-.slow-animation {
-    animation-duration: 10s;
-    will-change: opacity;
-}
-.slower-animation {
-    animation-duration: 20s;
-    will-change: opacity;
 }
