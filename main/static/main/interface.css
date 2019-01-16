@@ -7,12 +7,9 @@
 #left-panel {
     width: 33%;
 }
+
 #center-panel {
     width: 33%;
-}
-
-#left-spacer {
-    width: 5%;
 }
 
 #center-row {
@@ -38,6 +35,26 @@
 
 #total-price {
     margin-right: 1%;
+}
+
+.graph {
+    height: 15%;
+    max-width: 40%;
+
+    margin-top: 5%;
+
+    fill: none;
+    stroke: #000000;
+    stroke-width: 5;
+    stroke-miterlimit: 10;
+    stroke-dasharray: 1000 1000;
+    stroke-dashoffset: 1000;
+
+    enable-background: new 0 0 400 200;
+}
+
+.stat-holder {
+
 }
 
 .anim-container {
