@@ -8,8 +8,7 @@
           xmlns:svg="http://www.w3.org/1999/html" xmlns:svg="http://www.w3.org/1999/html">
     <div layout="column" class="full-row" ng-controller="interfaceController as ctrl">
         {% include 'main/animations.html' %}
-        <div id="center-row" class="full-row" layout="row">
-            <div id="left-spacer" layout="column"></div>
+        <div id="center-row" class="full-row" layout="row" ng-if="!ctrl.showIntroAnim || ctrl.skipIntroAnimation">
             <div id="left-panel" layout="column">
                 {% include 'main/stats.html' %}
             </div>
@@ -20,7 +19,8 @@
                 {% include 'main/trait_explorer.html' %}
             </div>
         </div>
-        <div id="bottom-row" class="full-row" layout="row" layout-align="end center">
+        <div id="bottom-row" class="full-row" layout="row" layout-align="end center"
+             ng-if="!ctrl.showIntroAnim || ctrl.skipIntroAnimation">
         {% include 'main/bottom_bar.html' %}
         </div>
     </div>
