@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="graph_3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 400 100" style="enable-background:new 0 0 400 100;" xml:space="preserve">
+<path d="M0,100.1c26.6,0,65.5-4.3,100.1-28.6c44.1-31,70.1-42,98.1-43.7c7.9-0.5,17.6,0.7,17.6,0.7c23,1.8,41.4,6.6,53.6,10.5
+	c11.7,3.3,23.4,6.6,35.1,9.9c13.3,3.1,30.4,8.5,49,18.2c20.6,10.7,36,23.1,46.5,33">
+<animate  accumulate="none" additive="replace" attributeName="stroke-dashoffset" begin="graph_0.begin + 0.6" calcMode="linear" dur="1s" fill="freeze" from="1000" id="graph_3" keyTimes="0 ;0.1 ; 0.2 ; 1" restart="always" to="0">
+		</animate>
+</path>
+</svg>
