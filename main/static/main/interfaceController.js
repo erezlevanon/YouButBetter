@@ -7,16 +7,17 @@ class interfaceController {
     constructor($scope, $http) {
         this._scope = $scope;
         this._http = $http;
+
         this.curPrice = 0;
         this.curSalePrice = 0;
         this.chosenTraits = [];
 
-        this.DEFAULT_NUMBER_OF_TRAITS = 32;
+        this.DEFAULT_NUMBER_OF_TRAITS = 34;
         this.CODE_LENGTH = 100;
         this.CODE_HEIGHT = 10;
+        this.NUM_OF_GIFS = 100;
 
-        this.traitCodes = [];
-        this.traitAnimationAttributes = [];
+        this.segmentAnimations = [];
 
         this.skipIntroAnimation = false;
 
@@ -38,26 +39,22 @@ class interfaceController {
             } else {
                 this.chosenTraits.push({title: '', price: 0, sale_price: 0});
             }
-            this.traitCodes.push(this.getTraitCode());
-            this.traitAnimationAttributes.push(this.getRowRandomAnimationAttr(this.traitCodes[i].length));
+            this.segmentAnimations.push(this.getGifSrc(i));
         }
-
     };
 
     toggleTrait(name, price, sale_price) {
         if (!this.isTraitChosen(name)) {
             let new_index = this.randInt(5, 20);
             this.chosenTraits.splice(new_index, 0, {title: name, price: price, sale_price: sale_price});
-            this.traitCodes.splice(new_index, 0, this.getTraitCode(name));
-            this.traitAnimationAttributes.splice(new_index, 0, this.getRowRandomAnimationAttr(this.traitCodes[new_index].length));
+            this.segmentAnimations.splice(new_index, 0, this.getGifSrc());
             this.curPrice += price;
             this.curSalePrice += sale_price;
         } else if (name !== '') {
             let index = this.chosenTraits.indexOf(this.chosenTraits.find((val) => val.title === name));
             if (index !== -1) {
                 this.chosenTraits.splice(index, 1);
-                this.traitCodes.splice(index, 1);
-                this.traitAnimationAttributes.splice(index, 1);
+                this.segmentAnimations.splice(index, 1);
                 this.curPrice -= price;
                 this.curSalePrice -= sale_price;
             }
@@ -144,6 +141,13 @@ class interfaceController {
             }
         );
     };
+
+    getGifSrc(index) {
+        if (!index && index !== 0) {
+            index = this.randInt(this.DEFAULT_NUMBER_OF_TRAITS + 1, this.NUM_OF_GIFS)
+        }
+        return '/static/main/segments/segment_' + index + '.gif'
+    }
 
     initAnimations() {
         lottie.searchAnimations();
