@@ -171,6 +171,10 @@ body {
     white-space: nowrap;
 }
 
+md-dialog {
+    max-width: 45%;
+}
+
 .fadeInOut.ng-enter,
 .fadeInOut.ng-leave {
     transition: all linear 0.7s;

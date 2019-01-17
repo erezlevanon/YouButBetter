@@ -26,6 +26,21 @@ class Sale(models.Model):
 
 
 class Trait(models.Model):
+    INTELLIGENCE = 'intelligence'
+    HEIGHT = 'height'
+    WEIGHT = 'weight'
+    EMOTIONAL = 'emotional'
+    LIFE_EXPECTANCY = 'life_expectancy'
+    NONE = 'none'
+    EFFECTS = (
+        (INTELLIGENCE, INTELLIGENCE),
+        (HEIGHT, HEIGHT),
+        (WEIGHT, WEIGHT),
+        (EMOTIONAL, EMOTIONAL),
+        (LIFE_EXPECTANCY, LIFE_EXPECTANCY),
+        (NONE, NONE),
+    )
+
     title = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
     price = models.DecimalField(max_digits=14, decimal_places=2)
@@ -33,6 +48,9 @@ class Trait(models.Model):
     sale = models.ForeignKey(Sale, on_delete=models.CASCADE, null=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
+    effect = models.CharField(max_length=20, choices=EFFECTS, default=NONE)
+    effect_val = models.IntegerField(default=0)
+    effect_absolute = models.BooleanField(default=False)
 
     def __str__(self):
         suffix = ''

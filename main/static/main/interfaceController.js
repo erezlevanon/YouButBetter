@@ -4,9 +4,10 @@
  * @param $http
  */
 class interfaceController {
-    constructor($scope, $http) {
+    constructor($scope, $http, $mdDialog) {
         this._scope = $scope;
         this._http = $http;
+        this._mdDialog = $mdDialog;
 
         this.curPrice = 0;
         this.curSalePrice = 0;
@@ -19,7 +20,7 @@ class interfaceController {
 
         this.segmentAnimations = [];
 
-        this.skipIntroAnimation = false;
+        this.skipIntroAnimation = true;
 
         this.showIntroAnim = true;
         this.showLoadingAnim = false;
@@ -37,7 +38,7 @@ class interfaceController {
     initTraitCodes() {
         for (let i = 0; i < this.DEFAULT_NUMBER_OF_TRAITS; i++) {
             if (i === 4) {
-                this.chosenTraits.push({title: 'High risk of cancer', price: -25000, sale_price: -25000})
+                this.chosenTraits.push(POSSIBLE_DIAGNOSED_TRAITS[0])
             } else {
                 this.chosenTraits.push({title: '', price: 0, sale_price: 0});
             }
@@ -45,41 +46,59 @@ class interfaceController {
         }
     };
 
-    toggleTrait(name, price, sale_price) {
+    toggleTrait(name, price, sale_price, effect, effect_val, effect_absolute) {
         if (!this.isTraitChosen(name)) {
-            let new_index = this.randInt(5, 20);
-            this.chosenTraits.splice(new_index, 0, {title: name, price: price, sale_price: sale_price});
+            let new_index = interfaceController.randInt(5, 20);
+            let trait = {
+                    title: name,
+                    price: price,
+                    sale_price: sale_price,
+                    effect: effect,
+                    effect_val: effect_val,
+                    effect_absolute: effect_absolute,
+                };
+            console.log(effect);
+            console.log(effect_val);
+            this.chosenTraits.splice(new_index, 0, trait);
             this.segmentAnimations.splice(new_index, 0, this.getGifSrc());
             this.curPrice += price;
             this.curSalePrice += sale_price;
+            this.updateStatsFromTrait(trait, false);
         } else if (name !== '') {
-            let index = this.chosenTraits.indexOf(this.chosenTraits.find((val) => val.title === name));
+            let trait = this.chosenTraits.find((val) => val.title === name);
+            let index = this.chosenTraits.indexOf(trait);
             if (index !== -1) {
                 this.chosenTraits.splice(index, 1);
                 this.segmentAnimations.splice(index, 1);
                 this.curPrice -= price;
                 this.curSalePrice -= sale_price;
+                this.updateStatsFromTrait(trait, true)
             }
 
         }
     };
 
-    getTraitCode(name) {
-        const total_width = 100;
-        const min_width = 1;
-        const max_width = 10;
-        let start_pos = 0;
-        let width = this.randInt(min_width, max_width);
-        let res = [];
-        while (start_pos < total_width) {
-            if (start_pos < total_width)
-                res.push({x: start_pos, w: width});
-            // start_pos += width + 1;
-            start_pos += width;
-            width = Math.min(this.randInt(min_width, max_width), total_width - start_pos);
+    updateStatsFromTrait(trait, isRemoved) {
+        let sign = isRemoved ? -1 : 1;
+        let stat = this.stats[trait.effect];
+        if (stat) {
+            if (trait.effect_absolute) {
+                if (isRemoved) {
+                    console.log(stat);
+                    let index  = stat.history.indexOf(trait.effect_val);
+                    console.log(index);
+                    if (index !== -1 ) stat.history.splice(index, 1);
+                    console.log(stat);
+                    stat.value = stat.history[stat.history.length-1];
+                } else {
+                    stat.history.push(stat.value);
+                    stat.value = trait.effect_val;
+                }
+            } else {
+                this.stats[trait.effect].value += sign * trait.effect_val;
+            }
         }
-        return res;
-    };
+    }
 
 
     isTraitChosen(name) {
@@ -95,7 +114,7 @@ class interfaceController {
     };
 
     // min inclusive, max exclusive.
-    randInt(min, max) {
+    static randInt(min, max) {
         return Math.floor((Math.random() * (max - min)) + min);
     };
 
@@ -107,16 +126,16 @@ class interfaceController {
         return {
             dur: this.getRandomAnimationDuration(),
             delay: this.getRandomAnimationDelay(),
-            show: this.randInt(0, 2) === 0,
+            show: interfaceController.randInt(0, 2) === 0,
         };
     };
 
     getRandomAnimationDuration() {
-        return (this.randInt(1, 3) * 8 + this.randInt(0, 5)) + 's';
+        return (interfaceController.randInt(1, 3) * 8 + interfaceController.randInt(0, 5)) + 's';
     };
 
     getRandomAnimationDelay() {
-        return this.randInt(2, 6) + 's';
+        return interfaceController.randInt(2, 6) + 's';
     };
 
     getRowRandomAnimationAttr(size) {
@@ -146,7 +165,7 @@ class interfaceController {
 
     getGifSrc(index) {
         if (!index && index !== 0) {
-            index = this.randInt(this.DEFAULT_NUMBER_OF_TRAITS + 1, this.NUM_OF_GIFS)
+            index = interfaceController.randInt(this.DEFAULT_NUMBER_OF_TRAITS + 1, this.NUM_OF_GIFS)
         }
         return '/static/main/segments/segment_' + index + '.gif'
     }
@@ -184,24 +203,39 @@ class interfaceController {
     getRandomStats() {
         return {
             intelligence: {
-                value: this.randInt(51, 98),
-                positive: this.randInt(0, 2) === 0,
+                value: interfaceController.randInt(3, 98),
+                history: [],
             },
             height: {
                 value: this.gaussRandInt(110, 250, 1),
+                history: [],
             },
             weight: {
-                value: this.randInt(5, 30),
-                positive: this.randInt(0, 2) === 0,
+                value: interfaceController.randInt(20, 81),
+                history: [],
             },
             emotional: {
-                value: this.randInt(51, 98),
-                positive: this.randInt(0, 2) === 0,
+                value: interfaceController.randInt(3, 98),
+                history: [],
             },
             life_expectancy: {
                 value: this.gaussRandInt(30, 150, 1),
+                history: [],
             }
         };
+    }
+
+    isStatPositive (name) {
+        return this.stats[name].value > 50;
+    }
+
+    getStateValInRange (name) {
+        let val = this.stats[name].value;
+        if (name === 'weight') {
+            return this.isStatPositive(name) ? val - 50 : 50 - val;
+        } else {
+            return this.isStatPositive(name) ? val : 100 - val;
+        }
     }
 
     getLocForStat(name) {
@@ -211,18 +245,63 @@ class interfaceController {
         if (name === 'height') {
             let val = Math.min(210, stat.value);
             return ((val - 130) / (210 - 130)) * 150;
-        } else if (name === 'weight') {
-            let sign = stat.positive ? 1 : -1;
-            return (50 + stat.value * sign) * 1.5;
         } else if (name === 'life_expectancy') {
             let val = Math.min(140, stat.value);
             return ((val - 30) / (140 - 30)) * 150;
         }
-        if (stat.positive) {
-            loc = stat.value;
-        } else {
-            loc = 100 - stat.value;
-        }
+        loc = stat.value;
         return loc * 1.5;
     }
+
+    showIssueTraitDialog(trait) {
+        let alert = this._mdDialog.confirm({
+            title: trait.title,
+            textContent: trait.description,
+            ok: 'Remove this risk',
+            cancel: 'Leave this risk',
+            width: '30',
+        });
+        this._mdDialog
+            .show(alert).then((a) => {
+            this.toggleTrait(trait.title, trait.price, trait.price);
+        })
+            .catch((c) => {
+            })
+            .finally(function () {
+                alert = undefined;
+            });
+    }
+
+    showPurchasedTraitDialog(trait) {
+        console.log('purchased');
+    }
+
+    showTraitDialog(trait) {
+        if (trait.title !== '') {
+            console.log();
+            if (trait.price < 0) {
+                this.showIssueTraitDialog(trait)
+            } else {
+                this.showPurchasedTraitDialog(trait)
+            }
+        }
+    }
 }
+
+function getDescriptionForDiagnosedTrait (title, price) {
+    return 'Unfortunately diagnosis shows genes variants linked to high risk of ' + title.toUpperCase() + '. ' +
+            'You can choose to replace these variants and lower the risk of your child having to deal with it. ' +
+            'This operation costs ' + price.toLocaleString('en-US') + ' Euros.'
+}
+
+let POSSIBLE_DIAGNOSED_TRAITS = [
+    {
+        title: 'Lung Cancer',
+        topic: 'health',
+        description: getDescriptionForDiagnosedTrait('lung cancer', 250000),
+        price: -250000,
+        effect: 'life_expectancy',
+        effect_val: -11,
+    },
+
+];

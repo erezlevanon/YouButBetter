@@ -16,6 +16,7 @@ def index(request):
     }
     return render(request, 'main/interface.html', context)
 
+
 @csrf_exempt
 def produce(request):
     c = controller.Controller()
