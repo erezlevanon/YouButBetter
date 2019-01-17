@@ -61,8 +61,6 @@ class interfaceController {
                     effect_val: effect_val,
                     effect_absolute: effect_absolute,
                 };
-            console.log(effect);
-            console.log(effect_val);
             this.chosenTraits.splice(new_index, 0, trait);
             this.segmentAnimations.splice(new_index, 0, this.getGifSrc());
             this.curPrice += price;
@@ -88,11 +86,8 @@ class interfaceController {
         if (stat) {
             if (trait.effect_absolute) {
                 if (isRemoved) {
-                    console.log(stat);
                     let index  = stat.history.indexOf(trait.effect_val);
-                    console.log(index);
                     if (index !== -1 ) stat.history.splice(index, 1);
-                    console.log(stat);
                     stat.value = stat.history[stat.history.length-1];
                 } else {
                     stat.history.push(stat.value);
@@ -120,10 +115,6 @@ class interfaceController {
     // min inclusive, max exclusive.
     static randInt(min, max) {
         return Math.floor((Math.random() * (max - min)) + min);
-    };
-
-    getTraitViewPortSize() {
-        return '0 0 ' + this.CODE_LENGTH + ' ' + this.CODE_HEIGHT;
     };
 
     getRandomAnimationAttr() {
