@@ -177,7 +177,8 @@ md-dialog {
 
 .fadeInOut.ng-enter,
 .fadeInOut.ng-leave {
-    transition: all linear 0.7s;
+    -webkit-transition: all ease-in-out 0.4s;
+    transition: all ease-in-out 0.4s;
 }
 
 .fadeInOut.ng-enter,
@@ -190,6 +191,13 @@ md-dialog {
 .fadeInOut.ng-enter.ng-enter-active {
     opacity: 1;
     max-height: 100%;
+}
+
+.stat-indicator {
+    -webkit-transition: stroke-dashoffset 0.3s ease-in-out;
+    -webkit-transition-delay: 0.2s;
+    transition: stroke-dashoffset 0.3s ease-in-out;
+    transition-delay: 0.2s;
 }
 
 /* Safari 4.0 - 8.0 */
@@ -213,9 +221,6 @@ md-dialog {
 
     15% {
         transform: translate(0, 0);
-    }
-
-    80% {
     }
 
     100% {
