@@ -20,7 +20,7 @@ class interfaceController {
 
         this.segmentAnimations = [];
 
-        this.skipIntroAnimation = true;
+        this.skipIntroAnimation = false;
 
         this.showIntroAnim = true;
         this.showLoadingAnim = false;
