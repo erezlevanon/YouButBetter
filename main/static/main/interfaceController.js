@@ -184,38 +184,45 @@ class interfaceController {
     getRandomStats() {
         return {
             intelligence: {
-                name: 'intelligence',
                 value: this.randInt(51, 98),
-                positive: this.randInt(0,2) === 0,
+                positive: this.randInt(0, 2) === 0,
             },
             height: {
-                name: 'potential height',
                 value: this.gaussRandInt(110, 250, 1),
             },
             weight: {
-                name: 'weight',
                 value: this.randInt(5, 30),
-                positive: this.randInt(0,2) === 0,
+                positive: this.randInt(0, 2) === 0,
             },
             emotional: {
-                name: "Emotional Intelligence",
                 value: this.randInt(51, 98),
-                positive: this.randInt(0,2) === 0,
+                positive: this.randInt(0, 2) === 0,
             },
             life_expectancy: {
-                name: "Life Expectancy",
                 value: this.gaussRandInt(30, 150, 1),
             }
         };
     }
 
     getLocForStat(name) {
-        let intelligence_loc = 0;
-        if (this.stats[name].positive) {
-            intelligence_loc = this.stats[name].value;
-        } else {
-            intelligence_loc = 100 - this.stats[name].intelligence.value;
+        let loc = 0;
+        let stat = this.stats[name];
+        if (!stat) return 75;
+        if (name === 'height') {
+            let val = Math.min(210, stat.value);
+            return ((val - 130) / (210 - 130)) * 150;
+        } else if (name === 'weight') {
+            let sign = stat.positive ? 1 : -1;
+            return (50 + stat.value * sign) * 1.5;
+        } else if (name === 'life_expectancy') {
+            let val = Math.min(140, stat.value);
+            return ((val - 30) / (140 - 30)) * 150;
         }
-        return intelligence_loc * 1.5;
+        if (stat.positive) {
+            loc = stat.value;
+        } else {
+            loc = 100 - stat.value;
+        }
+        return loc * 1.5;
     }
 }
