@@ -20,7 +20,7 @@ class interfaceController {
 
         this.segmentAnimations = [];
 
-        this.skipIntroAnimation = false;
+        this.skipIntroAnimation = true;
 
         this.showIntroAnim = true;
         this.showLoadingAnim = false;
@@ -50,7 +50,7 @@ class interfaceController {
         }
     };
 
-    toggleTrait(name, price, sale_price, effect, effect_val, effect_absolute) {
+    toggleTrait(name, price, sale_price, effect, effect_val, effect_absolute, company) {
         if (!this.isTraitChosen(name)) {
             let new_index = interfaceController.randInt(5, 20);
             let trait = {
@@ -60,6 +60,7 @@ class interfaceController {
                     effect: effect,
                     effect_val: effect_val,
                     effect_absolute: effect_absolute,
+                    company: company,
                 };
             this.chosenTraits.splice(new_index, 0, trait);
             this.segmentAnimations.splice(new_index, 0, this.getGifSrc());
@@ -239,7 +240,7 @@ class interfaceController {
         if (!stat) return 75;
         if (name === 'height') {
             let val = Math.min(210, stat.value);
-            return ((val - 130) / (210 - 130)) * 150;
+            return ((val - 120) / (210 - 120)) * 150;
         } else if (name === 'life_expectancy') {
             let val = Math.min(140, stat.value);
             return ((val - 30) / (140 - 30)) * 150;
@@ -254,22 +255,46 @@ class interfaceController {
             textContent: trait.description,
             ok: 'Remove this risk',
             cancel: 'Leave this risk',
-            width: '30',
         });
         this._mdDialog
-            .show(alert).then((a) => {
+            .show(alert).then(() => {
             this.toggleTrait(trait.title, trait.price, trait.price);
         })
-            .catch((c) => {
+            .catch(() => {
             })
             .finally(function () {
                 alert = undefined;
             });
     }
 
-    showPurchasedTraitDialog(trait) {
-        console.log('purchased');
+    getPurchasedTraitDescription(trait) {
+        console.log(trait);
+        let res = 'Gene variants related to ' + trait.title +
+            ' created by ' + trait.company + '.';
+        if (trait.sale_price !== trait.price) {
+            res +=' This trait usually goes for ' + trait.price.toLocaleString('en-US') +
+                ' Euros But is now on sale for only ' + trait.sale_price.toLocaleString('en-US') +
+                ' Euros thanks to the good people at ' + trait.company + '.';
+        }
+        return res;
     }
+
+    showPurchasedTraitDialog(trait) {
+        let alert = this._mdDialog.confirm({
+            title: trait.title,
+            textContent: this.getPurchasedTraitDescription(trait),
+            ok: 'Great',
+            cancel: 'Remove',
+        });
+        this._mdDialog
+            .show(alert).then(() => {
+        })
+            .catch(() => {
+                this.toggleTrait(trait.title, trait.price, trait.price);
+            })
+            .finally(function () {
+                alert = undefined;
+            });    }
 
     showTraitDialog(trait) {
         if (trait.title !== '') {
