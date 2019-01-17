@@ -57,23 +57,30 @@ body {
 }
 
 .graph {
-    height: 15%;
-    max-width: 40%;
+    width: 55%;
 
     margin-top: 5%;
 
-    fill: none;
+    fill: whitesmoke;
     stroke: #000000;
     stroke-width: 5;
     stroke-miterlimit: 10;
     stroke-dasharray: 1000 1000;
     stroke-dashoffset: 1000;
-
-    enable-background: new 0 0 400 200;
 }
 
 .stat-holder {
+    width: 100%;
+    height: 100%;
+}
 
+.stat-info {
+    margin-top: 3%;
+}
+
+.stat-value {
+    margin-top: 0%;
+    margin-bottom: 0%;
 }
 
 .anim-container {

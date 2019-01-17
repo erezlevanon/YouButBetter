@@ -1,26 +1,94 @@
 {% load static %}
-<div class="stat-holder" layout="row" layout-align="center center">
-    <svg class="graph">
+<div class="stat-holder" layout="column" layout-align="center center">
+    <svg class="graph" viewBox="0 0 400 106" xml:space="preserve" layout="row" layout-align="center end">
         {% include 'main/graphs/graph_0.svg' %}
     </svg>
+    {% verbatim %}
+    <div layout="column" class="stat-info" layout-align="center center">
+        <div layout="row" layout-align="center center" ng-if="ctrl.stats['intelligence']['positive']">
+            Smarter then
+        </div>
+        <div layout="row" layout-align="center center" ng-if="!ctrl.stats['intelligence']['positive']">
+            Less smart then
+        </div>
+        <h2 class="stat-value" layout="row">
+            {{ ctrl.stats['intelligence']['value'] }}%
+        </h2>
+        <div layout="row" layout-align="center center">
+            of the population.
+        </div>
+    </div>
+    {% endverbatim %}
 </div>
-<div class="stat-holder" layout="row" layout-align="center center">
-    <svg class="graph">
+<div class="stat-holder" layout="column" layout-align="center center">
+    <svg class="graph" viewBox="0 0 400 106" xml:space="preserve" layout="row" layout-align="center end">
         {% include 'main/graphs/graph_1.svg' %}
     </svg>
+    {% verbatim %}
+    <div layout="column" class="stat-info" layout-align="center center">
+        <h2 class="stat-value" layout="row">
+            {{ ctrl.stats['height']['value'] }}cm
+        </h2>
+        <div layout="row" layout-align="center center">
+            Height Potential
+        </div>
+    </div>
+    {% endverbatim %}
 </div>
-<div class="stat-holder" layout="row" layout-align="center center">
-    <svg class="graph">
+<div class="stat-holder" layout="column" layout-align="center center">
+    <svg class="graph" viewBox="0 0 400 106" xml:space="preserve" layout="row" layout-align="center end">
         {% include 'main/graphs/graph_2.svg' %}
     </svg>
+    {% verbatim %}
+    <div layout="column" class="stat-info" layout-align="center center">
+        <div layout="row" layout-align="center center">
+            Likely to Weigh
+        </div>
+        <h2 class="stat-value" layout="row">
+            {{ ctrl.stats['weight']['value'] }}%
+        </h2>
+        <div layout="row" layout-align="center center" ng-if="ctrl.stats['weight']['positive']">
+            More then the average.
+        </div>
+        <div layout="row" layout-align="center center" ng-if="!ctrl.stats['weight']['positive']">
+            Less then the average.
+        </div>
+    </div>
+    {% endverbatim %}
 </div>
-<div class="stat-holder" layout="row" layout-align="center center">
-    <svg class="graph">
+<div class="stat-holder" layout="column" layout-align="center center">
+    <svg class="graph" viewBox="0 0 400 106" xml:space="preserve" layout="row" layout-align="center end">
         {% include 'main/graphs/graph_3.svg' %}
     </svg>
+    {% verbatim %}
+    <div layout="column" class="stat-info" layout-align="center center">
+        <div layout="row" layout-align="center center" ng-if="ctrl.stats['emotional']['positive']">
+            Higher emotional intelligence then
+        </div>
+        <div layout="row" layout-align="center center" ng-if="!ctrl.stats['emotional']['positive']">
+            Lower emotional intelligence then
+        </div>
+        <h2 class="stat-value" layout="row">
+            {{ ctrl.stats['emotional']['value'] }}%
+        </h2>
+        <div layout="row" layout-align="center center">
+            of the population.
+        </div>
+    </div>
+    {% endverbatim %}
 </div>
-<div class="stat-holder" layout="row" layout-align="center center">
-    <svg class="graph">
+<div class="stat-holder" layout="column" layout-align="center center">
+    <svg class="graph" viewBox="0 0 400 106" xml:space="preserve" layout="row" layout-align="center end">
         {% include 'main/graphs/graph_4.svg' %}
     </svg>
+    {% verbatim %}
+    <div layout="column" class="stat-info" layout-align="center center">
+        <h2 class="stat-value" layout="row">
+            {{ ctrl.stats['life_expectancy']['value'] }} years.
+        </h2>
+        <div layout="row" layout-align="center center">
+            Life Expectancy
+        </div>
+    </div>
+    {% endverbatim %}
 </div>

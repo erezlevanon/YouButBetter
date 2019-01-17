@@ -30,6 +30,8 @@ class interfaceController {
 
         this.initTraitCodes();
         this.initAnimations();
+
+        this.stats = this.getRandomStats();
     }
 
     initTraitCodes() {
@@ -163,5 +165,57 @@ class interfaceController {
             }));
             this.introAnimation.play();
         }
+    }
+
+    gaussRandInt(min, max, skew) {
+        let u = 0, v = 0;
+        while (u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+        while (v === 0) v = Math.random();
+        let num = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v);
+
+        num = num / 10.0 + 0.5; // Translate to 0 -> 1
+        if (num > 1 || num < 0) num = randn_bm(min, max, skew); // resample between 0 and 1 if out of range
+        num = Math.pow(num, skew); // Skew
+        num *= max - min; // Stretch to fill range
+        num += min; // offset to min
+        return Math.floor(num);
+    }
+
+    getRandomStats() {
+        return {
+            intelligence: {
+                name: 'intelligence',
+                value: this.randInt(51, 98),
+                positive: this.randInt(0,2) === 0,
+            },
+            height: {
+                name: 'potential height',
+                value: this.gaussRandInt(110, 250, 1),
+            },
+            weight: {
+                name: 'weight',
+                value: this.randInt(5, 30),
+                positive: this.randInt(0,2) === 0,
+            },
+            emotional: {
+                name: "Emotional Intelligence",
+                value: this.randInt(51, 98),
+                positive: this.randInt(0,2) === 0,
+            },
+            life_expectancy: {
+                name: "Life Expectancy",
+                value: this.gaussRandInt(30, 150, 1),
+            }
+        };
+    }
+
+    getLocForStat(name) {
+        let intelligence_loc = 0;
+        if (this.stats[name].positive) {
+            intelligence_loc = this.stats[name].value;
+        } else {
+            intelligence_loc = 100 - this.stats[name].intelligence.value;
+        }
+        return intelligence_loc * 1.5;
     }
 }

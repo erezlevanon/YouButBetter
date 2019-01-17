@@ -1,10 +1,18 @@
+{% verbatim %}
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 23.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 400 100" style="enable-background:new 0 0 400 100;" xml:space="preserve">
+	 viewBox="0 0 400 115" style="enable-background:new 0 0 400 100;" xml:space="preserve">
 <path d="M0,99.7c26.6,0,65.5-4.3,100.1-28.6c44.1-31,47.7-64.8,74-64.8c37.5,0,53.2,55.1,114.4,61.8c11.3,1.2,11.2-0.9,27.1,0.5
 	c37.1,3.2,37,31.2,84.4,31.2">
 <animate  accumulate="none" additive="replace" attributeName="stroke-dashoffset" begin="0.5" calcMode="linear" dur="1s" fill="freeze" from="1000" id="graph_0" keyTimes="0 ;0.1 ; 0.2 ; 1" restart="always" to="0">
 		</animate>
 </path>
+<path id="path_0" d="M0,99.7c26.6,0,65.5-4.3,100.1-28.6c44.1-31,47.7-64.8,74-64.8c37.5,0,53.2,55.1,114.4,61.8c11.3,1.2,11.2-0.9,27.1,0.5
+	c37.1,3.2,37,31.2,84.4,31.2"
+stroke-dasharray="0.01 1000" ng-attr-stroke-dashoffset="-{{ctrl.getLocForStat('intelligence')}}%" stroke="black" stroke-width="0" stroke-linecap="round" fill="none">
+<animate  accumulate="none" additive="replace" attributeName="stroke-width" begin="2" calcMode="linear" dur="0.3s" fill="freeze" from="0" restart="always" to="30">
+		</animate>
+</path>
 </svg>
+{% endverbatim %}
