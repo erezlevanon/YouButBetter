@@ -29,19 +29,23 @@ class interfaceController {
         this.introAnimation = null;
         this.loadingAnimation = null;
 
+        this.stats = this.getRandomStats();
         this.initTraitCodes();
         this.initAnimations();
-
-        this.stats = this.getRandomStats();
     }
 
     initTraitCodes() {
         for (let i = 0; i < this.DEFAULT_NUMBER_OF_TRAITS; i++) {
-            if (i === 4) {
-                this.chosenTraits.push(POSSIBLE_DIAGNOSED_TRAITS[0])
-            } else {
-                this.chosenTraits.push({title: '', price: 0, sale_price: 0});
+            if (POSSIBLE_DIAGNOSED_TRAITS.length > 0 &&
+                interfaceController.randInt(0, this.DEFAULT_NUMBER_OF_TRAITS * 0.7) === 0) {
+                let trait_index = interfaceController.randInt(0, POSSIBLE_DIAGNOSED_TRAITS.length);
+                let trait = POSSIBLE_DIAGNOSED_TRAITS[trait_index];
+                POSSIBLE_DIAGNOSED_TRAITS.splice(trait_index, 1);
+                this.chosenTraits.push(trait);
+                this.updateStatsFromTrait(trait);
+                this.segmentAnimations.push(this.getGifSrc(i));
             }
+            this.chosenTraits.push({title: '', price: 0, sale_price: 0});
             this.segmentAnimations.push(this.getGifSrc(i));
         }
     };
@@ -290,7 +294,7 @@ class interfaceController {
 
 function getDescriptionForDiagnosedTrait (title, price) {
     return 'Unfortunately diagnosis shows genes variants linked to high risk of ' + title.toUpperCase() + '. ' +
-            'You can choose to replace these variants and lower the risk of your child having to deal with it. ' +
+            'You can choose to edit these variants and lower the risk of your child having to deal with it. ' +
             'This operation costs ' + price.toLocaleString('en-US') + ' Euros.'
 }
 
@@ -302,6 +306,62 @@ let POSSIBLE_DIAGNOSED_TRAITS = [
         price: -250000,
         effect: 'life_expectancy',
         effect_val: -11,
+    },
+
+    {
+        title: 'Breast Cancer',
+        topic: 'health',
+        description: getDescriptionForDiagnosedTrait('Breast Cancer', 300000),
+        price: -300000,
+        effect: 'life_expectancy',
+        effect_val: -14,
+    },
+
+    {
+        title: 'Parkinson\'s desease',
+        topic: 'health',
+        description: getDescriptionForDiagnosedTrait('Parkinson\'s desease', 625000),
+        price: -625000,
+        effect: 'life_expectancy',
+        effect_val: -2,
+    },
+
+    {
+        title: 'Cystic Fibrosis',
+        topic: 'health',
+        description: getDescriptionForDiagnosedTrait('Cystic Fibrosis', 750000),
+        price: -250000,
+        effect: 'life_expectancy',
+        effect_val: 35,
+        effect_absolute: true,
+    },
+
+    {
+        title: 'Dwarfism',
+        topic: 'health',
+        description: getDescriptionForDiagnosedTrait('Dwarfism', 12500),
+        price: -12500,
+        effect: 'height',
+        effect_val: 130 + interfaceController.randInt(-10, 11),
+        effect_absolute: true,
+    },
+
+    {
+        title: 'Lactose Intolerance',
+        topic: 'health',
+        description: getDescriptionForDiagnosedTrait('Lactose Intolerance', 30500),
+        price: -30500,
+        effect: 'life_expectancy',
+        effect_val: -2,
+    },
+
+    {
+        title: 'Celiac disease',
+        topic: 'health',
+        description: getDescriptionForDiagnosedTrait('Lactose Intolerance', 37200),
+        price: -37500,
+        effect: 'life_expectancy',
+        effect_val: -5,
     },
 
 ];
