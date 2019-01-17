@@ -268,7 +268,6 @@ class interfaceController {
     }
 
     getPurchasedTraitDescription(trait) {
-        console.log(trait);
         let res = 'Gene variants related to ' + trait.title +
             ' created by ' + trait.company + '.';
         if (trait.sale_price !== trait.price) {
@@ -298,7 +297,6 @@ class interfaceController {
 
     showTraitDialog(trait) {
         if (trait.title !== '') {
-            console.log();
             if (trait.price < 0) {
                 this.showIssueTraitDialog(trait)
             } else {
