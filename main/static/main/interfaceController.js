@@ -252,7 +252,7 @@ class interfaceController {
                 value: interfaceController.randInt(intelligence.min, intelligence.max),
                 history: [],
                 dialogTitle: 'Intelligence Diagnosis',
-                dialogText: 'This is a calculated estimation of your future child\' intelligence (IQ) ' +
+                dialogText: 'This is a calculated estimation of your future child\'s intelligence (IQ) ' +
                     'compared to the rest of the population and predicted population. You can effect this number ' +
                     'by purchasing traits from the INTELLIGENCE category. ' +
                     '*all actual traits may be effected by environmental variables.',
@@ -261,7 +261,7 @@ class interfaceController {
                 value: this.gaussRandInt(height.min, height.max, 1),
                 history: [],
                 dialogTitle: 'Height Diagnosis',
-                dialogText: 'This is a calculated estimation of your future child\' potential height. ' +
+                dialogText: 'This is a calculated estimation of your future child\'s potential height. ' +
                     'You can effect this number ' +
                     'by purchasing some of the traits from the PHYSICAL and HEALTH categories. ' +
                     '*all actual traits may be effected by environmental variables.',
@@ -270,7 +270,7 @@ class interfaceController {
                 value: interfaceController.randInt(weight.min, weight.max),
                 history: [],
                 dialogTitle: 'Weight Tendencies Diagnosis',
-                dialogText: 'This is a calculated estimation of your future child\' weight ' +
+                dialogText: 'This is a calculated estimation of your future child\'s weight ' +
                     'compared to the average predicted weight of population. You can effect this number ' +
                     'by purchasing some of the traits from the PHYSICAL, HEALTH and AESTHETICS categories. ' +
                     '*all actual traits may be effected by environmental variables.',
@@ -279,7 +279,7 @@ class interfaceController {
                 value: interfaceController.randInt(emotional.min, emotional.max),
                 history: [],
                 dialogTitle: 'Emotional Intelligence Diagnosis',
-                dialogText: 'This is a calculated estimation of your future child\' emotional intelligence (EQ) ' +
+                dialogText: 'This is a calculated estimation of your future child\'s emotional intelligence (EQ) ' +
                     'compared to the rest of the population and predicted population. You can effect this number ' +
                     'by purchasing traits from the EMOTIONAL and RELATIONSHIP category. ' +
                     '*all actual traits may be effected by environmental variables.',
@@ -288,7 +288,7 @@ class interfaceController {
                 value: this.gaussRandInt(life_expectancy.min, life_expectancy.max, 1),
                 history: [],
                 dialogTitle: 'Life Expectancy Diagnosis',
-                dialogText: 'This is a statistical estimation of your future child\' life expectancy based on ' +
+                dialogText: 'This is a statistical estimation of your future child\'s life expectancy based on ' +
                     'known genetic diseases and statistical analysis of the population.' +
                     'You can effect this number ' +
                     'by purchasing some of the traits the All of the categories. ' +
