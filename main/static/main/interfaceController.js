@@ -13,7 +13,30 @@ class interfaceController {
         this.curSalePrice = 0;
         this.chosenTraits = [];
 
-        this.DEFAULT_NUMBER_OF_TRAITS = 34;
+        this.statsConstants = {
+            intelligence: {
+                min: 3,
+                max: 98,
+            },
+            height: {
+                min: 100,
+                max: 250,
+            },
+            weight: {
+                min: 20,
+                max: 81,
+            },
+            emotional: {
+                min: 3,
+                max: 98,
+            },
+            life_expectancy: {
+                min: 30,
+                max: 150,
+            },
+        };
+
+        this.DEFAULT_NUMBER_OF_TRAITS = 32;
         this.CODE_LENGTH = 100;
         this.CODE_HEIGHT = 10;
         this.NUM_OF_GIFS = 100;
@@ -101,8 +124,17 @@ class interfaceController {
                     stat.value = trait.effect_val;
                 }
             } else {
-                this.stats[trait.effect].value += sign * trait.effect_val;
+                this.protectedAddToStatVal(trait.effect, sign * trait.effect_val);
             }
+        }
+    }
+
+    protectedAddToStatVal(name, delta) {
+        let statConst = this.statsConstants[name];
+        let stat = this.stats[name];
+        if (stat && statConst) {
+            let rawVal = stat.value + delta;
+            stat.value = Math.min(Math.max(rawVal, statConst.min), statConst.max);
         }
     }
 
@@ -210,9 +242,14 @@ class interfaceController {
     }
 
     getRandomStats() {
+        let intelligence = this.statsConstants.intelligence;
+        let height = this.statsConstants.height;
+        let weight = this.statsConstants.weight;
+        let emotional = this.statsConstants.emotional;
+        let life_expectancy = this.statsConstants.life_expectancy;
         return {
             intelligence: {
-                value: interfaceController.randInt(3, 98),
+                value: interfaceController.randInt(intelligence.min, intelligence.max),
                 history: [],
                 dialogTitle: 'Intelligence Diagnosis',
                 dialogText: 'This is a calculated estimation of your future child\' intelligence (IQ) ' +
@@ -221,7 +258,7 @@ class interfaceController {
                     '*all actual traits may be effected by environmental variables.',
             },
             height: {
-                value: this.gaussRandInt(110, 250, 1),
+                value: this.gaussRandInt(height.min, height.max, 1),
                 history: [],
                 dialogTitle: 'Height Diagnosis',
                 dialogText: 'This is a calculated estimation of your future child\' potential height. ' +
@@ -230,7 +267,7 @@ class interfaceController {
                     '*all actual traits may be effected by environmental variables.',
             },
             weight: {
-                value: interfaceController.randInt(20, 81),
+                value: interfaceController.randInt(weight.min, weight.max),
                 history: [],
                 dialogTitle: 'Weight Tendencies Diagnosis',
                 dialogText: 'This is a calculated estimation of your future child\' weight ' +
@@ -239,7 +276,7 @@ class interfaceController {
                     '*all actual traits may be effected by environmental variables.',
             },
             emotional: {
-                value: interfaceController.randInt(3, 98),
+                value: interfaceController.randInt(emotional.min, emotional.max),
                 history: [],
                 dialogTitle: 'Emotional Intelligence Diagnosis',
                 dialogText: 'This is a calculated estimation of your future child\' emotional intelligence (EQ) ' +
@@ -248,7 +285,7 @@ class interfaceController {
                     '*all actual traits may be effected by environmental variables.',
             },
             life_expectancy: {
-                value: this.gaussRandInt(30, 150, 1),
+                value: this.gaussRandInt(life_expectancy.min, life_expectancy.max, 1),
                 history: [],
                 dialogTitle: 'Life Expectancy Diagnosis',
                 dialogText: 'This is a statistical estimation of your future child\' life expectancy based on ' +
