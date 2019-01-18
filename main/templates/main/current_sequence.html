@@ -5,7 +5,7 @@
         {% verbatim %}
         <img class="coded-trait" ng-attr-src="{{ ctrl.segmentAnimations[$index] }}">
         <h3 class="trait-list">
-            {{ trait.title }}
+            {{ ctrl.presentableTrait(trait.title) }}
         </h3>
         {% endverbatim %}
     </div>

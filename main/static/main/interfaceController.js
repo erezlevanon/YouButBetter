@@ -203,6 +203,12 @@ class interfaceController {
         return Math.floor(num);
     }
 
+    presentableTrait(traitName) {
+        let wantedLength = 16;
+        let ending = '...';
+        return traitName.length > wantedLength ? traitName.substr(0, wantedLength - ending.length) + ending : traitName;
+    }
+
     getRandomStats() {
         return {
             intelligence: {
