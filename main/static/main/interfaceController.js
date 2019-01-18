@@ -4,10 +4,11 @@
  * @param $http
  */
 class interfaceController {
-    constructor($scope, $http, $mdDialog) {
+    constructor($scope, $http, $mdDialog, $window) {
         this._scope = $scope;
         this._http = $http;
         this._mdDialog = $mdDialog;
+        this._window = $window;
 
         this.curPrice = 0;
         this.curSalePrice = 0;
@@ -47,11 +48,16 @@ class interfaceController {
         this.skipIntroAnimation = false;
 
         this.showIntroAnim = true;
+        this.showPreIntroStart = true;
+        this.showPreIntroWait = false;
+        this.showIntroFinal = false;
         this.showLoadingAnim = false;
         this.showDoneAnimation = false;
 
         this.introAnimation = null;
         this.loadingAnimation = null;
+
+        this.allowClickReload = false;
 
         this.stats = this.getRandomStats();
         this.initTraitCodes();
@@ -207,9 +213,23 @@ class interfaceController {
 
     initAnimations() {
         lottie.searchAnimations();
+        this.preIntroStartAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'pre_intro_start');
+        this.preIntroWaitAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'pre_intro_waiting');
         this.introAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'intro');
         this.loadingAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'loading');
         this.doneAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'done');
+
+        if (this.preIntroStartAnimation && this.preIntroWaitAnimation) {
+            this.showPreIntroStart = true;
+            this.preIntroStartAnimation.addEventListener('complete', $.proxy(() => {
+                this.preIntroStartAnimation.stop();
+                this.showPreIntroStart = false;
+                this.showPreIntroWait = true;
+                this.preIntroWaitAnimation.play();
+                this._scope.$apply();
+            }));
+            this.preIntroStartAnimation.play();
+        }
 
         if (this.introAnimation) {
             this.introAnimation.addEventListener('complete', $.proxy(() => {
@@ -217,7 +237,26 @@ class interfaceController {
                 this.showIntroAnim = false;
                 this._scope.$apply();
             }));
-            this.introAnimation.play();
+        }
+
+        if (this.doneAnimation) {
+            this.doneAnimation.addEventListener('complete', $.proxy(() => {
+                this.allowClickReload = true;
+                this._scope.$apply();
+            }));
+        }
+    }
+
+    clickOnWaitingAnimation() {
+        this.preIntroWaitAnimation.stop();
+        this.showPreIntroWait = false;
+        this.showIntroFinal = true;
+        this.introAnimation.play();
+    }
+
+    clickReloadIfAllowed() {
+        if (this.allowClickReload) {
+            this._window.location.reload();
         }
     }
 

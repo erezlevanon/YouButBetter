@@ -1,10 +1,27 @@
 {% load static %}
+<div class="lottie anim-container" data-animation-path="{% static 'main/pre_intro_start' %}"
+     data-anim-type="svg"
+     data-anim-loop="false"
+     data-name="pre_intro_start"
+     data-anim-autoplay="false"
+     ng-show="ctrl.showPreIntroStart && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
+>
+</div>
+<div class="lottie anim-container" data-animation-path="{% static 'main/pre_intro_waiting' %}"
+     data-anim-type="svg"
+     data-anim-loop="true"
+     data-name="pre_intro_waiting"
+     data-anim-autoplay="false"
+     ng-show="ctrl.showPreIntroWait && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
+     ng-click="ctrl.clickOnWaitingAnimation()"
+>
+</div>
 <div class="lottie anim-container" data-animation-path="{% static 'main/start_anim' %}"
      data-anim-type="svg"
      data-anim-loop="false"
      data-name="intro"
      data-anim-autoplay="false"
-     ng-show="ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
+     ng-show="ctrl.showIntroFinal && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
 >
 </div>
 <div class="lottie anim-container" data-animation-path="{% static 'main/load_anim' %}"
@@ -21,5 +38,6 @@
      data-name="done"
      data-anim-autoplay="false"
      ng-show="ctrl.showDoneAnimation"
+     ng-click="ctrl.clickReloadIfAllowed()"
 >
 </div>
