@@ -42,8 +42,7 @@ class interfaceController {
                 let trait_index = interfaceController.randInt(0, POSSIBLE_DIAGNOSED_TRAITS.length);
                 let trait = POSSIBLE_DIAGNOSED_TRAITS[trait_index];
                 POSSIBLE_DIAGNOSED_TRAITS.splice(trait_index, 1);
-                this.chosenTraits.push(trait);
-                this.updateStatsFromTrait(trait);
+                this.insertTrait(trait);
                 this.segmentAnimations.push(this.getGifSrc());
             }
             this.chosenTraits.push({title: '', price: 0, sale_price: 0});
@@ -53,21 +52,16 @@ class interfaceController {
 
     toggleTrait(name, price, sale_price, effect, effect_val, effect_absolute, company) {
         if (!this.isTraitChosen(name)) {
-            let new_index = interfaceController.randInt(5, 20);
             let trait = {
-                    title: name,
-                    price: price,
-                    sale_price: sale_price,
-                    effect: effect,
-                    effect_val: effect_val,
-                    effect_absolute: effect_absolute,
-                    company: company,
-                };
-            this.chosenTraits.splice(new_index, 0, trait);
-            this.segmentAnimations.splice(new_index, 0, this.getGifSrc());
-            this.curPrice += price;
-            this.curSalePrice += sale_price;
-            this.updateStatsFromTrait(trait, false);
+                title: name,
+                price: price,
+                sale_price: sale_price,
+                effect: effect,
+                effect_val: effect_val,
+                effect_absolute: effect_absolute,
+                company: company,
+            };
+            this.insertTrait(trait);
         } else if (name !== '') {
             let trait = this.chosenTraits.find((val) => val.title === name);
             let index = this.chosenTraits.indexOf(trait);
@@ -81,6 +75,17 @@ class interfaceController {
 
         }
     };
+
+    insertTrait(trait) {
+        if (trait.price > 0) {
+            this.curPrice += trait.price;
+            this.curSalePrice += trait.sale_price;
+        }
+        let new_index = Math.min(interfaceController.randInt(5, 25), this.chosenTraits.length - 1);
+        this.chosenTraits.splice(new_index, 0, trait);
+        this.segmentAnimations.splice(new_index, 0, this.getGifSrc());
+        this.updateStatsFromTrait(trait);
+    }
 
     updateStatsFromTrait(trait, isRemoved) {
         let sign = isRemoved ? -1 : 1;
