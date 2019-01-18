@@ -208,23 +208,49 @@ class interfaceController {
             intelligence: {
                 value: interfaceController.randInt(3, 98),
                 history: [],
+                dialogTitle: 'Intelligence Diagnosis',
+                dialogText: 'This is a calculated estimation of your future child\' intelligence (IQ) ' +
+                    'compared to the rest of the population and predicted population. You can effect this number ' +
+                    'by purchasing traits from the INTELLIGENCE category. ' +
+                    '*all actual traits may be effected by environmental variables.',
             },
             height: {
                 value: this.gaussRandInt(110, 250, 1),
                 history: [],
+                dialogTitle: 'Height Diagnosis',
+                dialogText: 'This is a calculated estimation of your future child\' potential height. ' +
+                    'You can effect this number ' +
+                    'by purchasing some of the traits from the PHYSICAL and HEALTH categories. ' +
+                    '*all actual traits may be effected by environmental variables.',
             },
             weight: {
                 value: interfaceController.randInt(20, 81),
                 history: [],
+                dialogTitle: 'Weight Tendencies Diagnosis',
+                dialogText: 'This is a calculated estimation of your future child\' weight ' +
+                    'compared to the average predicted weight of population. You can effect this number ' +
+                    'by purchasing some of the traits from the PHYSICAL, HEALTH and AESTHETICS categories. ' +
+                    '*all actual traits may be effected by environmental variables.',
             },
             emotional: {
                 value: interfaceController.randInt(3, 98),
                 history: [],
+                dialogTitle: 'Emotional Intelligence Diagnosis',
+                dialogText: 'This is a calculated estimation of your future child\' emotional intelligence (EQ) ' +
+                    'compared to the rest of the population and predicted population. You can effect this number ' +
+                    'by purchasing traits from the EMOTIONAL and RELATIONSHIP category. ' +
+                    '*all actual traits may be effected by environmental variables.',
             },
             life_expectancy: {
                 value: this.gaussRandInt(30, 150, 1),
                 history: [],
-            }
+                dialogTitle: 'Life Expectancy Diagnosis',
+                dialogText: 'This is a statistical estimation of your future child\' life expectancy based on ' +
+                    'known genetic diseases and statistical analysis of the population.' +
+                    'You can effect this number ' +
+                    'by purchasing some of the traits the All of the categories. ' +
+                    '*all actual traits may be effected by environmental variables.',
+            },
         };
     }
 
@@ -273,6 +299,23 @@ class interfaceController {
                 alert = undefined;
             });
     }
+
+    showStatAlert(name) {
+        let stat = this.stats[name];
+        if (stat) {
+            let alert = this._mdDialog.alert({
+                title: stat.dialogTitle,
+                textContent: stat.dialogText,
+                ok: 'Got it',
+            });
+            this._mdDialog
+                .show(alert)
+                .finally(function () {
+                    alert = undefined;
+                });
+        }
+    }
+
 
     getPurchasedTraitDescription(trait) {
         let res = 'Gene variants related to ' + trait.title +
