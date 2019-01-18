@@ -45,7 +45,7 @@ class interfaceController {
 
         this.segmentAnimations = [];
 
-        this.skipIntroAnimation = false;
+        this.skipIntroAnimation = true;
 
         this.showIntroAnim = true;
         this.showPreIntroStart = true;

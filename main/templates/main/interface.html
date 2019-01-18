@@ -10,18 +10,18 @@
         {% include 'main/animations.html' %}
         <div id="center-row" class="full-row" layout="row" ng-if="!ctrl.showIntroAnim || ctrl.skipIntroAnimation">
             <div id="left-panel" layout="column">
-                {% include 'main/stats.html' %}
+                {% include 'main/trait_explorer.html' %}
             </div>
             <div id="center-panel" layout="column">
                 {% include 'main/current_sequence.html' %}
             </div>
             <div id="right-panel" layout="column">
-                {% include 'main/trait_explorer.html' %}
+                {% include 'main/stats.html' %}
             </div>
         </div>
         <div id="bottom-row" class="full-row" layout="row" layout-align="end center"
              ng-if="!ctrl.showIntroAnim || ctrl.skipIntroAnimation">
-        {% include 'main/bottom_bar.html' %}
+            {% include 'main/bottom_bar.html' %}
         </div>
     </div>
 {% endblock %}

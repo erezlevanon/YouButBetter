@@ -1,7 +1,7 @@
 <div id="chosen-list">
     <div ng-repeat="trait in ctrl.chosenTraits"
          ng-click="ctrl.showTraitDialog(trait)" layout="row"
-         layout-align="start center" class="fadeInOut">
+         layout-align="center center" class="fadeInOut">
         {% verbatim %}
         <img class="coded-trait" ng-attr-src="{{ ctrl.segmentAnimations[$index] }}">
         <h3 class="trait-list">

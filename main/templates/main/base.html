@@ -35,5 +35,9 @@
         // Globally disables all ARIA warnings.
         $mdAriaProvider.disableWarnings();
     });
+    app.config(function ($mdThemingProvider) {
+        $mdThemingProvider.theme('default')
+            .accentPalette('grey');
+    });
 </script>
 </html>
