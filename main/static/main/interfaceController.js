@@ -17,6 +17,7 @@ class interfaceController {
         this.CODE_LENGTH = 100;
         this.CODE_HEIGHT = 10;
         this.NUM_OF_GIFS = 100;
+        this.gifsIndexOffset = interfaceController.randInt(0, this.NUM_OF_GIFS);
 
         this.segmentAnimations = [];
 
@@ -43,7 +44,7 @@ class interfaceController {
                 POSSIBLE_DIAGNOSED_TRAITS.splice(trait_index, 1);
                 this.chosenTraits.push(trait);
                 this.updateStatsFromTrait(trait);
-                this.segmentAnimations.push(this.getGifSrc(i));
+                this.segmentAnimations.push(this.getGifSrc());
             }
             this.chosenTraits.push({title: '', price: 0, sale_price: 0});
             this.segmentAnimations.push(this.getGifSrc(i));
@@ -163,6 +164,7 @@ class interfaceController {
         if (!index && index !== 0) {
             index = interfaceController.randInt(this.DEFAULT_NUMBER_OF_TRAITS + 1, this.NUM_OF_GIFS)
         }
+        index = (index + this.gifsIndexOffset) % this.NUM_OF_GIFS;
         return '/static/main/segments/segment_' + index + '.gif'
     }
 
