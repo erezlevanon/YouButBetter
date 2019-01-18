@@ -93,9 +93,9 @@ class interfaceController {
         if (stat) {
             if (trait.effect_absolute) {
                 if (isRemoved) {
-                    let index  = stat.history.indexOf(trait.effect_val);
-                    if (index !== -1 ) stat.history.splice(index, 1);
-                    stat.value = stat.history[stat.history.length-1];
+                    let index = stat.history.indexOf(trait.effect_val);
+                    if (index !== -1) stat.history.splice(index, 1);
+                    stat.value = stat.history[stat.history.length - 1];
                 } else {
                     stat.history.push(stat.value);
                     stat.value = trait.effect_val;
@@ -254,11 +254,11 @@ class interfaceController {
         };
     }
 
-    isStatPositive (name) {
+    isStatPositive(name) {
         return this.stats[name].value > 50;
     }
 
-    getStateValInRange (name) {
+    getStateValInRange(name) {
         let val = this.stats[name].value;
         if (name === 'weight') {
             return this.isStatPositive(name) ? val - 50 : 50 - val;
@@ -321,7 +321,7 @@ class interfaceController {
         let res = 'Gene variants related to ' + trait.title +
             ' created by ' + trait.company + '.';
         if (trait.sale_price !== trait.price) {
-            res +=' This trait usually goes for ' + trait.price.toLocaleString('en-US') +
+            res += ' This trait usually goes for ' + trait.price.toLocaleString('en-US') +
                 ' Euros But is now on sale for only ' + trait.sale_price.toLocaleString('en-US') +
                 ' Euros thanks to the good people at ' + trait.company + '.';
         }
@@ -343,7 +343,8 @@ class interfaceController {
             })
             .finally(function () {
                 alert = undefined;
-            });    }
+            });
+    }
 
     showTraitDialog(trait) {
         if (trait.title !== '') {
@@ -356,10 +357,10 @@ class interfaceController {
     }
 }
 
-function getDescriptionForDiagnosedTrait (title, price) {
+function getDescriptionForDiagnosedTrait(title, price) {
     return 'Unfortunately diagnosis shows genes variants linked to high risk of ' + title.toUpperCase() + '. ' +
-            'You can choose to edit these variants and lower the risk of your child having to deal with it. ' +
-            'This operation costs ' + price.toLocaleString('en-US') + ' Euros.'
+        'You can choose to edit these variants and lower the risk of your child having to deal with it. ' +
+        'This operation costs ' + price.toLocaleString('en-US') + ' Euros.'
 }
 
 let POSSIBLE_DIAGNOSED_TRAITS = [
