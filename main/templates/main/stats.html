@@ -18,10 +18,10 @@
     </div>
     {% endverbatim %}
 </div>
-<div id="stat-height" class="stat-holder" layout="column" layout-align="center center" ng-click="ctrl.showStatAlert('height')">
+<div  class="stat-holder" layout="column" layout-align="center center" ng-click="ctrl.showStatAlert('height')">
     {% include 'main/graph_template.html' with stat="height" anim_id="graph_1" loc="-{{ ctrl.getLocForStat('height')}}%" draw_delay="graph_0.begin + 0.2s" point_delay="point_0.begin + 0.3" d="M0,100.1c26.6,0,43.8-27.6,72.5-56.3C110.2,6.1,123.6,1.7,151.6,0C192.6-2.5,303.2,62.1,267,42.8l0,0 c20.8,10.3,37.2,19.5,48.6,26.2c22,12.9,32.9,20.8,52.2,26.2c13.2,3.7,24.6,4.7,32.2,4.9" %}
     {% verbatim %}
-    <div layout="column" class="stat-info" layout-align="center center">
+    <div layout="column" id="stat-height" class="stat-info" layout-align="center center">
         <h2 class="stat-value" layout="row">
             {{ ctrl.stats['height']['value'] }}cm
         </h2>

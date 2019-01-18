@@ -58,27 +58,34 @@ body {
 }
 
 #stat-height, #stat-emotional, #stat-intelligence, #stat-weight, #stat-life {
+    -webkit-animation: statFadeIn 0.5s linear;
+    -webkit-animation-fill-mode: both;
     animation: statFadeIn 0.5s linear;
     animation-fill-mode: both;
 }
 
 #stat-intelligence {
+    -webkit-animation-delay: 2.2s;
     animation-delay: 2.2s;
 }
 
 #stat-height {
+    -webkit-animation-delay: 2.5s;
     animation-delay: 2.5s;
 }
 
 #stat-weight {
+    -webkit-animation-delay: 2.8s;
     animation-delay: 2.8s;
 }
 
 #stat-emotional {
+    -webkit-animation-delay: 3.1s;
     animation-delay: 3.1s;
 }
 
 #stat-life {
+    -webkit-animation-delay: 3.4s;
     animation-delay: 3.4s;
 }
 
