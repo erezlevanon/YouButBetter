@@ -45,7 +45,7 @@ class interfaceController {
 
         this.segmentAnimations = [];
 
-        this.skipIntroAnimation = true;
+        this.skipIntroAnimation = false;
 
         this.showIntroAnim = true;
         this.showPreIntroStart = true;
@@ -287,7 +287,7 @@ class interfaceController {
     }
 
     presentableTrait(traitName) {
-        let wantedLength = 16;
+        let wantedLength = 28;
         let ending = '...';
         return traitName.length > wantedLength ? traitName.substr(0, wantedLength - ending.length) + ending : traitName;
     }
