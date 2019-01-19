@@ -1,10 +1,10 @@
 {% load humanize %}
 {% for topic in topics %}
     <md-button class="topic md-raised"
-               ng-click="open_topics['{{ topic }}'] = !open_topics['{{ topic }}']">
+               ng-click="closed_topics['{{ topic }}'] = !closed_topics['{{ topic }}']">
         {{ topic.name }}
     </md-button>
-    <div class="collapsible" ng-show="open_topics['{{ topic }}']">
+    <div class="collapsible" ng-show="!closed_topics['{{ topic }}']">
         {% for trait in topic.trait_set.all %}
             <div layout="row" layout-align="center center" style="width: 100%">
                 <md-card class="trait-card" layout="row"
@@ -27,11 +27,11 @@
                     <div layout="column" layout-align="end end">
                         {% if trait.price != trait.sale_price %}
                             <div class="trait-price">
-                                {{ trait.price|intcomma }}
+                                {{ trait.price|intcomma|slice:"0:-3" }}
                             </div>
                         {% endif %}
                         <h4 class="trait-sale-price">
-                            {{ trait.sale_price|intcomma }}
+                            {{ trait.sale_price|intcomma|slice:"0:-3" }}
                         </h4>
                     </div>
                 </md-card>
