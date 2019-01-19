@@ -1,7 +1,7 @@
 <div id="chosen-list">
     <div ng-repeat="trait in ctrl.chosenTraits"
          ng-click="ctrl.showTraitDialog(trait)" layout="row"
-         layout-align="center center" class="fadeInOut">
+         layout-align="start center" class="fadeInOut">
         {% verbatim %}
         <div class="trait-list-button" layout="column" layout-align="center center">
             <md-icon ng-show="trait.title !== ''">
