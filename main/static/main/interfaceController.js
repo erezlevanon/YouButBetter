@@ -40,7 +40,7 @@ class interfaceController {
         this.DEFAULT_NUMBER_OF_TRAITS = 32;
         this.CODE_LENGTH = 100;
         this.CODE_HEIGHT = 10;
-        this.NUM_OF_GIFS = 100;
+        this.NUM_OF_GIFS = 60;
         this.gifsIndexOffset = interfaceController.randInt(0, this.NUM_OF_GIFS);
 
         this.segmentAnimations = [];
@@ -71,11 +71,10 @@ class interfaceController {
                 let trait_index = interfaceController.randInt(0, POSSIBLE_DIAGNOSED_TRAITS.length);
                 let trait = POSSIBLE_DIAGNOSED_TRAITS[trait_index];
                 POSSIBLE_DIAGNOSED_TRAITS.splice(trait_index, 1);
-                this.insertTrait(trait);
-                this.segmentAnimations.push(this.getGifSrc());
+                this.insertTrait(trait, true);
             }
             this.chosenTraits.push({title: '', price: 0, sale_price: 0});
-            this.segmentAnimations.push(this.getGifSrc(i));
+            this.segmentAnimations.push(this.getGifSrc(i, false, false));
         }
     };
 
@@ -90,7 +89,7 @@ class interfaceController {
                 effect_absolute: effect_absolute,
                 company: company,
             };
-            this.insertTrait(trait);
+            this.insertTrait(trait, false);
         } else if (name !== '') {
             let trait = this.chosenTraits.find((val) => val.title === name);
             let index = this.chosenTraits.indexOf(trait);
@@ -105,14 +104,14 @@ class interfaceController {
         }
     };
 
-    insertTrait(trait) {
+    insertTrait(trait, isBad) {
         if (trait.price > 0) {
             this.curPrice += trait.price;
             this.curSalePrice += trait.sale_price;
         }
         let new_index = Math.min(interfaceController.randInt(5, 25), this.chosenTraits.length - 1);
         this.chosenTraits.splice(new_index, 0, trait);
-        this.segmentAnimations.splice(new_index, 0, this.getGifSrc());
+        this.segmentAnimations.splice(new_index, 0, this.getGifSrc(-1, true, isBad));
         this.updateStatsFromTrait(trait);
     }
 
@@ -203,12 +202,25 @@ class interfaceController {
         );
     };
 
-    getGifSrc(index) {
-        if (!index && index !== 0) {
-            index = interfaceController.randInt(this.DEFAULT_NUMBER_OF_TRAITS + 1, this.NUM_OF_GIFS)
+    getGifSrc(index, special, bad) {
+        if (index === -1) {
+            index = interfaceController.randInt(0, this.NUM_OF_GIFS)
         }
         index = (index + this.gifsIndexOffset) % this.NUM_OF_GIFS;
-        return '/static/main/segments/segment_' + index + '.gif'
+
+        let path = '/static/main/';
+
+        if (special) {
+            if (bad) {
+                path += 'red_segments';
+            } else {
+                path += 'colored_segments';
+            }
+        } else {
+            path += 'segments';
+        }
+
+        return path + '/segment_' + index + '.gif'
     }
 
     initAnimations() {
