@@ -3,7 +3,7 @@ body {
 }
 
 #right-panel {
-    width: 33%;
+    width: 25%;
     margin-bottom: 2%;
 }
 
@@ -19,7 +19,7 @@ body {
 }
 
 #center-panel {
-    width: 33%;
+    width: 41%;
     z-index: 0;
     -webkit-animation: slideFromBottom 2s ease-out, statFadeIn 0.5s linear; /* Safari 4.0 - 8.0 */
     -webkit-animation-delay: 0.2s; /* Safari 4.0 - 8.0 */
@@ -42,6 +42,7 @@ body {
 
 #chosen-list {
     margin-top: 5%;
+    margin-left: 3%;
     height: 100%;
     width: 100%;
     overflow: scroll;
@@ -165,7 +166,7 @@ body {
 
 .coded-trait {
     min-width: 50%;
-    margin-bottom: 1%;
+    margin-bottom: 0.4%;
     max-width: 50%;
 }
 
@@ -175,6 +176,7 @@ body {
     margin-top: 0;
     margin-bottom: 0.5%;
     white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .trait-checkbox {
@@ -203,6 +205,12 @@ body {
 .trait-price {
     margin: 0 7%;
     color: darkgrey;
+}
+
+.trait-list-button {
+    min-width: 5%;
+    height: 100%;
+    margin-bottom: 1%;
 }
 
 md-dialog {

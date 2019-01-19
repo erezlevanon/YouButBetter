@@ -109,7 +109,7 @@ class interfaceController {
             this.curPrice += trait.price;
             this.curSalePrice += trait.sale_price;
         }
-        let new_index = Math.min(interfaceController.randInt(5, 25), this.chosenTraits.length - 1);
+        let new_index = Math.min(interfaceController.randInt(2, 23), this.chosenTraits.length - 1);
         this.chosenTraits.splice(new_index, 0, trait);
         this.segmentAnimations.splice(new_index, 0, this.getGifSrc(-1, true, isBad));
         this.updateStatsFromTrait(trait);
@@ -287,7 +287,7 @@ class interfaceController {
     }
 
     presentableTrait(traitName) {
-        let wantedLength = 28;
+        let wantedLength = 26;
         let ending = '...';
         return traitName.length > wantedLength ? traitName.substr(0, wantedLength - ending.length) + ending : traitName;
     }

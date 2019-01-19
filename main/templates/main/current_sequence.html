@@ -3,6 +3,11 @@
          ng-click="ctrl.showTraitDialog(trait)" layout="row"
          layout-align="center center" class="fadeInOut">
         {% verbatim %}
+        <div class="trait-list-button" layout="column" layout-align="center center">
+            <md-icon ng-show="trait.title !== ''">
+                close
+            </md-icon>
+        </div>
         <img class="coded-trait" ng-attr-src="{{ ctrl.segmentAnimations[$index] }}">
         <h3 class="trait-list">
             {{ ctrl.presentableTrait(trait.title) }}
