@@ -211,6 +211,14 @@ class interfaceController {
         return res;
     };
 
+    getRemainingConditions() {
+        return this.chosenTraits.filter(
+            (trait) => trait.sale_price < 0
+        ).map(
+            (trait) => trait.title
+        )
+    }
+
     checkout() {
         let alert = this._mdDialog.confirm({
             templateUrl: '/static/main/checkout.html',
@@ -218,13 +226,45 @@ class interfaceController {
             locals: {
                 topics: Array.from(this.forCheckout),
                 price: this.curSalePrice,
-                done: () => {this._mdDialog.hide();},
-                cancel: () => {this._mdDialog.cancel();},
+                done: () => {
+                    this._mdDialog.hide();
+                },
+                cancel: () => {
+                    this._mdDialog.cancel();
+                },
             },
         });
         this._mdDialog
             .show(alert).then(() => {
-            this.produce();
+            let conditions = this.getRemainingConditions();
+            if (conditions.length > 0) {
+                let conditionDialog = this._mdDialog.confirm({
+                    templateUrl: '/static/main/still_issues.html',
+                    controllerAs: 'dialog',
+                    locals: {
+                        conditions: conditions,
+                        done: () => {
+                            this._mdDialog.hide();
+                        },
+                        cancel: () => {
+                            this._mdDialog.cancel();
+                        },
+                    },
+                });
+                this._mdDialog.show(conditionDialog).then(
+                    () => {
+                        this.produce();
+                    }
+                ).catch(() => {
+
+                }).finally(() => {
+                    conditionDialog = undefined
+                });
+            }
+            else {
+                this.produce();
+            }
+
         })
             .catch(() => {
             })

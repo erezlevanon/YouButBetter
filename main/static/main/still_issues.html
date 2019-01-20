@@ -1,0 +1,28 @@
+<md-dialog style="width: 55%">
+    <div layout="column" style="margin: 2% 2% 0 2%; padding-bottom: 0;" class="md-dialog-content">
+        <h2 style="margin-top: 0; margin-bottom: 1%">
+            Oops.. Seems like there is still an issue with your child
+        </h2>
+        <h3 style="margin-top: 2%; margin-bottom: 2%">
+            There is still a risk for some of the following conditions
+        </h3>
+        <ul layout="column" style="margin-top: 0">
+            <li ng-repeat="condition in dialog.conditions">
+                <h3 style="margin: 0">
+                    {{ condition }}
+                </h3>
+            </li>
+        </ul>
+        <h3 style="margin-top: 0; margin-bottom: 2%">
+            That may cause short lifespan or degraded life quality.
+        </h3>
+    </div>
+    <md-dialog-actions style="margin: 2% 4% 2% 0;">
+        <md-button ng-click="dialog.done()" style="margin-right: 3%">
+            Check Out Anyway
+        </md-button>
+        <md-buttom ng-click="dialog.cancel()">
+            KEEP EDITING
+        </md-buttom>
+    </md-dialog-actions>
+</md-dialog>

@@ -213,9 +213,9 @@ body {
     margin-bottom: 1%;
 }
 
-md-dialog {
-    max-width: 45%;
-}
+/*md-dialog {*/
+    /*max-width: 45%;*/
+/*}*/
 
 .fadeInOut.ng-enter,
 .fadeInOut.ng-leave {
