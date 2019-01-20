@@ -37,6 +37,8 @@ class interfaceController {
             },
         };
 
+        this.forCheckout = new Map();
+
         this.DEFAULT_NUMBER_OF_TRAITS = 32;
         this.CODE_LENGTH = 100;
         this.CODE_HEIGHT = 10;
@@ -45,7 +47,7 @@ class interfaceController {
 
         this.segmentAnimations = [];
 
-        this.skipIntroAnimation = false;
+        this.skipIntroAnimation = true;
 
         this.showIntroAnim = true;
         this.showPreIntroStart = true;
@@ -72,24 +74,27 @@ class interfaceController {
                 let trait = POSSIBLE_DIAGNOSED_TRAITS[trait_index];
                 POSSIBLE_DIAGNOSED_TRAITS.splice(trait_index, 1);
                 this.insertTrait(trait, true);
+                this.updateShoppingBasket(trait, true, false)
             }
             this.chosenTraits.push({title: '', price: 0, sale_price: 0});
             this.segmentAnimations.push(this.getGifSrc(i, false, false));
         }
     };
 
-    toggleTrait(name, price, sale_price, effect, effect_val, effect_absolute, company) {
+    toggleTrait(name, price, sale_price, effect, effect_val, effect_absolute, company, topic) {
         if (!this.isTraitChosen(name)) {
             let trait = {
                 title: name,
                 price: price,
                 sale_price: sale_price,
+                topic: topic,
                 effect: effect,
                 effect_val: effect_val,
                 effect_absolute: effect_absolute,
                 company: company,
             };
             this.insertTrait(trait, false);
+            this.updateShoppingBasket(trait, false, false)
         } else if (name !== '') {
             let trait = this.chosenTraits.find((val) => val.title === name);
             let index = this.chosenTraits.indexOf(trait);
@@ -98,7 +103,8 @@ class interfaceController {
                 this.segmentAnimations.splice(index, 1);
                 this.curPrice -= price;
                 this.curSalePrice -= sale_price;
-                this.updateStatsFromTrait(trait, true)
+                this.updateStatsFromTrait(trait, true);
+                this.updateShoppingBasket(trait, price < 0, true);
             }
 
         }
@@ -130,6 +136,26 @@ class interfaceController {
                 }
             } else {
                 this.protectedAddToStatVal(trait.effect, sign * trait.effect_val);
+            }
+        }
+
+    }
+
+    updateShoppingBasket(trait, isBad, isRemoved) {
+        if (isBad) isRemoved = !isRemoved;
+        let topicList = this.forCheckout.get(trait.topic);
+        if (!topicList && !isRemoved) {
+            topicList = this.forCheckout.set(trait.topic, []).get(trait.topic);
+        }
+        if (topicList) {
+            if (isRemoved) {
+                let index = this.forCheckout.get(trait.topic).indexOf(trait);
+                topicList.splice(index, 1);
+                if (topicList.length === 0) {
+                    this.forCheckout.delete(trait.topic);
+                }
+            } else {
+                topicList.push(trait);
             }
         }
     }
@@ -184,6 +210,28 @@ class interfaceController {
         }
         return res;
     };
+
+    checkout() {
+        let alert = this._mdDialog.confirm({
+            templateUrl: '/static/main/checkout.html',
+            controllerAs: 'dialog',
+            locals: {
+                topics: Array.from(this.forCheckout),
+                price: this.curSalePrice,
+                done: () => {this._mdDialog.hide();},
+                cancel: () => {this._mdDialog.cancel();},
+            },
+        });
+        this._mdDialog
+            .show(alert).then(() => {
+            this.produce();
+        })
+            .catch(() => {
+            })
+            .finally(function () {
+                alert = undefined;
+            });
+    }
 
     produce() {
         let data = {};
@@ -460,36 +508,40 @@ function getDescriptionForDiagnosedTrait(title, price) {
 let POSSIBLE_DIAGNOSED_TRAITS = [
     {
         title: 'Lung Cancer',
-        topic: 'health',
+        topic: 'Fixed Issues',
         description: getDescriptionForDiagnosedTrait('lung cancer', 250000),
         price: -250000,
+        sale_price: -250000,
         effect: 'life_expectancy',
         effect_val: -11,
     },
 
     {
         title: 'Breast Cancer',
-        topic: 'health',
+        topic: 'Fixed Issues',
         description: getDescriptionForDiagnosedTrait('Breast Cancer', 300000),
         price: -300000,
+        sale_price: -300000,
         effect: 'life_expectancy',
         effect_val: -14,
     },
 
     {
         title: 'Parkinson\'s desease',
-        topic: 'health',
+        topic: 'Fixed Issues',
         description: getDescriptionForDiagnosedTrait('Parkinson\'s desease', 625000),
         price: -625000,
+        sale_price: -625000,
         effect: 'life_expectancy',
         effect_val: -2,
     },
 
     {
         title: 'Cystic Fibrosis',
-        topic: 'health',
+        topic: 'Fixed Issues',
         description: getDescriptionForDiagnosedTrait('Cystic Fibrosis', 750000),
         price: -250000,
+        sale_price: -250000,
         effect: 'life_expectancy',
         effect_val: 35,
         effect_absolute: true,
@@ -497,9 +549,10 @@ let POSSIBLE_DIAGNOSED_TRAITS = [
 
     {
         title: 'Dwarfism',
-        topic: 'health',
+        topic: 'Fixed Issues',
         description: getDescriptionForDiagnosedTrait('Dwarfism', 12500),
         price: -12500,
+        sale_price: -12500,
         effect: 'height',
         effect_val: 130 + interfaceController.randInt(-10, 11),
         effect_absolute: true,
@@ -507,18 +560,20 @@ let POSSIBLE_DIAGNOSED_TRAITS = [
 
     {
         title: 'Lactose Intolerance',
-        topic: 'health',
+        topic: 'Fixed Issues',
         description: getDescriptionForDiagnosedTrait('Lactose Intolerance', 30500),
         price: -30500,
+        sale_price: -30500,
         effect: 'life_expectancy',
         effect_val: -2,
     },
 
     {
         title: 'Celiac disease',
-        topic: 'health',
+        topic: 'Fixed Issues',
         description: getDescriptionForDiagnosedTrait('Lactose Intolerance', 37200),
         price: -37500,
+        sale_price: -37500,
         effect: 'life_expectancy',
         effect_val: -5,
     },

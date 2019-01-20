@@ -10,7 +10,8 @@
                 <md-card class="trait-card" layout="row"
                          ng-click="ctrl.toggleTrait('{{ trait.title }}', {{ trait.price }},
                                         {{ trait.sale_price }}, '{{ trait.effect }}', {{ trait.effect_val }},
-                                        {{ trait.effect_absolute|yesno:"true,false" }}, '{{ trait.company }}')">
+                                        {{ trait.effect_absolute|yesno:"true,false" }}, '{{ trait.company }}',
+                                        '{{ topic }}')">
                     <div class="trait-checkbox" layout="column" layout-align="center center">
                         <md-checkbox ng-checked="ctrl.isTraitChosen('{{ trait.title }}')" style="margin-bottom: 0;">
                         </md-checkbox>

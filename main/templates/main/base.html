@@ -37,7 +37,9 @@
     });
     app.config(function ($mdThemingProvider) {
         $mdThemingProvider.theme('default')
-            .accentPalette('grey');
+            .accentPalette('grey')
+            .primaryPalette('grey')
+            .warnPalette('grey');
     });
     app.filter('abs', function () {
         return function (val) {

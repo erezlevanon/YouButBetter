@@ -1,0 +1,39 @@
+<md-dialog style="width: 100%">
+    <div layout="column" style="margin: 2% 2% 0 2%; padding-bottom: 0;" class="md-dialog-content">
+        <div layout="row">
+            <h2 style="margin-top: 0; margin-bottom: 1%">
+                Please review your order before moving on
+            </h2>
+        </div>
+        <div layout="column" ng-repeat="topic in dialog.topics">
+            <h2 style="margin-bottom: 1.5%;">
+                {{ topic[0] }}
+            </h2>
+            <div ng-repeat="trait in topic[1]" layout="row">
+                <div layout="row" layout-align="start center" style="width: 50%">
+                    <h3 style="margin: 0">
+                        {{ trait.title }}
+                    </h3>
+                </div>
+                <div layout="row" layout-align="end center" style="width: 50%;">
+                    <h3 style="margin-top: 2%; margin-bottom: 0;">
+                        {{ trait.sale_price | abs | currency : "€" : 0 }}
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div layout="row" layout-align="end end">
+            <h2 style="margin-bottom: 0; margin-top: 5%">
+                Total Price: {{ dialog.price | currency : "€" : 0 }}
+            </h2>
+        </div>
+    </div>
+    <md-dialog-actions style="margin: 2% 4% 2% 0;">
+        <md-buttom ng-click="dialog.cancel()">
+            Keep Editing
+        </md-buttom>
+        <md-button ng-click="dialog.done()">
+            Check Out
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
