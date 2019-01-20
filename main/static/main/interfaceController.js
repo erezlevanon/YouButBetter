@@ -68,16 +68,17 @@ class interfaceController {
 
     initTraitCodes() {
         for (let i = 0; i < this.DEFAULT_NUMBER_OF_TRAITS; i++) {
-            if (POSSIBLE_DIAGNOSED_TRAITS.length > 0 &&
-                interfaceController.randInt(0, this.DEFAULT_NUMBER_OF_TRAITS * 0.7) === 0) {
+
+            this.chosenTraits.push({title: '', price: 0, sale_price: 0});
+            this.segmentAnimations.push(this.getGifSrc(i, false, false));
+        }
+        // insert bad traits
+        for (let i = 0; i < this.gaussRandInt(0, 5, 1); i++) {
                 let trait_index = interfaceController.randInt(0, POSSIBLE_DIAGNOSED_TRAITS.length);
                 let trait = POSSIBLE_DIAGNOSED_TRAITS[trait_index];
                 POSSIBLE_DIAGNOSED_TRAITS.splice(trait_index, 1);
                 this.insertTrait(trait, true);
-                this.updateShoppingBasket(trait, true, false)
-            }
-            this.chosenTraits.push({title: '', price: 0, sale_price: 0});
-            this.segmentAnimations.push(this.getGifSrc(i, false, false));
+                this.updateShoppingBasket(trait, true, false);
         }
     };
 
