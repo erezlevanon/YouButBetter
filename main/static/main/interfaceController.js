@@ -48,7 +48,7 @@ class interfaceController {
 
         this.segmentAnimations = [];
 
-        this.skipIntroAnimation = true;
+        this.showSkip = true;
 
         this.showIntroAnim = true;
         this.showPreIntroStart = true;
@@ -386,8 +386,7 @@ class interfaceController {
 
         if (this.introAnimation) {
             this.introAnimation.addEventListener('complete', $.proxy(() => {
-                this.introAnimation.stop();
-                this.showIntroAnim = false;
+                this.skipIntroAnimations();
                 this._scope.$apply();
             }));
         }
@@ -616,6 +615,14 @@ class interfaceController {
                 this.showPurchasedTraitDialog(trait)
             }
         }
+    }
+
+    skipIntroAnimations() {
+        this.showSkip = false;
+        this.showIntroAnim = false;
+        this.showLoadingAnim = false;
+        this.showPreIntroStart = false;
+        this.showPreIntroWait = false;
     }
 }
 
