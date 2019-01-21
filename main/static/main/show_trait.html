@@ -1,0 +1,22 @@
+<md-dialog>
+    <div layout="column" style="" class="md-dialog-content">
+        <div layout="row">
+            <div layout="column" layout-align="center start">
+                <h2 style="margin-bottom: 0">
+                    '{{ dialog.trait.title }}' is Applied.
+                </h2>
+                <h3 style="margin-top: 2%;">
+                    price: {{ dialog.trait.price | abs | currency : "€" : 0 }}
+                </h3>
+            </div>
+        </div>
+        <md-dialog-actions>
+            <md-buttom ng-click="dialog.done()">
+                REMOVE TRAIT
+            </md-buttom>
+            <md-button ng-click="dialog.cancel()">
+                GREAT
+            </md-button>
+        </md-dialog-actions>
+    </div>
+</md-dialog>

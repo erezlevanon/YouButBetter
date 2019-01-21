@@ -596,20 +596,27 @@ class interfaceController {
     }
 
     showPurchasedTraitDialog(trait) {
-        let alert = this._mdDialog.confirm({
-            title: trait.title,
-            textContent: this.getPurchasedTraitDescription(trait),
-            ok: 'Great',
-            cancel: 'Remove',
+        let showTrait = this._mdDialog.confirm({
+            templateUrl: '/static/main/show_trait.html',
+            controllerAs: 'dialog',
+            locals: {
+                trait: trait,
+                done: () => {
+                    this._mdDialog.hide();
+                },
+                cancel: () => {
+                    this._mdDialog.cancel();
+                },
+            },
         });
         this._mdDialog
-            .show(alert).then(() => {
+            .show(showTrait).then(() => {
+            this.toggleTrait(trait.title, trait.price, trait.price);
         })
             .catch(() => {
-                this.toggleTrait(trait.title, trait.price, trait.price);
             })
             .finally(function () {
-                alert = undefined;
+                showTrait = undefined;
             });
     }
 
