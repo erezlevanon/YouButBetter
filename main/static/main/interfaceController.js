@@ -257,7 +257,6 @@ class interfaceController {
                 price: () => this.curSalePrice,
                 update: (sale, isActivated) => this.updatePriceWithSale(sale, isActivated),
                 done: () => {
-                    console.log();
                     this._mdDialog.hide();
                 },
                 cancel: () => {
@@ -523,10 +522,10 @@ class interfaceController {
         if (sale.is_percentage) {
             let newPriceFraction = 1 - (sale.discount / 100);
             if (isActivated) {
-                this.curSalePrice *=  newPriceFraction;
+                this.curSalePrice *= newPriceFraction;
                 this.chosenSales.push(sale.action + ' by ' + sale.company);
             } else {
-                this.curSalePrice *= (1/newPriceFraction);
+                this.curSalePrice *= (1 / newPriceFraction);
                 this.chosenSales.splice(this.chosenSales.indexOf(sale.action + ' by ' + sale.company), 1);
             }
         } else {
@@ -541,23 +540,22 @@ class interfaceController {
                 this.chosenSales.splice(this.chosenSales.indexOf(sale.action + ' by ' + sale.company), 1);
             }
         }
-        console.log(this.chosenSales);
     }
 
     showIssueTraitDialog(trait) {
         let removeTrait = this._mdDialog.confirm({
-                    templateUrl: '/static/main/remove_bad_trait.html',
-                    controllerAs: 'dialog',
-                    locals: {
-                        trait: trait,
-                        done: () => {
-                            this._mdDialog.hide();
-                        },
-                        cancel: () => {
-                            this._mdDialog.cancel();
-                        },
-                    },
-                });
+            templateUrl: '/static/main/remove_bad_trait.html',
+            controllerAs: 'dialog',
+            locals: {
+                trait: trait,
+                done: () => {
+                    this._mdDialog.hide();
+                },
+                cancel: () => {
+                    this._mdDialog.cancel();
+                },
+            },
+        });
         this._mdDialog
             .show(removeTrait).then(() => {
             this.toggleTrait(trait.title, trait.price, trait.price);
@@ -714,7 +712,7 @@ let POSSIBLE_DIAGNOSED_TRAITS = [
     },
 ];
 
-POSSIBLE_SALES  = [
+POSSIBLE_SALES = [
     {
         company: 'MINISTRY OF INTERIOR AFFAIRS',
         is_percentage: true,
