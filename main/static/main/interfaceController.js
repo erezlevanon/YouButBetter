@@ -685,7 +685,7 @@ let POSSIBLE_DIAGNOSED_TRAITS = [
         price: -30500,
         sale_price: -30500,
         effect: 'life_expectancy',
-        effect_val: -2,
+        effect_val: -5,
     },
 
     {
