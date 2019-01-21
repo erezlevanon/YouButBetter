@@ -215,6 +215,7 @@ class interfaceController {
     };
 
     getNonRepeatingRandomFromList(num, list) {
+        list = list.map((item) => item); // shallow copy list.
         let res = [];
         for (let i = 0; i < num; i++) {
             let rand_index = interfaceController.randInt(0, list.length);
