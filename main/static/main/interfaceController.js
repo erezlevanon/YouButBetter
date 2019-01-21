@@ -72,14 +72,15 @@ class interfaceController {
             this.chosenTraits.push({title: '', price: 0, sale_price: 0});
             this.segmentAnimations.push(this.getGifSrc(i, false, false));
         }
-        // insert bad traits
-        for (let i = 0; i < this.gaussRandInt(0, 5, 1); i++) {
-                let trait_index = interfaceController.randInt(0, POSSIBLE_DIAGNOSED_TRAITS.length);
-                let trait = POSSIBLE_DIAGNOSED_TRAITS[trait_index];
-                POSSIBLE_DIAGNOSED_TRAITS.splice(trait_index, 1);
-                this.insertTrait(trait, true);
-                this.updateShoppingBasket(trait, true, false);
-        }
+        this.getNonRepeatingRandomFromList(
+            this.gaussRandInt(0, 5, 1),
+            POSSIBLE_DIAGNOSED_TRAITS)
+            .forEach(
+                (trait) => {
+                    this.insertTrait(trait, true);
+                    this.updateShoppingBasket(trait, true, false);
+                }
+            );
     };
 
     toggleTrait(name, price, sale_price, effect, effect_val, effect_absolute, company, topic) {
@@ -211,6 +212,17 @@ class interfaceController {
         }
         return res;
     };
+
+    getNonRepeatingRandomFromList(num, list) {
+        let res = [];
+        for (let i = 0; i < num; i++) {
+            let rand_index = interfaceController.randInt(0, list.length);
+            let rand_item = list[rand_index];
+            list.splice(rand_index, 1);
+            res.push(rand_item);
+        }
+        return res;
+    }
 
     getRemainingConditions() {
         return this.chosenTraits.filter(
@@ -618,5 +630,4 @@ let POSSIBLE_DIAGNOSED_TRAITS = [
         effect: 'life_expectancy',
         effect_val: -5,
     },
-
 ];
