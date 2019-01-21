@@ -545,20 +545,27 @@ class interfaceController {
     }
 
     showIssueTraitDialog(trait) {
-        let alert = this._mdDialog.confirm({
-            title: trait.title,
-            textContent: trait.description,
-            ok: 'Remove this risk',
-            cancel: 'Leave this risk',
-        });
+        let removeTrait = this._mdDialog.confirm({
+                    templateUrl: '/static/main/remove_bad_trait.html',
+                    controllerAs: 'dialog',
+                    locals: {
+                        trait: trait,
+                        done: () => {
+                            this._mdDialog.hide();
+                        },
+                        cancel: () => {
+                            this._mdDialog.cancel();
+                        },
+                    },
+                });
         this._mdDialog
-            .show(alert).then(() => {
+            .show(removeTrait).then(() => {
             this.toggleTrait(trait.title, trait.price, trait.price);
         })
             .catch(() => {
             })
             .finally(function () {
-                alert = undefined;
+                removeTrait = undefined;
             });
     }
 

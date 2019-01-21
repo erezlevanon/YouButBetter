@@ -1,0 +1,26 @@
+<md-dialog style="width: 45%">
+    <div layout="column" style="margin: 0; padding: 0;" class="md-dialog-content">
+        <div layout="row">
+            <div layout="column" layout-align="center center" style="width: 15%">
+                <img ng-attr-src="/static/main/warning.svg"
+                     style="margin-right: 3%; width: 50%; margin-top: 3%;"/>
+            </div>
+            <div layout="column" layout-align="center start">
+                <h2 style="margin-bottom: 0">
+                    High risk of '{{ dialog.trait.title }}' diagnosed.
+                </h2>
+                <h3 style="margin-top: 2%;">
+                    You can edit this out of your child's genes for {{ dialog.trait.price | abs | currency : "€" : 0 }}.
+                </h3>
+            </div>
+        </div>
+        <md-dialog-actions style="margin: 2% 4% 2% 0;">
+            <md-button ng-click="dialog.cancel()" style="margin-right: 3%">
+                LEAVE RISK
+            </md-button>
+            <md-buttom ng-click="dialog.done()">
+                REMOVE RISK
+            </md-buttom>
+        </md-dialog-actions>
+    </div>
+</md-dialog>
