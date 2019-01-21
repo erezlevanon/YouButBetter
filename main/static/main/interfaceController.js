@@ -13,6 +13,7 @@ class interfaceController {
         this.curPrice = 0;
         this.curSalePrice = 0;
         this.chosenTraits = [];
+        this.chosenSales = [];
 
         this.statsConstants = {
             intelligence: {
@@ -233,7 +234,7 @@ class interfaceController {
     }
 
     checkout() {
-        let alert = this._mdDialog.confirm({
+        let checkoutDialog = this._mdDialog.confirm({
             templateUrl: '/static/main/checkout.html',
             controllerAs: 'dialog',
             locals: {
@@ -247,8 +248,24 @@ class interfaceController {
                 },
             },
         });
+        let salesDialog = this._mdDialog.confirm({
+            templateUrl: '/static/main/sales.html',
+            controllerAs: 'dialog',
+            locals: {
+                sales: this.getNonRepeatingRandomFromList(4, POSSIBLE_SALES),
+                price: () => this.curSalePrice,
+                update: (sale, isActivated) => this.updatePriceWithSale(sale, isActivated),
+                done: () => {
+                    console.log();
+                    this._mdDialog.hide();
+                },
+                cancel: () => {
+                    this._mdDialog.cancel();
+                },
+            },
+        });
         this._mdDialog
-            .show(alert).then(() => {
+            .show(checkoutDialog).then(() => {
             let conditions = this.getRemainingConditions();
             if (conditions.length > 0) {
                 let conditionDialog = this._mdDialog.confirm({
@@ -266,7 +283,19 @@ class interfaceController {
                 });
                 this._mdDialog.show(conditionDialog).then(
                     () => {
-                        this.produce();
+                        this._mdDialog.show(salesDialog).then(
+                            () => {
+                                // TODO: think about updating data
+                                this.produce();
+                            }
+                        ).catch(
+                            () => {
+                            }
+                        ).finally(
+                            () => {
+                                salesDialog = undefined
+                            }
+                        );
                     }
                 ).catch(() => {
 
@@ -275,14 +304,25 @@ class interfaceController {
                 });
             }
             else {
-                this.produce();
+                this._mdDialog.show(salesDialog).then(
+                    () => {
+                        // TODO: think about updating data
+                        this.produce();
+                    }
+                ).catch(
+                    () => {
+                    }
+                ).finally(
+                    () => {
+                        salesDialog = undefined
+                    }
+                );
             }
-
         })
             .catch(() => {
             })
             .finally(function () {
-                alert = undefined;
+                checkoutDialog = undefined;
             });
     }
 
@@ -477,6 +517,33 @@ class interfaceController {
         return loc * 1.5;
     }
 
+    updatePriceWithSale(sale, isActivated) {
+        // There is a problem mixing absolute discounts with percentage discounts because it messes with
+        // the order of operators.
+        if (sale.is_percentage) {
+            let newPriceFraction = 1 - (sale.discount / 100);
+            if (isActivated) {
+                this.curSalePrice *=  newPriceFraction;
+                this.chosenSales.push(sale.action + ' by ' + sale.company);
+            } else {
+                this.curSalePrice *= (1/newPriceFraction);
+                this.chosenSales.splice(this.chosenSales.indexOf(sale.action + ' by ' + sale.company), 1);
+            }
+        } else {
+            if (isActivated) {
+                if (sale.discount > this.curSalePrice) {
+                    sale.discount = this.curSalePrice;
+                }
+                this.curSalePrice -= sale.discount;
+                this.chosenSales.push(sale.action + ' by ' + sale.company);
+            } else {
+                this.curSalePrice += sale.discount;
+                this.chosenSales.splice(this.chosenSales.indexOf(sale.action + ' by ' + sale.company), 1);
+            }
+        }
+        console.log(this.chosenSales);
+    }
+
     showIssueTraitDialog(trait) {
         let alert = this._mdDialog.confirm({
             title: trait.title,
@@ -629,5 +696,50 @@ let POSSIBLE_DIAGNOSED_TRAITS = [
         sale_price: -37500,
         effect: 'life_expectancy',
         effect_val: -5,
+    },
+];
+
+POSSIBLE_SALES  = [
+    {
+        company: 'MINISTRY OF INTERIOR AFFAIRS',
+        is_percentage: true,
+        discount: 5,
+        action: 'Determine Gender: Female',
+        logo: 'interior.svg',
+    },
+    {
+        company: 'NSA',
+        is_percentage: true,
+        discount: 35,
+        action: 'classified',
+        logo: 'nsa.svg',
+    },
+    {
+        company: 'Facebook',
+        is_percentage: true,
+        discount: 40,
+        action: 'Increase sharing tendencies',
+        logo: 'facebook.svg',
+    },
+    {
+        company: 'Military',
+        is_percentage: true,
+        discount: 80,
+        action: 'Increased stamina and aggressiveness',
+        logo: 'military.svg',
+    },
+    {
+        company: 'Ministry of Education',
+        is_percentage: false,
+        discount: 75000,
+        action: 'Increased Discipline',
+        logo: 'education.svg',
+    },
+    {
+        company: 'TU/e',
+        is_percentage: false,
+        discount: 10000,
+        action: 'Increased mental capabilities',
+        logo: 'tue.svg',
     },
 ];

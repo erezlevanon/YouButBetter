@@ -1,28 +1,39 @@
-<md-dialog style="width: 55%">
+<md-dialog style="width: 45%">
     <div layout="column" style="margin: 2% 2% 0 2%; padding-bottom: 0;" class="md-dialog-content">
         <h2 style="margin-top: 0; margin-bottom: 1%">
-            Oops.. Seems like there is still an issue with your child
+            Consider these suggestions from our sponsors
         </h2>
-        <h3 style="margin-top: 2%; margin-bottom: 2%">
-            There is still a risk for some of the following conditions
-        </h3>
-        <ul layout="column" style="margin-top: 0">
-            <li ng-repeat="condition in dialog.conditions">
-                <h3 style="margin: 0">
-                    {{ condition }}
-                </h3>
-            </li>
-        </ul>
-        <h3 style="margin-top: 0; margin-bottom: 2%">
-            That may cause short lifespan or degraded life quality.
-        </h3>
+        <md-list flex>
+            <md-list-item class="md-3-line" ng-repeat="sale in dialog.sales">
+                <img ng-attr-src="/static/main/company_logos/{{ sale.logo }}" class="md-avatar"
+                     style="margin-top: 6%"/>
+                <div class="md-list-item-text">
+                    <h2 style="margin-bottom: 0%">
+                        {{ sale.company }}
+                    </h2>
+                    <h3 ng-if="sale.is_percentage === false">
+                        are willing to pay {{ sale.discount | currency : "€" : 0 }} of your bill
+                    </h3>
+                    <h4 ng-if="sale.is_percentage === true">
+                        are willing to pay {{ sale.discount }}% of your bill
+                    </h4>
+                    <h4>
+                        for you to add '{{ sale.action }}'
+                    </h4>
+                </div>
+                <md-checkbox class="md-secondary" ng-model="sale.on" ng-click="dialog.update(sale, sale.on)"></md-checkbox>
+            </md-list-item>
+            </md-list-item>
+        </md-list>
+        <div layout="row" layout-align="end end">
+            <h2 style="margin-bottom: 0; margin-top: 5%">
+                Total Price: {{ dialog.price() | currency : "€" : 0 }}
+            </h2>
+        </div>
     </div>
     <md-dialog-actions style="margin: 2% 4% 2% 0;">
         <md-button ng-click="dialog.done()" style="margin-right: 3%">
-            Check Out Anyway
+            DONE
         </md-button>
-        <md-buttom ng-click="dialog.cancel()">
-            KEEP EDITING
-        </md-buttom>
     </md-dialog-actions>
 </md-dialog>
