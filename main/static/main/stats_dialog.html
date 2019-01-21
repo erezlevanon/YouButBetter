@@ -1,0 +1,22 @@
+<md-dialog style="width: 55%">
+    <div layout="column" style="margin: 2% 2% 0 2%; padding-bottom: 0;" class="md-dialog-content">
+        <h2 style="margin-top: 0; margin-bottom: 1%">
+            Your child's {{ dialog.name }} diagnosis.
+        </h2>
+        <h3 style="margin-top: 2%; margin-bottom: 2%">
+            You can improve it by purchasing traits from the following categories:
+        </h3>
+        <ul layout="column" style="margin-top: 0">
+            <li ng-repeat="category in dialog.categories">
+                <h3 style="margin: 0">
+                    {{ category }}
+                </h3>
+            </li>
+        </ul>
+    </div>
+    <md-dialog-actions style="margin: 2% 4% 2% 0;">
+        <md-button ng-click="dialog.done()" style="margin-right: 3%">
+            GOT IT
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>
