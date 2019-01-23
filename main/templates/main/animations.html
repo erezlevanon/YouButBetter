@@ -43,6 +43,23 @@
      ng-click="ctrl.clickReloadIfAllowed()"
 >
 </div>
+<div class="lottie anim-container" data-animation-path="{% static 'main/instruction_tube' %}"
+     data-anim-type="svg"
+     data-anim-loop="false"
+     data-name="instruction_tube"
+     data-anim-autoplay="false"
+     ng-show="ctrl.showInstructionsTube && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
+>
+</div>
+<div class="lottie anim-container" data-animation-path="{% static 'main/instruction_tube_wait' %}"
+     data-anim-type="svg"
+     data-anim-loop="true"
+     data-name="instruction_tube_wait"
+     data-anim-autoplay="false"
+     ng-show="ctrl.showInstructionsTubeWait && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
+     ng-click="ctrl.clickReloadIfAllowed()"
+>
+</div>
 {# done animations #}
 <div class="lottie anim-container" data-animation-path="{% static 'main/load_anim' %}"
      data-anim-type="svg"

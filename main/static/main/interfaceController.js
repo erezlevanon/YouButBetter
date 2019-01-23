@@ -58,6 +58,8 @@ class interfaceController {
         this.showDoneAnimation = false;
         this.showInstructionsSample = false;
         this.showInstructionsSampleWait = false;
+        this.showInstructionsTube = false;
+        this.showInstructionsTubeWait = false;
 
         this.introAnimation = null;
         this.loadingAnimation = null;
@@ -376,6 +378,9 @@ class interfaceController {
         this.instructionsSample = animations.find((anim) => anim.name === 'instruction_sample');
         this.instructionsSampleWait = animations.find((anim) => anim.name === 'instruction_sample_wait');
 
+        this.instructionsTube = animations.find((anim) => anim.name === 'instruction_tube');
+        this.instructionsTubeWait = animations.find((anim) => anim.name === 'instruction_tube_wait');
+
         this.loadingAnimation = animations.find((anim) => anim.name === 'loading');
         this.doneAnimation = animations.find((anim) => anim.name === 'done');
 
@@ -395,8 +400,8 @@ class interfaceController {
             this.introAnimation.addEventListener('complete', $.proxy(() => {
                 this.introAnimation.stop();
                 this.showIntroFinal = false;
-                this.showInstructionsSample = true;
-                this.instructionsSample.play();
+                this.showInstructionsTube = true;
+                this.instructionsTube.play();
                 this._scope.$apply();
             }));
         }
@@ -412,6 +417,24 @@ class interfaceController {
                     () => {
                         this.instructionsSampleWait.stop();
                         this.skipIntroAnimations()
+                    }
+                );
+            }));
+        }
+
+        if (this.instructionsTube) {
+            this.instructionsTube.addEventListener('complete', $.proxy(() => {
+                this.instructionsTube.stop();
+                this.showInstructionsTube = false;
+                this.showInstructionsTubeWait = true;
+                this.instructionsTubeWait.play();
+                this._scope.$apply();
+                this._http.post('/read_samples', {}).then(
+                    () => {
+                        this.instructionsTubeWait.stop();
+                        this.showInstructionsTubeWait = false;
+                        this.showInstructionsSample = true;
+                        this.instructionsSample.play();
                     }
                 );
             }));
@@ -670,6 +693,8 @@ class interfaceController {
         this.showPreIntroWait = false;
         this.showInstructionsSample = false;
         this.showInstructionsSampleWait = false;
+        this.showInstructionsTube = false;
+        this.showInstructionsTubeWait = false;
     }
 }
 
