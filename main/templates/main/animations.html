@@ -1,4 +1,5 @@
 {% load static %}
+{# start animations #}
 <div class="lottie anim-container" data-animation-path="{% static 'main/pre_intro_start' %}"
      data-anim-type="svg"
      data-anim-loop="false"
@@ -24,6 +25,25 @@
      ng-show="ctrl.showIntroFinal && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
 >
 </div>
+{# instructions animations #}
+<div class="lottie anim-container" data-animation-path="{% static 'main/instruction_sample' %}"
+     data-anim-type="svg"
+     data-anim-loop="false"
+     data-name="instruction_sample"
+     data-anim-autoplay="false"
+     ng-show="ctrl.showInstructionsSample && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
+>
+</div>
+<div class="lottie anim-container" data-animation-path="{% static 'main/instruction_sample_wait' %}"
+     data-anim-type="svg"
+     data-anim-loop="true"
+     data-name="instruction_sample_wait"
+     data-anim-autoplay="false"
+     ng-show="ctrl.showInstructionsSampleWait && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
+     ng-click="ctrl.clickReloadIfAllowed()"
+>
+</div>
+{# done animations #}
 <div class="lottie anim-container" data-animation-path="{% static 'main/load_anim' %}"
      data-anim-type="svg"
      data-anim-loop="true"

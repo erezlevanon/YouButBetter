@@ -22,3 +22,15 @@ def produce(request):
     c = controller.Controller()
     time.sleep(6)   # Todo: Create choreography.
     return HttpResponse()
+
+
+@csrf_exempt
+def read_samples(request):
+    time.sleep(5)   # Todo: Create choreography.
+    return HttpResponse()
+
+
+@csrf_exempt
+def read_tube(request):
+    time.sleep(3)   # Todo: Create choreography.
+    return HttpResponse()

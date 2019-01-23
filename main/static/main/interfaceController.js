@@ -56,6 +56,8 @@ class interfaceController {
         this.showIntroFinal = false;
         this.showLoadingAnim = false;
         this.showDoneAnimation = false;
+        this.showInstructionsSample = false;
+        this.showInstructionsSampleWait = false;
 
         this.introAnimation = null;
         this.loadingAnimation = null;
@@ -366,11 +368,16 @@ class interfaceController {
 
     initAnimations() {
         lottie.searchAnimations();
-        this.preIntroStartAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'pre_intro_start');
-        this.preIntroWaitAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'pre_intro_waiting');
-        this.introAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'intro');
-        this.loadingAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'loading');
-        this.doneAnimation = lottie.getRegisteredAnimations().find((anim) => anim.name === 'done');
+        let animations = lottie.getRegisteredAnimations();
+        this.preIntroStartAnimation = animations.find((anim) => anim.name === 'pre_intro_start');
+        this.preIntroWaitAnimation = animations.find((anim) => anim.name === 'pre_intro_waiting');
+        this.introAnimation = animations.find((anim) => anim.name === 'intro');
+
+        this.instructionsSample = animations.find((anim) => anim.name === 'instruction_sample');
+        this.instructionsSampleWait = animations.find((anim) => anim.name === 'instruction_sample_wait');
+
+        this.loadingAnimation = animations.find((anim) => anim.name === 'loading');
+        this.doneAnimation = animations.find((anim) => anim.name === 'done');
 
         if (this.preIntroStartAnimation && this.preIntroWaitAnimation) {
             this.showPreIntroStart = true;
@@ -386,10 +393,30 @@ class interfaceController {
 
         if (this.introAnimation) {
             this.introAnimation.addEventListener('complete', $.proxy(() => {
-                this.skipIntroAnimations();
+                this.introAnimation.stop();
+                this.showIntroFinal = false;
+                this.showInstructionsSample = true;
+                this.instructionsSample.play();
                 this._scope.$apply();
             }));
         }
+
+        if (this.instructionsSample) {
+            this.instructionsSample.addEventListener('complete', $.proxy(() => {
+                this.instructionsSample.stop();
+                this.showInstructionsSample = false;
+                this.showInstructionsSampleWait = true;
+                this.instructionsSampleWait.play();
+                this._scope.$apply();
+                this._http.post('/read_samples', {}).then(
+                    () => {
+                        this.instructionsSampleWait.stop();
+                        this.skipIntroAnimations()
+                    }
+                );
+            }));
+        }
+
 
         if (this.doneAnimation) {
             this.doneAnimation.addEventListener('complete', $.proxy(() => {
@@ -641,6 +668,8 @@ class interfaceController {
         this.showLoadingAnim = false;
         this.showPreIntroStart = false;
         this.showPreIntroWait = false;
+        this.showInstructionsSample = false;
+        this.showInstructionsSampleWait = false;
     }
 }
 
