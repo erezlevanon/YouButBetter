@@ -60,6 +60,7 @@ class interfaceController {
         this.showInstructionsSampleWait = false;
         this.showInstructionsTube = false;
         this.showInstructionsTubeWait = false;
+        this.showInstructionsOver = false;
 
         this.introAnimation = null;
         this.loadingAnimation = null;
@@ -380,6 +381,7 @@ class interfaceController {
 
         this.instructionsTube = animations.find((anim) => anim.name === 'instruction_tube');
         this.instructionsTubeWait = animations.find((anim) => anim.name === 'instruction_tube_wait');
+        this.instructionsOver = animations.find((anim) => anim.name === 'instruction_over');
 
         this.loadingAnimation = animations.find((anim) => anim.name === 'loading');
         this.doneAnimation = animations.find((anim) => anim.name === 'done');
@@ -416,7 +418,9 @@ class interfaceController {
                 this._http.post('/read_samples', {}).then(
                     () => {
                         this.instructionsSampleWait.stop();
-                        this.skipIntroAnimations()
+                        this.showInstructionsSampleWait = false;
+                        this.showInstructionsOver = true;
+                        this.instructionsOver.play();
                     }
                 );
             }));
@@ -437,6 +441,13 @@ class interfaceController {
                         this.instructionsSample.play();
                     }
                 );
+            }));
+        }
+
+        if (this.instructionsOver) {
+            this.instructionsOver.addEventListener('complete', $.proxy(() => {
+                this.skipIntroAnimations();
+                this._scope.$apply();
             }));
         }
 
@@ -695,6 +706,7 @@ class interfaceController {
         this.showInstructionsSampleWait = false;
         this.showInstructionsTube = false;
         this.showInstructionsTubeWait = false;
+        this.showInstructionsOver = false;
     }
 }
 

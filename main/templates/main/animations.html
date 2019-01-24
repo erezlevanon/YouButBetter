@@ -40,7 +40,6 @@
      data-name="instruction_sample_wait"
      data-anim-autoplay="false"
      ng-show="ctrl.showInstructionsSampleWait && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
-     ng-click="ctrl.clickReloadIfAllowed()"
 >
 </div>
 <div class="lottie anim-container" data-animation-path="{% static 'main/instruction_tube' %}"
@@ -57,7 +56,14 @@
      data-name="instruction_tube_wait"
      data-anim-autoplay="false"
      ng-show="ctrl.showInstructionsTubeWait && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
-     ng-click="ctrl.clickReloadIfAllowed()"
+>
+</div>
+<div class="lottie anim-container" data-animation-path="{% static 'main/instruction_over' %}"
+     data-anim-type="svg"
+     data-anim-loop="false"
+     data-name="instruction_over"
+     data-anim-autoplay="false"
+     ng-show="ctrl.showInstructionsOver && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
 >
 </div>
 {# done animations #}
