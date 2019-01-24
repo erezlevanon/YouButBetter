@@ -1,6 +1,6 @@
 {% load static %}
 {# start animations #}
-<div class="lottie anim-container" data-animation-path="{% static 'main/pre_intro_start' %}"
+<div class="lottie anim-container" data-animation-path="{% static 'main/animations/pre_intro_start' %}"
      data-anim-type="svg"
      data-anim-loop="false"
      data-name="pre_intro_start"
@@ -8,7 +8,7 @@
      ng-show="ctrl.showPreIntroStart && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
 >
 </div>
-<div class="lottie anim-container" data-animation-path="{% static 'main/pre_intro_waiting' %}"
+<div class="lottie anim-container" data-animation-path="{% static 'main/animations/pre_intro_waiting' %}"
      data-anim-type="svg"
      data-anim-loop="true"
      data-name="pre_intro_waiting"
@@ -17,7 +17,7 @@
      ng-click="ctrl.clickOnWaitingAnimation()"
 >
 </div>
-<div class="lottie anim-container" data-animation-path="{% static 'main/start_anim' %}"
+<div class="lottie anim-container" data-animation-path="{% static 'main/animations/start_anim' %}"
      data-anim-type="svg"
      data-anim-loop="false"
      data-name="intro"
@@ -26,7 +26,7 @@
 >
 </div>
 {# instructions animations #}
-<div class="lottie anim-container" data-animation-path="{% static 'main/instruction_sample' %}"
+<div class="lottie anim-container" data-animation-path="{% static 'main/animations/instruction_sample' %}"
      data-anim-type="svg"
      data-anim-loop="false"
      data-name="instruction_sample"
@@ -34,7 +34,7 @@
      ng-show="ctrl.showInstructionsSample && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
 >
 </div>
-<div class="lottie anim-container" data-animation-path="{% static 'main/instruction_sample_wait' %}"
+<div class="lottie anim-container" data-animation-path="{% static 'main/animations/instruction_sample_wait' %}"
      data-anim-type="svg"
      data-anim-loop="true"
      data-name="instruction_sample_wait"
@@ -42,7 +42,7 @@
      ng-show="ctrl.showInstructionsSampleWait && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
 >
 </div>
-<div class="lottie anim-container" data-animation-path="{% static 'main/instruction_tube' %}"
+<div class="lottie anim-container" data-animation-path="{% static 'main/animations/instruction_tube' %}"
      data-anim-type="svg"
      data-anim-loop="false"
      data-name="instruction_tube"
@@ -50,7 +50,7 @@
      ng-show="ctrl.showInstructionsTube && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
 >
 </div>
-<div class="lottie anim-container" data-animation-path="{% static 'main/instruction_tube_wait' %}"
+<div class="lottie anim-container" data-animation-path="{% static 'main/animations/instruction_tube_wait' %}"
      data-anim-type="svg"
      data-anim-loop="true"
      data-name="instruction_tube_wait"
@@ -58,7 +58,7 @@
      ng-show="ctrl.showInstructionsTubeWait && ctrl.showIntroAnim && !ctrl.skipIntroAnimation"
 >
 </div>
-<div class="lottie anim-container" data-animation-path="{% static 'main/instruction_over' %}"
+<div class="lottie anim-container" data-animation-path="{% static 'main/animations/instruction_over' %}"
      data-anim-type="svg"
      data-anim-loop="false"
      data-name="instruction_over"
@@ -67,7 +67,7 @@
 >
 </div>
 {# done animations #}
-<div class="lottie anim-container" data-animation-path="{% static 'main/load_anim' %}"
+<div class="lottie anim-container" data-animation-path="{% static 'main/animations/load_anim' %}"
      data-anim-type="svg"
      data-anim-loop="true"
      data-name="loading"
@@ -75,7 +75,7 @@
      ng-show="ctrl.showLoadingAnim"
 >
 </div>
-<div class="lottie anim-container" data-animation-path="{% static 'main/done_load' %}"
+<div class="lottie anim-container" data-animation-path="{% static 'main/animations/done_load' %}"
      data-anim-type="svg"
      data-anim-loop="false"
      data-name="done"
