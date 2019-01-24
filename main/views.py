@@ -38,7 +38,7 @@ def produce(request):
                 direction = motor.Motor.DIRECTION.CW
             else:
                 step_sign = -1
-                direction = motor.Motor.DIRECTION.CW
+                direction = motor.Motor.DIRECTION.CWW
             step_offset += step_sign * cur_step
 
         if step_offset > 0:
