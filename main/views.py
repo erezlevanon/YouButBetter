@@ -1,10 +1,13 @@
+import json
+import random
+
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 import time
 
-from control import controller
+from control import controller, motor
 from .models import Topic
 
 
@@ -20,8 +23,28 @@ def index(request):
 @csrf_exempt
 def produce(request):
     c = controller.Controller()
-    print(request.body)
-    time.sleep(6)   # Todo: Create choreography.
+    tube_motor = c.tube_motor
+    step_offset = 0
+    direction = motor.Motor.DIRECTION.CCW
+    data = json.loads(request.body)
+    for topic in data["traits_by_topic"]:
+        for trait in topic[1]:
+            cur_step = random.randint(50, 500)
+
+            tube_motor.run(cur_step, direction)
+
+            if direction == motor.Motor.DIRECTION.CCW:
+                step_sign = 1
+                direction = motor.Motor.DIRECTION.CW
+            else:
+                step_sign = -1
+                direction = motor.Motor.DIRECTION.CW
+            step_offset += step_sign * cur_step
+
+        if step_offset > 0:
+            tube_motor.run(step_offset, motor.Motor.DIRECTION.CW)
+        elif step_offset < 0:
+            tube_motor.run(-step_offset, motor.Motor.DIRECTION.CCW)
     return HttpResponse()
 
 

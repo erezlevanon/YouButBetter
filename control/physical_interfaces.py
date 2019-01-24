@@ -9,21 +9,27 @@ class PhysicalInterface:
 
 
 DNA_MS_0 = PhysicalInterface(
-    'dna_0',
+    'dna_0_microswitch',
     'DNA Sample 0 Present',
     [17],
 )
 
 DNA_MS_1 = PhysicalInterface(
-    'dna_1',
+    'dna_1_microswitch',
     'DNA Sample 1 Present',
     [27],
 )
 
 TUBE_MS = PhysicalInterface(
-    'tube',
+    'tube_microswitch',
     'Tube Present',
     [22],
+)
+
+TUBE_MOTOR = PhysicalInterface(
+    'tube_motor',
+    'Tube motor',
+    [12, 16, 20, 21],
 )
 
 

@@ -333,6 +333,8 @@ class interfaceController {
 
     produce() {
         let data = {};
+        data.traits_by_topic = Array.from(this.forCheckout);
+        data.sales = this.chosenSales;
         if (this.loadingAnimation) {
             this.showLoadingAnim = true;
             this.loadingAnimation.play();
