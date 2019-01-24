@@ -5,7 +5,7 @@ from enum import Enum
 class Motor:
 
     __TYPE = "28BYJ"
-    __STEP_TYPE = "half"
+    __STEP_TYPE = "full"
     __WAIT_TIME = .001
 
     class DIRECTION(Enum):

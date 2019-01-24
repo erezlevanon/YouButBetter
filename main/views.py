@@ -29,7 +29,7 @@ def produce(request):
     data = json.loads(request.body.decode())
     for topic in data["traits_by_topic"]:
         for trait in topic[1]:
-            cur_step = random.randint(50, 500)
+            cur_step = random.randint(50, 400)
 
             tube_motor.run(cur_step, direction)
 
