@@ -30,7 +30,6 @@ def produce(request):
     for topic in data["traits_by_topic"]:
         for trait in topic[1]:
             cur_step = random.randint(50, 400)
-
             tube_motor.run(cur_step, direction)
 
             if direction == motor.Motor.DIRECTION.CCW:
@@ -40,11 +39,10 @@ def produce(request):
                 step_sign = -1
                 direction = motor.Motor.DIRECTION.CCW
             step_offset += step_sign * cur_step
-
-        if step_offset > 0:
-            tube_motor.run(step_offset, motor.Motor.DIRECTION.CCW)
-        elif step_offset < 0:
-            tube_motor.run(-step_offset, motor.Motor.DIRECTION.CW)
+    if step_offset > 0:
+        tube_motor.run(step_offset, motor.Motor.DIRECTION.CW)
+    elif step_offset < 0:
+        tube_motor.run(-step_offset, motor.Motor.DIRECTION.CCW)
     return HttpResponse()
 
 
