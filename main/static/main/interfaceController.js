@@ -429,7 +429,7 @@ class interfaceController {
                 this.showInstructionsTubeWait = true;
                 this.instructionsTubeWait.play();
                 this._scope.$apply();
-                this._http.post('/read_samples', {}).then(
+                this._http.post('/read_tube', {}).then(
                     () => {
                         this.instructionsTubeWait.stop();
                         this.showInstructionsTubeWait = false;
