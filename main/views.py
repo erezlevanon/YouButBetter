@@ -26,7 +26,7 @@ def produce(request):
     tube_motor = c.tube_motor
     step_offset = 0
     direction = motor.Motor.DIRECTION.CCW
-    data = json.loads(request.body)
+    data = json.loads(request.body.decode())
     for topic in data["traits_by_topic"]:
         for trait in topic[1]:
             cur_step = random.randint(50, 500)
