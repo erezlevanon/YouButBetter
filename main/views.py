@@ -51,3 +51,14 @@ def read_tube(request):
         if time.time() - start > timeout:
             return HttpResponse(408)
     return HttpResponse()
+
+@csrf_exempt
+def read_tube_done(request):
+    control = controller.Controller()
+    start = time.time()
+    timeout = 6
+    while control.tube.read():
+        time.sleep(0.3)
+        if time.time() - start > timeout:
+            return HttpResponse(408)
+    return HttpResponse()

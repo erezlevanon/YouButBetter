@@ -454,6 +454,11 @@ class interfaceController {
 
         if (this.doneAnimation) {
             this.doneAnimation.addEventListener('complete', $.proxy(() => {
+                this._http.post('/read_tube_done', {}).then(
+                    () => {
+                        this._window.location.reload();
+                    }
+                );
                 this.allowClickReload = true;
                 this._scope.$apply();
             }));
