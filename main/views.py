@@ -44,11 +44,9 @@ def read_samples(request):
 def read_tube(request):
     # Todo: Create choreography.
     control = controller.Controller()
-    dna_0 = control.dna_0
-    dna_1 = control.dna_1
     start = time.time()
     timeout = 15
-    while not (dna_0.read() and dna_1.read()):
+    while not (control.tube.read()):
         time.sleep(0.3)
         if time.time() - start > timeout:
             return HttpResponse(408)

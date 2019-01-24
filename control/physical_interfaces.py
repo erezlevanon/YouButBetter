@@ -17,7 +17,7 @@ DNA_MS_0 = PhysicalInterface(
 DNA_MS_1 = PhysicalInterface(
     'dna_1',
     'DNA Sample 1 Present',
-    [27],
+    [22],
 )
 
 TUBE_MS = PhysicalInterface(
