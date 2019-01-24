@@ -42,9 +42,9 @@ def produce(request):
             step_offset += step_sign * cur_step
 
         if step_offset > 0:
-            tube_motor.run(step_offset, motor.Motor.DIRECTION.CW)
+            tube_motor.run(step_offset, motor.Motor.DIRECTION.CCW)
         elif step_offset < 0:
-            tube_motor.run(-step_offset, motor.Motor.DIRECTION.CCW)
+            tube_motor.run(-step_offset, motor.Motor.DIRECTION.CW)
     return HttpResponse()
 
 
