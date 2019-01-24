@@ -20,6 +20,7 @@ def index(request):
 @csrf_exempt
 def produce(request):
     c = controller.Controller()
+    print(request.body)
     time.sleep(6)   # Todo: Create choreography.
     return HttpResponse()
 

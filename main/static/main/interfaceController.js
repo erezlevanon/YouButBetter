@@ -241,7 +241,7 @@ class interfaceController {
 
     checkout() {
         let checkoutDialog = this._mdDialog.confirm({
-            templateUrl: '/static/main/checkout.html',
+            templateUrl: '/static/main/dialogs/checkout.html',
             controllerAs: 'dialog',
             locals: {
                 topics: Array.from(this.forCheckout),
@@ -255,7 +255,7 @@ class interfaceController {
             },
         });
         let salesDialog = this._mdDialog.confirm({
-            templateUrl: '/static/main/sales.html',
+            templateUrl: '/static/main/dialogs/sales.html',
             controllerAs: 'dialog',
             locals: {
                 sales: this.getNonRepeatingRandomFromList(4, POSSIBLE_SALES),
@@ -274,7 +274,7 @@ class interfaceController {
             let conditions = this.getRemainingConditions();
             if (conditions.length > 0) {
                 let conditionDialog = this._mdDialog.confirm({
-                    templateUrl: '/static/main/still_issues.html',
+                    templateUrl: '/static/main/dialogs/still_issues.html',
                     controllerAs: 'dialog',
                     locals: {
                         conditions: conditions,
@@ -608,7 +608,7 @@ class interfaceController {
 
     showIssueTraitDialog(trait) {
         let removeTrait = this._mdDialog.confirm({
-            templateUrl: '/static/main/remove_bad_trait.html',
+            templateUrl: '/static/main/dialogs/remove_bad_trait.html',
             controllerAs: 'dialog',
             locals: {
                 trait: trait,
@@ -635,7 +635,7 @@ class interfaceController {
         let stat = this.stats[name];
         if (stat) {
             let showTrait = this._mdDialog.alert({
-            templateUrl: '/static/main/stats_dialog.html',
+            templateUrl: '/static/main/dialogs/stats_dialog.html',
             controllerAs: 'dialog',
             locals: {
                 name: stat.name,
@@ -668,7 +668,7 @@ class interfaceController {
 
     showPurchasedTraitDialog(trait) {
         let showTrait = this._mdDialog.confirm({
-            templateUrl: '/static/main/show_trait.html',
+            templateUrl: '/static/main/dialogs/show_trait.html',
             controllerAs: 'dialog',
             locals: {
                 trait: trait,
