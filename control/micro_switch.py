@@ -9,7 +9,7 @@ class Switch:
         self.__status = False
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.__pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
-        GPIO.add_event_detect(self.__pin, GPIO.FALLING, callaback=self.change)
+        GPIO.add_event_detect(self.__pin, GPIO.FALLING, callback=self.change)
 
     def read(self):
         return self.__status
