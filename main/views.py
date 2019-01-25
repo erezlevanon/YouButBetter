@@ -70,6 +70,10 @@ def read_samples(request):
     start = time.time()
     timeout = 15
     while not (dna_0.read() and dna_1.read()):
+        if dna_0.read():
+            led_0.on()
+        if dna_1.read():
+            led_1.on()
         time.sleep(0.3)
         if time.time() - start > timeout:
             print("timeout")
