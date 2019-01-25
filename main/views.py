@@ -13,7 +13,10 @@ from .models import Topic
 
 @csrf_exempt
 def index(request):
-    controller.Controller()
+    c = controller.Controller()
+    c.dna_0_led.on()
+    c.dna_1_led.on()
+    c.tube_led.on()
     topics = Topic.objects
     context = {
         'topics': topics.all(),
@@ -24,6 +27,9 @@ def index(request):
 @csrf_exempt
 def produce(request):
     c = controller.Controller()
+    c.dna_0_led.blink()
+    c.dna_1_led.blink()
+    c.tube_led.blink()
     tube_motor = c.tube_motor
     step_offset = 0
     direction = motor.Motor.DIRECTION.CCW
@@ -44,6 +50,11 @@ def produce(request):
         tube_motor.run(step_offset, motor.Motor.DIRECTION.CW)
     elif step_offset < 0:
         tube_motor.run(-step_offset, motor.Motor.DIRECTION.CCW)
+
+    c.dna_0_led.off()
+    c.dna_1_led.off()
+    c.tube_led.on()
+
     return HttpResponse()
 
 
@@ -52,36 +63,46 @@ def read_samples(request):
     control = controller.Controller()
     dna_0 = control.dna_0_ms
     dna_1 = control.dna_1_ms
+    led_0 = control.dna_0_led
+    led_1 = control.dna_1_led
+    led_0.blink()
+    led_1.blink()
     start = time.time()
     timeout = 15
     while not (dna_0.read() and dna_1.read()):
         time.sleep(0.3)
         if time.time() - start > timeout:
             print("timeout")
-            return HttpResponse(408)
-    print("good")
+            break
+    led_0.on()
+    led_1.on()
     return HttpResponse()
 
 
 @csrf_exempt
 def read_tube(request):
     # Todo: Create choreography.
-    control = controller.Controller()
+    c = controller.Controller()
+    c.tube_led.blink()
     start = time.time()
     timeout = 15
-    while not (control.tube.read()):
+    while not (c.tube.read()):
         time.sleep(0.3)
         if time.time() - start > timeout:
-            return HttpResponse(408)
+            break
+    c.tube_led.on()
     return HttpResponse()
+
 
 @csrf_exempt
 def read_tube_done(request):
-    control = controller.Controller()
+    c = controller.Controller()
+    c.tube_led.blink()
     start = time.time()
     timeout = 6
-    while control.tube.read():
+    while c.tube.read():
         time.sleep(0.3)
         if time.time() - start > timeout:
-            return HttpResponse(408)
+            break
+    c.tube_led.on()
     return HttpResponse()
