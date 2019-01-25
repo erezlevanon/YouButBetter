@@ -13,9 +13,10 @@ class Led:
         self.__pin = pin_number
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.__pin, GPIO.OUT, initial=GPIO.LOW)
-        self.__pwm = GPIO.PWM(self.__pin, 100)
+        self.__pwm = GPIO.PWM(self.__pin, Led.__MAX)
         self.__duty_cycle = Led.__MIN
         self.__sign = 1
+        self.__interval = 3
         self.__blink_active = False
         self.__blink_sleep = 0.05
         self.__blink_thread = None
@@ -27,7 +28,8 @@ class Led:
 
     def tick_pwm(self):
         self.__pwm.ChangeDutyCycle(self.__duty_cycle)
-        self.__duty_cycle += 1 * self.__sign
+        self.__duty_cycle += 1 * self.__sign * self.__interval
+        self.__duty_cycle = max(min(self.__duty_cycle, Led.__MAX), Led.__MIN)
         if self.__duty_cycle >= Led.__MAX or self.__duty_cycle <= Led.__MIN:
             self.__sign *= -1
 
