@@ -8,13 +8,13 @@ class PhysicalInterface:
         self.pins = pins
 
 
-DNA_MS_0 = PhysicalInterface(
+DNA_0_MS = PhysicalInterface(
     'dna_0_microswitch',
     'DNA Sample 0 Present',
     [17],
 )
 
-DNA_MS_1 = PhysicalInterface(
+DNA1__MS = PhysicalInterface(
     'dna_1_microswitch',
     'DNA Sample 1 Present',
     [27],
@@ -34,7 +34,7 @@ TUBE_MOTOR = PhysicalInterface(
 
 
 PHYSICAL_INTERFACES = [
-    DNA_MS_0,
-    DNA_MS_1,
+    DNA_0_MS,
+    DNA1__MS,
     TUBE_MS,
 ]

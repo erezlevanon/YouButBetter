@@ -49,8 +49,8 @@ def produce(request):
 @csrf_exempt
 def read_samples(request):
     control = controller.Controller()
-    dna_0 = control.dna_0
-    dna_1 = control.dna_1
+    dna_0 = control.dna_0_ms
+    dna_1 = control.dna_1_ms
     start = time.time()
     timeout = 15
     while not (dna_0.read() and dna_1.read()):

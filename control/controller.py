@@ -10,11 +10,11 @@ class Controller:
         def __init__(self):
             self.name_to_interface = {}
 
-            self.dna_0 = micro_switch.Switch(phy.DNA_MS_0.pins[0])
-            self.name_to_interface[phy.DNA_MS_0.name] = self.dna_0
+            self.dna_0_ms = micro_switch.Switch(phy.DNA_0_MS.pins[0])
+            self.name_to_interface[phy.DNA_0_MS.name] = self.dna_0_ms
 
-            self.dna_1 = micro_switch.Switch(phy.DNA_MS_1.pins[0])
-            self.name_to_interface[phy.DNA_MS_1.name] = self.dna_1
+            self.dna_1_ms = micro_switch.Switch(phy.DNA1__MS.pins[0])
+            self.name_to_interface[phy.DNA1__MS.name] = self.dna_1_ms
 
             self.tube = micro_switch.Switch(phy.TUBE_MS.pins[0])
             self.name_to_interface[phy.TUBE_MS.name] = self.tube
