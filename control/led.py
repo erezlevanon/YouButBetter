@@ -6,7 +6,7 @@ import RPi.GPIO as GPIO
 
 
 class Led:
-    __MIN = 0
+    __MIN = 5
     __MAX = 100
 
     def __init__(self, pin_number):
