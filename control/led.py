@@ -16,9 +16,9 @@ class Led:
         self.__pwm = GPIO.PWM(self.__pin, Led.__MAX)
         self.__duty_cycle = Led.__MIN
         self.__sign = 1
-        self.__interval = 3
+        self.__interval = 1
         self.__blink_active = False
-        self.__blink_sleep = 0.05
+        self.__blink_sleep = 0.01
         self.__blink_thread = None
 
     def start_pwm(self):
