@@ -14,16 +14,34 @@ DNA_0_MS = PhysicalInterface(
     [17],
 )
 
+DNA_0_LED = PhysicalInterface(
+    'dna_0_led',
+    'DNA Sample 0 LED',
+    [13],
+)
+
 DNA_1__MS = PhysicalInterface(
     'dna_1_microswitch',
     'DNA Sample 1 Present',
     [27],
 )
 
+DNA_1_LED = PhysicalInterface(
+    'dna_1_led',
+    'DNA Sample 1 LED',
+    [19],
+)
+
 TUBE_MS = PhysicalInterface(
     'tube_microswitch',
     'Tube Present',
     [22],
+)
+
+TUBE_LED = PhysicalInterface(
+    'tube_led',
+    'DNA Sample 1 LED',
+    [26],
 )
 
 TUBE_MOTOR = PhysicalInterface(
@@ -35,6 +53,10 @@ TUBE_MOTOR = PhysicalInterface(
 
 PHYSICAL_INTERFACES = [
     DNA_0_MS,
+    DNA_0_LED,
     DNA_1__MS,
+    DNA_1_LED,
     TUBE_MS,
+    TUBE_MOTOR,
+    TUBE_LED,
 ]
