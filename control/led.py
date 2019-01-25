@@ -57,6 +57,7 @@ class Led:
         if self.__blink_thread is not None:
             self.__blink_active = False
             self.__blink_thread.join()
+            time.sleep(0.5)
             self.__blink_thread = None
 
     def __blink(self):
