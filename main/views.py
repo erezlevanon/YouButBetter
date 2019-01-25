@@ -13,6 +13,7 @@ from .models import Topic
 
 @csrf_exempt
 def index(request):
+    controller.Controller()
     topics = Topic.objects
     context = {
         'topics': topics.all(),
