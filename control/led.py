@@ -22,8 +22,8 @@ class Led:
         self.__blink_thread = None
 
     def start_pwm(self):
-        self.__duty_cycle = Led.__MIN
-        self.__sign = 1
+        self.__duty_cycle = Led.__MAX
+        self.__sign = -1
         self.__pwm.start(Led.__MIN)
 
     def tick_pwm(self):
@@ -57,7 +57,7 @@ class Led:
         if self.__blink_thread is not None:
             self.__blink_active = False
             self.__blink_thread.join()
-            time.sleep(0.5)
+            time.sleep(0.1)
             self.__blink_thread = None
 
     def __blink(self):
