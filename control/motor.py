@@ -31,6 +31,7 @@ class Motor:
     def __paraller_run(self):
         while self.__p_on:
             self.run(steps=Motor.__P_INTERVALS, direction=self.__p_direction)
+            time.sleep(0.1)
 
     def start_parallel_run(self, direction=DIRECTION.CW):
         if self.__p_thread is None:
