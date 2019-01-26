@@ -13,7 +13,9 @@ class Switch:
         # GPIO.add_event_detect(self.__pin, GPIO.FALLING, callback=self.change)
 
     def read(self):
-        return GPIO.input(self.__pin)
+        res = not GPIO.input(self.__pin)
+        print(res)
+        return res
 
     def change(self, channel):
         if channel:
