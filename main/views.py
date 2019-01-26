@@ -78,18 +78,18 @@ def read_samples(request):
     while not (dna_0.read() and dna_1.read()):
         if dna_0.read():
             led_0.on()
-            motor_0.off()
+            motor_0.stop_parallel_run()
         if dna_1.read():
             led_1.on()
-            motor_0.off()
+            motor_1.stop_parallel_run()
         time.sleep(0.3)
         if time.time() - start > timeout:
             print("timeout")
             break
     led_0.on()
     led_1.on()
-    motor_0.off()
-    motor_1.off()
+    motor_0.stop_parallel_run()
+    motor_1.stop_parallel_run()
     return HttpResponse()
 
 
