@@ -7,7 +7,7 @@ import threading
 
 class Motor:
     __TYPE = "28BYJ"
-    __STEP_TYPE = "half"
+    __STEP_TYPE = "full"
     __WAIT_TIME = .001
 
     __P_INTERVALS = 10
