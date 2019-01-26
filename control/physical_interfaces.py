@@ -7,6 +7,7 @@ class PhysicalInterface:
         self.display = display
         self.pins = pins
 
+
 # Micro switches
 DNA_0_MS = PhysicalInterface(
     'dna_0_microswitch',
@@ -66,11 +67,13 @@ TUBE_MOTOR = PhysicalInterface(
 
 
 PHYSICAL_INTERFACES = [
-    DNA_0_MS,
-    DNA_0_LED,
-    DNA_1__MS,
-    DNA_1_LED,
-    TUBE_MS,
+    DNA_0_MOTOR,
+    DNA_1_MOTOR,
     TUBE_MOTOR,
+    DNA_0_LED,
+    DNA_1_LED,
     TUBE_LED,
+    DNA_0_MS,
+    DNA_1__MS,
+    TUBE_MS,
 ]
