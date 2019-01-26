@@ -30,6 +30,18 @@ class Controller:
             )
             self.name_to_interface[phy.TUBE_MOTOR.name] = self.tube_motor
 
+            self.dna_0_motor = motor.Motor(
+                phy.DNA_0_MOTOR.name,
+                phy.DNA_0_MOTOR.pins
+            )
+            self.name_to_interface[phy.DNA_0_MOTOR.name] = self.dna_0_motor
+
+            self.dna_1_motor = motor.Motor(
+                phy.DNA_1_MOTOR.name,
+                phy.DNA_1_MOTOR.pins
+            )
+            self.name_to_interface[phy.DNA_1_MOTOR.name] = self.dna_0_motor
+
     instance = None
 
     def __init__(self):
