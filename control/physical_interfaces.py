@@ -7,17 +7,11 @@ class PhysicalInterface:
         self.display = display
         self.pins = pins
 
-
+# Micro switches
 DNA_0_MS = PhysicalInterface(
     'dna_0_microswitch',
     'DNA Sample 0 Present',
     [17],
-)
-
-DNA_0_LED = PhysicalInterface(
-    'dna_0_led',
-    'DNA Sample 0 LED',
-    [13],
 )
 
 DNA_1__MS = PhysicalInterface(
@@ -26,16 +20,23 @@ DNA_1__MS = PhysicalInterface(
     [27],
 )
 
-DNA_1_LED = PhysicalInterface(
-    'dna_1_led',
-    'DNA Sample 1 LED',
-    [19],
-)
-
 TUBE_MS = PhysicalInterface(
     'tube_microswitch',
     'Tube Present',
     [22],
+)
+
+# LEDs
+DNA_0_LED = PhysicalInterface(
+    'dna_0_led',
+    'DNA Sample 0 LED',
+    [13],
+)
+
+DNA_1_LED = PhysicalInterface(
+    'dna_1_led',
+    'DNA Sample 1 LED',
+    [19],
 )
 
 TUBE_LED = PhysicalInterface(
