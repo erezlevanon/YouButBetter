@@ -40,7 +40,7 @@ class Controller:
                 phy.DNA_1_MOTOR.name,
                 phy.DNA_1_MOTOR.pins
             )
-            self.name_to_interface[phy.DNA_1_MOTOR.name] = self.dna_0_motor
+            self.name_to_interface[phy.DNA_1_MOTOR.name] = self.dna_1_motor
 
     instance = None
 
