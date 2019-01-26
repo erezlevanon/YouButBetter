@@ -48,13 +48,13 @@ TUBE_LED = PhysicalInterface(
 # Stepper motors
 DNA_0_MOTOR = PhysicalInterface(
     'dna_0_motor',
-    'Tube motor',
+    'DNA Motor 0',
     [23, 18, 15, 14],
 )
 
 DNA_1_MOTOR = PhysicalInterface(
     'dna_1_motor',
-    'Tube motor',
+    'DNA Motor 1',
     [7, 8, 25, 24],
 )
 
