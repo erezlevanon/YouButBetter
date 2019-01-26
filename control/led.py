@@ -38,9 +38,7 @@ class Led:
 
     def on(self):
         self.stop_blink()
-        GPIO.setwarnings(True)
         GPIO.output(self.__pin, GPIO.HIGH)
-        GPIO.setwarnings(False)
 
     def off(self):
         if self.__blink_thread is not None:
