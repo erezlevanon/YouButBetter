@@ -109,11 +109,15 @@ def read_tube(request):
 
 @csrf_exempt
 def read_tube_done(request):
+    print("IN DONE")
     c = controller.Controller()
     c.tube_led.blink()
     start = time.time()
     timeout = 15
-    while c.tube.read():
+    val = c.tube.read()
+    print("val: " + str(val))
+    while val:
+        val = c.tube.read()
         time.sleep(0.3)
         if time.time() - start > timeout:
             break
