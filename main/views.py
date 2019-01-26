@@ -60,26 +60,36 @@ def produce(request):
 
 @csrf_exempt
 def read_samples(request):
+    timeout = 15
+
     control = controller.Controller()
     dna_0 = control.dna_0_ms
     dna_1 = control.dna_1_ms
     led_0 = control.dna_0_led
     led_1 = control.dna_1_led
+    motor_0 = control.dna_0_motor
+    motor_1 = control.dna_1_motor
+
     led_0.blink()
     led_1.blink()
+    motor_0.start_parallel_run()
+    motor_1.start_parallel_run()
     start = time.time()
-    timeout = 15
     while not (dna_0.read() and dna_1.read()):
         if dna_0.read():
             led_0.on()
+            motor_0.off()
         if dna_1.read():
             led_1.on()
+            motor_0.off()
         time.sleep(0.3)
         if time.time() - start > timeout:
             print("timeout")
             break
     led_0.on()
     led_1.on()
+    motor_0.off()
+    motor_1.off()
     return HttpResponse()
 
 
