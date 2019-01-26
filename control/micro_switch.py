@@ -10,10 +10,10 @@ class Switch:
         GPIO.setmode(GPIO.BCM)
         GPIO.setup(self.__pin, GPIO.IN, pull_up_down=GPIO.PUD_UP)
         GPIO.remove_event_detect(self.__pin)
-        GPIO.add_event_detect(self.__pin, GPIO.FALLING, callback=self.change)
+        # GPIO.add_event_detect(self.__pin, GPIO.FALLING, callback=self.change)
 
     def read(self):
-        return self.__status
+        return GPIO.input(self.__pin)
 
     def change(self, channel):
         if channel:
