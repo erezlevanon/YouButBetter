@@ -114,10 +114,7 @@ def read_tube_done(request):
     c.tube_led.blink()
     start = time.time()
     timeout = 15
-    val = c.tube.read()
-    print("val: " + str(val))
-    while val:
-        val = c.tube.read()
+    while c.tube.read():
         time.sleep(0.3)
         if time.time() - start > timeout:
             break
