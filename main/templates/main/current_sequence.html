@@ -4,9 +4,8 @@
          layout-align="start center" class="fadeInOut">
         {% verbatim %}
         <div class="trait-list-button" layout="column" layout-align="center center">
-            <md-icon ng-show="trait.title !== ''">
-                close
-            </md-icon>
+            <md-icon md-svg-src="/static/main/clear.svg" aria-label="clear"
+            ng-show="trait.title !== ''"></md-icon>
         </div>
         <img class="coded-trait" ng-attr-src="{{ ctrl.segmentAnimations[$index] }}">
         <h3 class="trait-list">
