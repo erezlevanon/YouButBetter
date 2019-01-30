@@ -14,8 +14,8 @@ class Controller:
             self.dna_0_ms = micro_switch.Switch(phy.DNA_0_MS.pins[0])
             self.name_to_interface[phy.DNA_0_MS.name] = self.dna_0_ms
 
-            self.dna_1_ms = micro_switch.Switch(phy.DNA_1__MS.pins[0])
-            self.name_to_interface[phy.DNA_1__MS.name] = self.dna_1_ms
+            self.dna_1_ms = micro_switch.Switch(phy.DNA_1_MS.pins[0])
+            self.name_to_interface[phy.DNA_1_MS.name] = self.dna_1_ms
 
             self.tube = micro_switch.Switch(phy.TUBE_MS.pins[0])
             self.name_to_interface[phy.TUBE_MS.name] = self.tube

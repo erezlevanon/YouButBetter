@@ -15,7 +15,7 @@ DNA_0_MS = PhysicalInterface(
     [17],
 )
 
-DNA_1__MS = PhysicalInterface(
+DNA_1_MS = PhysicalInterface(
     'dna_1_microswitch',
     'DNA Sample 1 Present',
     [27],
@@ -74,6 +74,6 @@ PHYSICAL_INTERFACES = [
     DNA_1_LED,
     TUBE_LED,
     DNA_0_MS,
-    DNA_1__MS,
+    DNA_1_MS,
     TUBE_MS,
 ]
