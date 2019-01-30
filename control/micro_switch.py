@@ -11,5 +11,5 @@ class Switch:
 
     def read(self):
         res = not GPIO.input(self.__pin)
-        print(res)
+        print(str(self.__pin) + ': ' + str(res))
         return res

@@ -24,24 +24,6 @@ class Controller:
             self.dna_1_led = led.Led(phy.DNA_1_LED.pins[0])
             self.tube_led = led.Led(phy.TUBE_LED.pins[0])
 
-            self.tube_motor = motor.Motor(
-                phy.TUBE_MOTOR.name,
-                phy.TUBE_MOTOR.pins
-            )
-            self.name_to_interface[phy.TUBE_MOTOR.name] = self.tube_motor
-
-            self.dna_0_motor = motor.Motor(
-                phy.DNA_0_MOTOR.name,
-                phy.DNA_0_MOTOR.pins
-            )
-            self.name_to_interface[phy.DNA_0_MOTOR.name] = self.dna_0_motor
-
-            self.dna_1_motor = motor.Motor(
-                phy.DNA_1_MOTOR.name,
-                phy.DNA_1_MOTOR.pins
-            )
-            self.name_to_interface[phy.DNA_1_MOTOR.name] = self.dna_1_motor
-
     instance = None
 
     def __init__(self):
