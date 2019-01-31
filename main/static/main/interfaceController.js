@@ -742,7 +742,7 @@ let POSSIBLE_DIAGNOSED_TRAITS = [
     },
 
     {
-        title: 'Parkinson\'s desease',
+        title: 'Parkinson\'s disease',
         topic: 'Fixed Issues',
         description: getDescriptionForDiagnosedTrait('Parkinson\'s desease', 625000),
         price: -625000,
@@ -750,6 +750,47 @@ let POSSIBLE_DIAGNOSED_TRAITS = [
         effect: 'life_expectancy',
         effect_val: -2,
     },
+
+    {
+        title: 'Alzheimer\'s disease',
+        topic: 'Fixed Issues',
+        description: getDescriptionForDiagnosedTrait('Alzheimer\'s disease', 712000),
+        price: -712000,
+        sale_price: -712000,
+        effect: 'life_expectancy',
+        effect_val: -13,
+    },
+
+        {
+        title: 'dislike coriander',
+        topic: 'Fixed Issues',
+        description: getDescriptionForDiagnosedTrait('dislike coriander', 15000),
+        price: -15000,
+        sale_price: -15000,
+        effect: 'weight',
+        effect_val: -3,
+    },
+
+            {
+        title: 'Bald at young age',
+        topic: 'Fixed Issues',
+        description: getDescriptionForDiagnosedTrait('Bald at young age', 200000),
+        price: -200000,
+        sale_price: -200000,
+        effect: 'none',
+        effect_val: -3,
+    },
+
+                {
+        title: 'Fear of height',
+        topic: 'Fixed Issues',
+        description: getDescriptionForDiagnosedTrait('Bald at young age', 30000),
+        price: -30000,
+        sale_price: -30000,
+        effect: 'life_expectancy',
+        effect_val: 3,
+    },
+
 
     {
         title: 'Cystic Fibrosis',
