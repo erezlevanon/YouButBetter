@@ -42,7 +42,7 @@ def produce(request):
 
 @csrf_exempt
 def read_samples(request):
-    timeout = 15
+    timeout = 60
 
     control = controller.Controller()
     dna_0 = control.dna_0_ms
@@ -72,7 +72,7 @@ def read_tube(request):
     c = controller.Controller()
     c.tube_led.blink()
     start = time.time()
-    timeout = 15
+    timeout = 30
     while not (c.tube.read()):
         time.sleep(0.3)
         if time.time() - start > timeout:
@@ -87,7 +87,7 @@ def read_tube_done(request):
     c = controller.Controller()
     c.tube_led.blink()
     start = time.time()
-    timeout = 15
+    timeout = 60
     while c.tube.read():
         time.sleep(0.3)
         if time.time() - start > timeout:
