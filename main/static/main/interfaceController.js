@@ -837,4 +837,11 @@ POSSIBLE_SALES = [
         action: 'Increased mental capabilities',
         logo: 'tue.svg',
     },
+    {
+        company: '777',
+        is_percentage: false,
+        discount: 100000,
+        action: 'Risk Taking Tendencies',
+        logo: '777.svg',
+    },
 ];
