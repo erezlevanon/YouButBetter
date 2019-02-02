@@ -3,10 +3,11 @@ import os
 import sys
 from decouple import config
 from signal import *
-import RPi.GPIO as GPIO
-
 
 EXHIBIT = config('EXHIBIT', cast=bool)
+
+if EXHIBIT:
+    import RPi.GPIO as GPIO
 
 if EXHIBIT:
     def cleanup(signalnum, stack_trace):

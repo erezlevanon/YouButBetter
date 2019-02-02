@@ -7,11 +7,12 @@ from django.views.decorators.csrf import csrf_exempt
 from decouple import config
 
 import time
-
-from control import controller
 from .models import Topic
 
 EXHIBIT = config('EXHIBIT', cast=bool)
+if EXHIBIT:
+    from control import controller
+
 
 @csrf_exempt
 def index(request):

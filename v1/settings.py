@@ -34,17 +34,29 @@ ALLOWED_HOSTS = [
 
 # Application definition
 
-INSTALLED_APPS = [
-    'testing.apps.TestingConfig',
-    'main.apps.MainConfig',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.humanize',
-]
+if config('EXHIBIT', cast=bool):
+    INSTALLED_APPS = [
+        'testing.apps.TestingConfig',
+        'main.apps.MainConfig',
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'django.contrib.humanize',
+    ]
+else:
+    INSTALLED_APPS = [
+        'main.apps.MainConfig',
+        'django.contrib.admin',
+        'django.contrib.auth',
+        'django.contrib.contenttypes',
+        'django.contrib.sessions',
+        'django.contrib.messages',
+        'django.contrib.staticfiles',
+        'django.contrib.humanize',
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
