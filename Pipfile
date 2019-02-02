@@ -8,7 +8,8 @@ verify_ssl = true
 [packages]
 django = "*"
 rpimotorlib = "*"
-python-decouple	= "3.1"
+python-decouple	= "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.7"
