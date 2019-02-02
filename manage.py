@@ -11,8 +11,6 @@ EXHIBIT = config('EXHIBIT', cast=bool)
 if EXHIBIT:
     def cleanup(signalnum, stack_trace):
         GPIO.cleanup()
-        sys.stdout.write("youbutbetter: cleanup done.")
-        sys.stderr.write("youbutbetter: cleanup done.")
         sys.exit(0)
 
 
