@@ -1,15 +1,19 @@
 #!/usr/bin/env python
 import os
 import sys
+from decouple import config
 from signal import *
 import RPi.GPIO as GPIO
 
 
-def cleanup(signalnum, stack_trace):
-    GPIO.cleanup()
-    sys.stdout.write("youbutbetter: cleanup done.")
-    sys.stderr.write("youbutbetter: cleanup done.")
-    sys.exit(0)
+EXHIBIT = config('EXHIBIT', cast=bool)
+
+if EXHIBIT:
+    def cleanup(signalnum, stack_trace):
+        GPIO.cleanup()
+        sys.stdout.write("youbutbetter: cleanup done.")
+        sys.stderr.write("youbutbetter: cleanup done.")
+        sys.exit(0)
 
 
 if __name__ == '__main__':
@@ -22,8 +26,8 @@ if __name__ == '__main__':
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
-
-    for sig in (SIGINT, SIGABRT, SIGTERM):
-        signal(sig, cleanup)
+    if EXHIBIT:
+        for sig in (SIGINT, SIGABRT, SIGTERM):
+            signal(sig, cleanup)
 
     execute_from_command_line(sys.argv)
